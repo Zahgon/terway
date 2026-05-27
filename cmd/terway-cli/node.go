@@ -1,25 +1,12 @@
 package main
 
 import (
-	"context"
-	"encoding/json"
 	"fmt"
 	"os"
-	"time"
 
-	"github.com/Jeffail/gabs/v2"
 	"github.com/spf13/cobra"
-	corev1 "k8s.io/api/core/v1"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	utilfeature "k8s.io/apiserver/pkg/util/feature"
-	ctrl "sigs.k8s.io/controller-runtime"
-	k8sClient "sigs.k8s.io/controller-runtime/pkg/client"
 
-	terwayfeature "github.com/AliyunContainerService/terway/pkg/feature"
 	"github.com/AliyunContainerService/terway/pkg/utils/nodecap"
-	"github.com/AliyunContainerService/terway/pkg/version"
-	driverTypes "github.com/AliyunContainerService/terway/plugin/driver/types"
-	"github.com/AliyunContainerService/terway/types"
 	"github.com/AliyunContainerService/terway/types/daemon"
 )
 
@@ -86,188 +73,30 @@ var nodeconfigCmd = &cobra.Command{
 
 var eniCfg *daemon.Config
 
-func getENIConfig(cmd *cobra.Command, args []string) error {
-	var err error
-	terwayConfig, err := getAllConfig(eniConfBasePath)
-	if err != nil {
-		return err
-	}
+func getENIConfig(cmd *cobra.Command, args []string) error { _ = "STUB: not implemented"; return nil }
 
-	cfg := daemon.Config{}
-	err = json.Unmarshal(terwayConfig.eniConfig, &cfg)
-	if err != nil {
-		return err
-	}
-	eniCfg = &cfg
-
-	fmt.Printf("eni config: %+v\n", eniCfg)
-	return nil
-}
-
-func overrideCNI(cmd *cobra.Command, args []string) error {
-	restConfig := ctrl.GetConfigOrDie()
-	restConfig.UserAgent = version.UA
-	c, err := k8sClient.New(restConfig, k8sClient.Options{
-		Scheme: types.Scheme,
-		Mapper: types.NewRESTMapper(),
-	})
-	if err != nil {
-		return err
-	}
-
-	node := &corev1.Node{}
-	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Minute)
-	defer cancel()
-
-	nodeName := os.Getenv("K8S_NODE_NAME")
-
-	err = c.Get(ctx, k8sClient.ObjectKey{
-		Name: nodeName,
-	}, node, &k8sClient.GetOptions{
-		Raw: &metav1.GetOptions{
-			ResourceVersion: "0",
-		},
-	})
-	if err != nil {
-		return fmt.Errorf("get node %s error: %w", nodeName, err)
-	}
-
-	store := nodecap.NewFileNodeCapabilities(nodeCapabilitiesFile)
-	return setExclusiveMode(store, node.Labels, cniFilePath)
-}
+func overrideCNI(cmd *cobra.Command, args []string) error { _ = "STUB: not implemented"; return nil }
 
 func setExclusiveMode(store nodecap.NodeCapabilitiesStore, labels map[string]string, cniPath string) error {
-	err := store.Load()
-	if err != nil {
-		return err
-	}
-	now := types.NodeExclusiveENIMode(labels)
-
-	switch store.Get(nodecap.NodeCapabilityExclusiveENI) {
-	case string(types.ExclusiveENIOnly):
-		if now != types.ExclusiveENIOnly {
-			return fmt.Errorf("exclusive eni mode changed")
-		}
-	case string(types.ExclusiveDefault):
-		if now != types.ExclusiveDefault {
-			return fmt.Errorf("exclusive eni mode changed")
-		}
-	case "":
-		// empty for new node, or rebooted
-	}
-
-	store.Set(nodecap.NodeCapabilityExclusiveENI, string(now))
-	err = store.Save()
-	if err != nil {
-		return err
-	}
-
-	// write cni config
-	if now == types.ExclusiveENIOnly {
-		err = os.WriteFile(cniPath, []byte(eniOnlyCNI), 0644)
-		if err != nil {
-			return err
-		}
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
-func dualStack(cmd *cobra.Command, args []string) error {
-	store := nodecap.NewFileNodeCapabilities(nodeCapabilitiesFile)
+// empty for new node, or rebooted
 
-	val := ""
-	switch eniCfg.IPStack {
-	case "dual", "ipv6":
-		val = True
-	default:
-		val = False
-	}
+// write cni config
 
-	err := store.Load()
-	if err != nil {
-		return err
-	}
+func dualStack(cmd *cobra.Command, args []string) error { _ = "STUB: not implemented"; return nil }
 
-	store.Set(nodecap.NodeCapabilityIPv6, val)
-	return store.Save()
-}
+func enableKPR(cmd *cobra.Command, args []string) error { _ = "STUB: not implemented"; return nil }
 
-func enableKPR(cmd *cobra.Command, args []string) error {
-	if !utilfeature.DefaultFeatureGate.Enabled(terwayfeature.KubeProxyReplacement) {
-		return nil
-	}
+func setSymmetricRouting(cniFilePath string) error { _ = "STUB: not implemented"; return nil }
 
-	store := nodecap.NewFileNodeCapabilities(nodeCapabilitiesFile)
+// Check for symmetric_routing_config
 
-	err := store.Load()
-	if err != nil {
-		return err
-	}
-
-	prev := store.Get(nodecap.NodeCapabilityKubeProxyReplacement)
-	if prev != "" {
-		return nil
-	}
-
-	store.Set(nodecap.NodeCapabilityKubeProxyReplacement, True)
-
-	return store.Save()
-}
-
-func setSymmetricRouting(cniFilePath string) error {
-	cni, err := os.ReadFile(cniFilePath)
-	if err != nil {
-		return err
-	}
-	cniJSON, err := gabs.ParseJSON(cni)
-	if err != nil {
-		return err
-	}
-
-	plugins := cniJSON.Path("plugins").Children()
-
-	enableSymmetricRouting := false
-	var symmetricRoutingConfig *driverTypes.SymmetricRoutingConfig
-	for _, plugin := range plugins {
-		if plugin.Exists("type") && plugin.S("type").String() == `"terway"` {
-			if plugin.Exists("symmetric_routing") {
-				if v, ok := plugin.S("symmetric_routing").Data().(bool); ok && v {
-					enableSymmetricRouting = true
-				}
-			}
-			// Check for symmetric_routing_config
-			if plugin.Exists("symmetric_routing_config") {
-				configData := plugin.S("symmetric_routing_config").Bytes()
-				if len(configData) > 0 {
-					symmetricRoutingConfig = &driverTypes.SymmetricRoutingConfig{}
-					err = json.Unmarshal(configData, symmetricRoutingConfig)
-					if err != nil {
-						return fmt.Errorf("failed to parse symmetric_routing_config: %v", err)
-					}
-				}
-			}
-			break
-		}
-	}
-	if !enableSymmetricRouting {
-		fmt.Printf("symmetric routing disabled, ignore setup\n")
-		return nil
-	}
-
-	if eniCfg == nil {
-		return fmt.Errorf("missing eni_config")
-	}
-
-	ipv4, ipv6 := eniCfg.GetIPStack()
-	// setup ip rule ( will not clean up ,if disabled )
-	err = configureNetworkRulesWithConfig(ipv4, ipv6, symmetricRoutingConfig)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
+// setup ip rule ( will not clean up ,if disabled )
 
 func symmetricRouting(cmd *cobra.Command, args []string) error {
-	return setSymmetricRouting(cniFilePath)
+	_ = "STUB: not implemented"
+	return nil
 }

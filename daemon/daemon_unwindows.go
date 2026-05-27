@@ -7,5 +7,6 @@ import (
 )
 
 func preStartResourceManager(daemonMode string, k8s k8s.Kubernetes) error {
+	_ = "STUB: not implemented"
 	return nil
 }

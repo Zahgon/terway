@@ -18,24 +18,29 @@ type errStatusWriter struct {
 }
 
 func (e *errStatusWriter) Create(ctx context.Context, obj, subResource client.Object, opts ...client.SubResourceCreateOption) error {
-	return e.real.Create(ctx, obj, subResource, opts...)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (e *errStatusWriter) Update(ctx context.Context, obj client.Object, opts ...client.SubResourceUpdateOption) error {
-	return e.updateErr
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (e *errStatusWriter) Patch(ctx context.Context, obj client.Object, patch client.Patch, opts ...client.SubResourcePatchOption) error {
-	return e.real.Patch(ctx, obj, patch, opts...)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (e *errStatusWriter) Apply(ctx context.Context, obj runtime.ApplyConfiguration, opts ...client.SubResourceApplyOption) error {
-	return e.real.Apply(ctx, obj, opts...)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ClientWithStatusUpdateErr wraps c and returns statusUpdateErr on Status().Update().
 func ClientWithStatusUpdateErr(c client.Client, statusUpdateErr error) client.Client {
-	return &clientWithStatusUpdateErr{Client: c, statusUpdateErr: statusUpdateErr}
+	_ = "STUB: not implemented"
+	return *new(client.Client)
 }
 
 type clientWithStatusUpdateErr struct {
@@ -44,12 +49,14 @@ type clientWithStatusUpdateErr struct {
 }
 
 func (w *clientWithStatusUpdateErr) Status() client.SubResourceWriter {
-	return &errStatusWriter{updateErr: w.statusUpdateErr, real: w.Client.Status()}
+	_ = "STUB: not implemented"
+	return *new(client.SubResourceWriter)
 }
 
 // ClientWithGetErr wraps c and returns getErr on every Get().
 func ClientWithGetErr(c client.Client, getErr error) client.Client {
-	return &clientWithGetErr{Client: c, getErr: getErr}
+	_ = "STUB: not implemented"
+	return *new(client.Client)
 }
 
 type clientWithGetErr struct {
@@ -58,12 +65,15 @@ type clientWithGetErr struct {
 }
 
 func (w *clientWithGetErr) Get(ctx context.Context, key client.ObjectKey, obj client.Object, opts ...client.GetOption) error {
-	return w.getErr
+	_ = "STUB: not implemented"
+
+	// ClientWithUpdateErr wraps c and returns updateErr on Update().
+	return nil
 }
 
-// ClientWithUpdateErr wraps c and returns updateErr on Update().
 func ClientWithUpdateErr(c client.Client, updateErr error) client.Client {
-	return &clientWithUpdateErr{Client: c, updateErr: updateErr}
+	_ = "STUB: not implemented"
+	return *new(client.Client)
 }
 
 type clientWithUpdateErr struct {
@@ -72,15 +82,18 @@ type clientWithUpdateErr struct {
 }
 
 func (w *clientWithUpdateErr) Update(ctx context.Context, obj client.Object, opts ...client.UpdateOption) error {
-	return w.updateErr
+	_ = "STUB: not implemented"
+	return nil
+
+	// GetErrorFunc returns an error for a given key; if non-nil, Get will return that error instead of delegating.
 }
 
-// GetErrorFunc returns an error for a given key; if non-nil, Get will return that error instead of delegating.
 type GetErrorFunc func(key client.ObjectKey) error
 
 // ClientWithGetErrorFunc wraps c and returns error on Get when fn(key) returns non-nil.
 func ClientWithGetErrorFunc(c client.Client, fn GetErrorFunc) client.Client {
-	return &clientWithGetErrorFunc{Client: c, getError: fn}
+	_ = "STUB: not implemented"
+	return *new(client.Client)
 }
 
 type clientWithGetErrorFunc struct {
@@ -89,10 +102,6 @@ type clientWithGetErrorFunc struct {
 }
 
 func (w *clientWithGetErrorFunc) Get(ctx context.Context, key client.ObjectKey, obj client.Object, opts ...client.GetOption) error {
-	if w.getError != nil {
-		if err := w.getError(key); err != nil {
-			return err
-		}
-	}
-	return w.Client.Get(ctx, key, obj, opts...)
+	_ = "STUB: not implemented"
+	return nil
 }

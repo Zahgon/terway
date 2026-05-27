@@ -17,13 +17,9 @@ limitations under the License.
 package node
 
 import (
-	corev1 "k8s.io/api/core/v1"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/event"
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
-
-	"github.com/AliyunContainerService/terway/pkg/utils"
-	"github.com/AliyunContainerService/terway/types"
 )
 
 type predicateForNodeEvent struct {
@@ -35,51 +31,29 @@ type predicateForNodeEvent struct {
 
 // Create returns true if the Create event should be processed
 func (p *predicateForNodeEvent) Create(e event.CreateEvent) bool {
-	return p.predicateNode(e.Object)
+	_ = "STUB: not implemented"
+	return false
 }
 
 // Delete returns true if the Delete event should be processed
 func (p *predicateForNodeEvent) Delete(e event.DeleteEvent) bool {
-	return p.predicateNode(e.Object)
+	_ = "STUB: not implemented"
+	return false
 }
 
 // Update returns true if the Update event should be processed
 func (p *predicateForNodeEvent) Update(e event.UpdateEvent) bool {
-	return p.predicateNode(e.ObjectNew)
+	_ = "STUB: not implemented"
+	return false
 }
 
 // Generic returns true if the Generic event should be processed
 func (p *predicateForNodeEvent) Generic(e event.GenericEvent) bool {
-	return p.predicateNode(e.Object)
+	_ = "STUB: not implemented"
+	return false
 }
 
 func (p *predicateForNodeEvent) predicateNode(o client.Object) bool {
-	node, ok := o.(*corev1.Node)
-	if !ok {
-		return false
-	}
-
-	if p.nodeLabelWhiteList != nil {
-		if !utils.ContainsAll(node.Labels, p.nodeLabelWhiteList) {
-			return false
-		}
-	}
-
-	if node.Labels[corev1.LabelTopologyRegion] == "" {
-		return false
-	}
-
-	if types.IgnoredByTerway(node.Labels) {
-		return false
-	}
-
-	if !p.supportEFLO && utils.ISLingJunNode(node.Labels) {
-		return false
-	}
-
-	if utils.ISVKNode(node) {
-		return false
-	}
-
-	return true
+	_ = "STUB: not implemented"
+	return false
 }

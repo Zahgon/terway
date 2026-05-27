@@ -1,8 +1,6 @@
 package metric
 
 import (
-	"fmt"
-
 	"github.com/prometheus/client_golang/prometheus"
 )
 
@@ -21,9 +19,4 @@ type ControllerConcurrentConfig struct {
 	MaxConcurrent int
 }
 
-func SetConfigMetrics(controllers []ControllerConcurrentConfig) {
-	ConfigInfo.Reset()
-	for _, c := range controllers {
-		ConfigInfo.WithLabelValues(c.Name, fmt.Sprintf("%d", c.MaxConcurrent)).Set(1)
-	}
-}
+func SetConfigMetrics(controllers []ControllerConcurrentConfig) { _ = "STUB: not implemented"; return }

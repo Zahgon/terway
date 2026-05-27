@@ -8,13 +8,7 @@ type RuntimeDNS struct {
 	Options     []string `json:"options,omitempty"`
 }
 
-func (i *RuntimeDNS) AsCNIDns() types.DNS {
-	return types.DNS{
-		Nameservers: i.Nameservers,
-		Search:      i.Search,
-		Options:     i.Options,
-	}
-}
+func (i *RuntimeDNS) AsCNIDns() types.DNS { _ = "STUB: not implemented"; return *new(types.DNS) }
 
 type RuntimePortMapEntry struct {
 	HostPort      int    `json:"hostPort"`

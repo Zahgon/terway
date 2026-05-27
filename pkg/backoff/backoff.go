@@ -40,10 +40,8 @@ type ExtendedBackoff struct {
 
 // NewExtendedBackoff creates a new extended backoff configuration
 func NewExtendedBackoff(initialDelay time.Duration, backoff wait.Backoff) ExtendedBackoff {
-	return ExtendedBackoff{
-		InitialDelay: initialDelay,
-		Backoff:      backoff,
-	}
+	_ = "STUB: not implemented"
+	return *new(ExtendedBackoff)
 }
 
 var backoffMap = map[string]ExtendedBackoff{
@@ -220,40 +218,19 @@ var backoffMap = map[string]ExtendedBackoff{
 	},
 }
 
-func OverrideBackoff(in map[string]ExtendedBackoff) {
-	for k, v := range in {
-		// set default for InitialDelay
-		if v.InitialDelay != 0 {
-			backoffMap[k] = v
-		} else {
-			if prev, ok := backoffMap[k]; ok {
-				v.InitialDelay = prev.InitialDelay
-			}
-			backoffMap[k] = v
-		}
-	}
-}
+func OverrideBackoff(in map[string]ExtendedBackoff) { _ = "STUB: not implemented"; return }
 
-func Backoff(key string) ExtendedBackoff {
-	b, ok := backoffMap[key]
-	if !ok {
-		return backoffMap[DefaultKey]
-	}
-	return b
-}
+// set default for InitialDelay
+
+func Backoff(key string) ExtendedBackoff { _ = "STUB: not implemented"; return *new(ExtendedBackoff) }
 
 // ExponentialBackoffWithInitialDelay extends ExponentialBackoffWithContext with initial delay support
 func ExponentialBackoffWithInitialDelay(ctx context.Context, extendedBackoff ExtendedBackoff, condition func(context.Context) (bool, error)) error {
+	_ = "STUB: not implemented"
 	// If there's an initial delay, wait first
-	if extendedBackoff.InitialDelay > 0 {
-		select {
-		case <-ctx.Done():
-			return ctx.Err()
-		case <-time.After(extendedBackoff.InitialDelay):
-			// Initial delay completed, continue execution
-		}
-	}
-
-	// Use the original ExponentialBackoffWithContext
-	return wait.ExponentialBackoffWithContext(ctx, extendedBackoff.Backoff, condition)
+	return nil
 }
+
+// Initial delay completed, continue execution
+
+// Use the original ExponentialBackoffWithContext

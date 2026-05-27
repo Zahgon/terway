@@ -16,10 +16,6 @@ type ECSService struct {
 }
 
 func NewECSService(clientSet credential.Client, rateLimiter *RateLimiter, tracer trace.Tracer) *ECSService {
-	return &ECSService{
-		ClientSet:        clientSet,
-		IdempotentKeyGen: NewIdempotentKeyGenerator(),
-		RateLimiter:      rateLimiter,
-		Tracer:           tracer,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

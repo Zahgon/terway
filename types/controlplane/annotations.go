@@ -17,10 +17,6 @@ limitations under the License.
 package controlplane
 
 import (
-	"encoding/json"
-	"fmt"
-
-	terwayTypes "github.com/AliyunContainerService/terway/types"
 	"github.com/AliyunContainerService/terway/types/route"
 
 	corev1 "k8s.io/api/core/v1"
@@ -39,29 +35,11 @@ type PodNetworkRef struct {
 
 // ParsePodNetworksFromAnnotation parse annotation and convert to PodNetworksAnnotation
 func ParsePodNetworksFromAnnotation(pod *corev1.Pod) (*PodNetworksAnnotation, error) {
-	v, ok := pod.GetAnnotations()[terwayTypes.PodNetworks]
-	if !ok {
-		return &PodNetworksAnnotation{}, nil
-	}
-
-	var annoConf PodNetworksAnnotation
-	err := json.Unmarshal([]byte(v), &annoConf)
-	if err != nil {
-		return nil, fmt.Errorf("parse %s from pod annotataion, %w", terwayTypes.PodNetworks, err)
-	}
-	return &annoConf, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func ParsePodNetworksFromRequest(anno map[string]string) ([]PodNetworkRef, error) {
-	v, ok := anno[terwayTypes.PodNetworksRequest]
-	if !ok {
-		return nil, nil
-	}
-
-	var annoConf []PodNetworkRef
-	err := json.Unmarshal([]byte(v), &annoConf)
-	if err != nil {
-		return nil, fmt.Errorf("parse %s from pod annotataion, %w", terwayTypes.PodNetworksRequest, err)
-	}
-	return annoConf, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }

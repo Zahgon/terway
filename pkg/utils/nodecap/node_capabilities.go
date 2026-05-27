@@ -2,13 +2,6 @@
 
 package nodecap
 
-import (
-	"os"
-	"path/filepath"
-
-	"gopkg.in/ini.v1"
-)
-
 const (
 	nodeCapabilitiesFile = "/var/run/eni/node_capabilities"
 
@@ -37,62 +30,21 @@ type FileNodeCapabilities struct {
 
 // NewFileNodeCapabilities creates a new FileNodeCapabilities instance
 func NewFileNodeCapabilities(filePath string) *FileNodeCapabilities {
-	return &FileNodeCapabilities{
-		filePath:     filePath,
-		capabilities: make(map[string]string),
-	}
-}
-
-// Load loads capabilities from the INI file
-func (store *FileNodeCapabilities) Load() error {
-	file, err := ini.Load(store.filePath)
-	if err != nil {
-		if os.IsNotExist(err) {
-			return nil
-		}
-		return err
-	}
-	store.capabilities = make(map[string]string)
-	for _, key := range file.Section("").Keys() {
-		store.capabilities[key.Name()] = key.Value()
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
+// Load loads capabilities from the INI file
+func (store *FileNodeCapabilities) Load() error { _ = "STUB: not implemented"; return nil }
+
 // Save saves the capabilities to the INI file
-func (store *FileNodeCapabilities) Save() error {
-	err := os.MkdirAll(filepath.Dir(store.filePath), 0700)
-	if err != nil {
-		return err
-	}
-	file, err := ini.Load(store.filePath)
-	if err != nil {
-		if os.IsNotExist(err) {
-			file = ini.Empty()
-		} else {
-			return err
-		}
-	}
-
-	for _, key := range file.Section("").Keys() {
-		file.Section("").DeleteKey(key.Name())
-	}
-
-	for key, value := range store.capabilities {
-		file.Section("").Key(key).SetValue(value)
-	}
-	return file.SaveTo(store.filePath)
-}
+func (store *FileNodeCapabilities) Save() error { _ = "STUB: not implemented"; return nil }
 
 // Set sets a node capability
-func (store *FileNodeCapabilities) Set(capName, value string) {
-	store.capabilities[capName] = value
-}
+func (store *FileNodeCapabilities) Set(capName, value string) { _ = "STUB: not implemented"; return }
 
 // Get retrieves a node capability
-func (store *FileNodeCapabilities) Get(capName string) string {
-	return store.capabilities[capName]
-}
+func (store *FileNodeCapabilities) Get(capName string) string { _ = "STUB: not implemented"; return "" }
 
 // Global instance for convenient access
 var capabilitiesStore NodeCapabilitiesStore = NewFileNodeCapabilities(nodeCapabilitiesFile)
@@ -105,6 +57,4 @@ func init() {
 }
 
 // GetNodeCapabilities retrieves a capability
-func GetNodeCapabilities(capName string) string {
-	return capabilitiesStore.Get(capName)
-}
+func GetNodeCapabilities(capName string) string { _ = "STUB: not implemented"; return "" }

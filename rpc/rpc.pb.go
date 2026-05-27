@@ -7,11 +7,10 @@
 package rpc
 
 import (
+	sync "sync"
+
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
 )
 
 const (
@@ -43,32 +42,27 @@ var (
 	}
 )
 
-func (x IPType) Enum() *IPType {
-	p := new(IPType)
-	*p = x
-	return p
-}
+func (x IPType) Enum() *IPType { _ = "STUB: not implemented"; return nil }
 
-func (x IPType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
+func (x IPType) String() string { _ = "STUB: not implemented"; return "" }
 
 func (IPType) Descriptor() protoreflect.EnumDescriptor {
-	return file_rpc_proto_enumTypes[0].Descriptor()
+	_ = "STUB: not implemented"
+	return *new(protoreflect.EnumDescriptor)
 }
 
 func (IPType) Type() protoreflect.EnumType {
-	return &file_rpc_proto_enumTypes[0]
+	_ = "STUB: not implemented"
+	return *new(protoreflect.EnumType)
 }
 
 func (x IPType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.EnumNumber)
 }
 
 // Deprecated: Use IPType.Descriptor instead.
-func (IPType) EnumDescriptor() ([]byte, []int) {
-	return file_rpc_proto_rawDescGZIP(), []int{0}
-}
+func (IPType) EnumDescriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
 type Error int32
 
@@ -89,32 +83,27 @@ var (
 	}
 )
 
-func (x Error) Enum() *Error {
-	p := new(Error)
-	*p = x
-	return p
-}
+func (x Error) Enum() *Error { _ = "STUB: not implemented"; return nil }
 
-func (x Error) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
+func (x Error) String() string { _ = "STUB: not implemented"; return "" }
 
 func (Error) Descriptor() protoreflect.EnumDescriptor {
-	return file_rpc_proto_enumTypes[1].Descriptor()
+	_ = "STUB: not implemented"
+	return *new(protoreflect.EnumDescriptor)
 }
 
 func (Error) Type() protoreflect.EnumType {
-	return &file_rpc_proto_enumTypes[1]
+	_ = "STUB: not implemented"
+	return *new(protoreflect.EnumType)
 }
 
 func (x Error) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.EnumNumber)
 }
 
 // Deprecated: Use Error.Descriptor instead.
-func (Error) EnumDescriptor() ([]byte, []int) {
-	return file_rpc_proto_rawDescGZIP(), []int{1}
-}
+func (Error) EnumDescriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
 type EventTarget int32
 
@@ -135,32 +124,27 @@ var (
 	}
 )
 
-func (x EventTarget) Enum() *EventTarget {
-	p := new(EventTarget)
-	*p = x
-	return p
-}
+func (x EventTarget) Enum() *EventTarget { _ = "STUB: not implemented"; return nil }
 
-func (x EventTarget) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
+func (x EventTarget) String() string { _ = "STUB: not implemented"; return "" }
 
 func (EventTarget) Descriptor() protoreflect.EnumDescriptor {
-	return file_rpc_proto_enumTypes[2].Descriptor()
+	_ = "STUB: not implemented"
+	return *new(protoreflect.EnumDescriptor)
 }
 
 func (EventTarget) Type() protoreflect.EnumType {
-	return &file_rpc_proto_enumTypes[2]
+	_ = "STUB: not implemented"
+	return *new(protoreflect.EnumType)
 }
 
 func (x EventTarget) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.EnumNumber)
 }
 
 // Deprecated: Use EventTarget.Descriptor instead.
-func (EventTarget) EnumDescriptor() ([]byte, []int) {
-	return file_rpc_proto_rawDescGZIP(), []int{2}
-}
+func (EventTarget) EnumDescriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
 type EventType int32
 
@@ -181,32 +165,27 @@ var (
 	}
 )
 
-func (x EventType) Enum() *EventType {
-	p := new(EventType)
-	*p = x
-	return p
-}
+func (x EventType) Enum() *EventType { _ = "STUB: not implemented"; return nil }
 
-func (x EventType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
+func (x EventType) String() string { _ = "STUB: not implemented"; return "" }
 
 func (EventType) Descriptor() protoreflect.EnumDescriptor {
-	return file_rpc_proto_enumTypes[3].Descriptor()
+	_ = "STUB: not implemented"
+	return *new(protoreflect.EnumDescriptor)
 }
 
 func (EventType) Type() protoreflect.EnumType {
-	return &file_rpc_proto_enumTypes[3]
+	_ = "STUB: not implemented"
+	return *new(protoreflect.EnumType)
 }
 
 func (x EventType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.EnumNumber)
 }
 
 // Deprecated: Use EventType.Descriptor instead.
-func (EventType) EnumDescriptor() ([]byte, []int) {
-	return file_rpc_proto_rawDescGZIP(), []int{3}
-}
+func (EventType) EnumDescriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
 // IPSet declare a string set contain v4 v6 info
 type IPSet struct {
@@ -217,49 +196,23 @@ type IPSet struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *IPSet) Reset() {
-	*x = IPSet{}
-	mi := &file_rpc_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *IPSet) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *IPSet) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *IPSet) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*IPSet) ProtoMessage() {}
+func (*IPSet) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *IPSet) ProtoReflect() protoreflect.Message {
-	mi := &file_rpc_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use IPSet.ProtoReflect.Descriptor instead.
-func (*IPSet) Descriptor() ([]byte, []int) {
-	return file_rpc_proto_rawDescGZIP(), []int{0}
-}
+func (*IPSet) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
-func (x *IPSet) GetIPv4() string {
-	if x != nil {
-		return x.IPv4
-	}
-	return ""
-}
+func (x *IPSet) GetIPv4() string { _ = "STUB: not implemented"; return "" }
 
-func (x *IPSet) GetIPv6() string {
-	if x != nil {
-		return x.IPv6
-	}
-	return ""
-}
+func (x *IPSet) GetIPv6() string { _ = "STUB: not implemented"; return "" }
 
 type AllocIPRequest struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
@@ -272,70 +225,29 @@ type AllocIPRequest struct {
 	sizeCache              protoimpl.SizeCache
 }
 
-func (x *AllocIPRequest) Reset() {
-	*x = AllocIPRequest{}
-	mi := &file_rpc_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *AllocIPRequest) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *AllocIPRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *AllocIPRequest) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*AllocIPRequest) ProtoMessage() {}
+func (*AllocIPRequest) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *AllocIPRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_rpc_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use AllocIPRequest.ProtoReflect.Descriptor instead.
-func (*AllocIPRequest) Descriptor() ([]byte, []int) {
-	return file_rpc_proto_rawDescGZIP(), []int{1}
-}
+func (*AllocIPRequest) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
-func (x *AllocIPRequest) GetK8SPodName() string {
-	if x != nil {
-		return x.K8SPodName
-	}
-	return ""
-}
+func (x *AllocIPRequest) GetK8SPodName() string { _ = "STUB: not implemented"; return "" }
 
-func (x *AllocIPRequest) GetK8SPodNamespace() string {
-	if x != nil {
-		return x.K8SPodNamespace
-	}
-	return ""
-}
+func (x *AllocIPRequest) GetK8SPodNamespace() string { _ = "STUB: not implemented"; return "" }
 
-func (x *AllocIPRequest) GetK8SPodInfraContainerId() string {
-	if x != nil {
-		return x.K8SPodInfraContainerId
-	}
-	return ""
-}
+func (x *AllocIPRequest) GetK8SPodInfraContainerId() string { _ = "STUB: not implemented"; return "" }
 
-func (x *AllocIPRequest) GetNetns() string {
-	if x != nil {
-		return x.Netns
-	}
-	return ""
-}
+func (x *AllocIPRequest) GetNetns() string { _ = "STUB: not implemented"; return "" }
 
-func (x *AllocIPRequest) GetIfName() string {
-	if x != nil {
-		return x.IfName
-	}
-	return ""
-}
+func (x *AllocIPRequest) GetIfName() string { _ = "STUB: not implemented"; return "" }
 
 type NetConf struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -349,77 +261,31 @@ type NetConf struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *NetConf) Reset() {
-	*x = NetConf{}
-	mi := &file_rpc_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *NetConf) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *NetConf) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *NetConf) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*NetConf) ProtoMessage() {}
+func (*NetConf) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *NetConf) ProtoReflect() protoreflect.Message {
-	mi := &file_rpc_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use NetConf.ProtoReflect.Descriptor instead.
-func (*NetConf) Descriptor() ([]byte, []int) {
-	return file_rpc_proto_rawDescGZIP(), []int{2}
-}
+func (*NetConf) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
-func (x *NetConf) GetBasicInfo() *BasicInfo {
-	if x != nil {
-		return x.BasicInfo
-	}
-	return nil
-}
+func (x *NetConf) GetBasicInfo() *BasicInfo { _ = "STUB: not implemented"; return nil }
 
-func (x *NetConf) GetENIInfo() *ENIInfo {
-	if x != nil {
-		return x.ENIInfo
-	}
-	return nil
-}
+func (x *NetConf) GetENIInfo() *ENIInfo { _ = "STUB: not implemented"; return nil }
 
-func (x *NetConf) GetPod() *Pod {
-	if x != nil {
-		return x.Pod
-	}
-	return nil
-}
+func (x *NetConf) GetPod() *Pod { _ = "STUB: not implemented"; return nil }
 
-func (x *NetConf) GetIfName() string {
-	if x != nil {
-		return x.IfName
-	}
-	return ""
-}
+func (x *NetConf) GetIfName() string { _ = "STUB: not implemented"; return "" }
 
-func (x *NetConf) GetExtraRoutes() []*Route {
-	if x != nil {
-		return x.ExtraRoutes
-	}
-	return nil
-}
+func (x *NetConf) GetExtraRoutes() []*Route { _ = "STUB: not implemented"; return nil }
 
-func (x *NetConf) GetDefaultRoute() bool {
-	if x != nil {
-		return x.DefaultRoute
-	}
-	return false
-}
+func (x *NetConf) GetDefaultRoute() bool { _ = "STUB: not implemented"; return false }
 
 type AllocIPReply struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -432,70 +298,29 @@ type AllocIPReply struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *AllocIPReply) Reset() {
-	*x = AllocIPReply{}
-	mi := &file_rpc_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *AllocIPReply) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *AllocIPReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *AllocIPReply) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*AllocIPReply) ProtoMessage() {}
+func (*AllocIPReply) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *AllocIPReply) ProtoReflect() protoreflect.Message {
-	mi := &file_rpc_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use AllocIPReply.ProtoReflect.Descriptor instead.
-func (*AllocIPReply) Descriptor() ([]byte, []int) {
-	return file_rpc_proto_rawDescGZIP(), []int{3}
-}
+func (*AllocIPReply) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
-func (x *AllocIPReply) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
+func (x *AllocIPReply) GetSuccess() bool { _ = "STUB: not implemented"; return false }
 
-func (x *AllocIPReply) GetIPType() IPType {
-	if x != nil {
-		return x.IPType
-	}
-	return IPType_TypeVPCIP
-}
+func (x *AllocIPReply) GetIPType() IPType { _ = "STUB: not implemented"; return *new(IPType) }
 
-func (x *AllocIPReply) GetIPv4() bool {
-	if x != nil {
-		return x.IPv4
-	}
-	return false
-}
+func (x *AllocIPReply) GetIPv4() bool { _ = "STUB: not implemented"; return false }
 
-func (x *AllocIPReply) GetIPv6() bool {
-	if x != nil {
-		return x.IPv6
-	}
-	return false
-}
+func (x *AllocIPReply) GetIPv6() bool { _ = "STUB: not implemented"; return false }
 
-func (x *AllocIPReply) GetNetConfs() []*NetConf {
-	if x != nil {
-		return x.NetConfs
-	}
-	return nil
-}
+func (x *AllocIPReply) GetNetConfs() []*NetConf { _ = "STUB: not implemented"; return nil }
 
 type BasicInfo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -507,63 +332,27 @@ type BasicInfo struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *BasicInfo) Reset() {
-	*x = BasicInfo{}
-	mi := &file_rpc_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *BasicInfo) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *BasicInfo) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *BasicInfo) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*BasicInfo) ProtoMessage() {}
+func (*BasicInfo) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *BasicInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_rpc_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use BasicInfo.ProtoReflect.Descriptor instead.
-func (*BasicInfo) Descriptor() ([]byte, []int) {
-	return file_rpc_proto_rawDescGZIP(), []int{4}
-}
+func (*BasicInfo) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
-func (x *BasicInfo) GetPodIP() *IPSet {
-	if x != nil {
-		return x.PodIP
-	}
-	return nil
-}
+func (x *BasicInfo) GetPodIP() *IPSet { _ = "STUB: not implemented"; return nil }
 
-func (x *BasicInfo) GetPodCIDR() *IPSet {
-	if x != nil {
-		return x.PodCIDR
-	}
-	return nil
-}
+func (x *BasicInfo) GetPodCIDR() *IPSet { _ = "STUB: not implemented"; return nil }
 
-func (x *BasicInfo) GetGatewayIP() *IPSet {
-	if x != nil {
-		return x.GatewayIP
-	}
-	return nil
-}
+func (x *BasicInfo) GetGatewayIP() *IPSet { _ = "STUB: not implemented"; return nil }
 
-func (x *BasicInfo) GetServiceCIDR() *IPSet {
-	if x != nil {
-		return x.ServiceCIDR
-	}
-	return nil
-}
+func (x *BasicInfo) GetServiceCIDR() *IPSet { _ = "STUB: not implemented"; return nil }
 
 type ENIInfo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -577,77 +366,31 @@ type ENIInfo struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ENIInfo) Reset() {
-	*x = ENIInfo{}
-	mi := &file_rpc_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *ENIInfo) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *ENIInfo) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *ENIInfo) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*ENIInfo) ProtoMessage() {}
+func (*ENIInfo) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *ENIInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_rpc_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use ENIInfo.ProtoReflect.Descriptor instead.
-func (*ENIInfo) Descriptor() ([]byte, []int) {
-	return file_rpc_proto_rawDescGZIP(), []int{5}
-}
+func (*ENIInfo) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
-func (x *ENIInfo) GetMAC() string {
-	if x != nil {
-		return x.MAC
-	}
-	return ""
-}
+func (x *ENIInfo) GetMAC() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ENIInfo) GetTrunk() bool {
-	if x != nil {
-		return x.Trunk
-	}
-	return false
-}
+func (x *ENIInfo) GetTrunk() bool { _ = "STUB: not implemented"; return false }
 
-func (x *ENIInfo) GetVid() uint32 {
-	if x != nil {
-		return x.Vid
-	}
-	return 0
-}
+func (x *ENIInfo) GetVid() uint32 { _ = "STUB: not implemented"; return 0 }
 
-func (x *ENIInfo) GetGatewayIP() *IPSet {
-	if x != nil {
-		return x.GatewayIP
-	}
-	return nil
-}
+func (x *ENIInfo) GetGatewayIP() *IPSet { _ = "STUB: not implemented"; return nil }
 
-func (x *ENIInfo) GetERDMA() bool {
-	if x != nil {
-		return x.ERDMA
-	}
-	return false
-}
+func (x *ENIInfo) GetERDMA() bool { _ = "STUB: not implemented"; return false }
 
-func (x *ENIInfo) GetVfId() uint32 {
-	if x != nil && x.VfId != nil {
-		return *x.VfId
-	}
-	return 0
-}
+func (x *ENIInfo) GetVfId() uint32 { _ = "STUB: not implemented"; return 0 }
 
 type Route struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -656,42 +399,21 @@ type Route struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Route) Reset() {
-	*x = Route{}
-	mi := &file_rpc_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *Route) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *Route) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *Route) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*Route) ProtoMessage() {}
+func (*Route) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *Route) ProtoReflect() protoreflect.Message {
-	mi := &file_rpc_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use Route.ProtoReflect.Descriptor instead.
-func (*Route) Descriptor() ([]byte, []int) {
-	return file_rpc_proto_rawDescGZIP(), []int{6}
-}
+func (*Route) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
-func (x *Route) GetDst() string {
-	if x != nil {
-		return x.Dst
-	}
-	return ""
-}
+func (x *Route) GetDst() string { _ = "STUB: not implemented"; return "" }
 
 // VETH Basic
 type Pod struct {
@@ -703,56 +425,25 @@ type Pod struct {
 	sizeCache       protoimpl.SizeCache
 }
 
-func (x *Pod) Reset() {
-	*x = Pod{}
-	mi := &file_rpc_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *Pod) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *Pod) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *Pod) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*Pod) ProtoMessage() {}
+func (*Pod) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *Pod) ProtoReflect() protoreflect.Message {
-	mi := &file_rpc_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use Pod.ProtoReflect.Descriptor instead.
-func (*Pod) Descriptor() ([]byte, []int) {
-	return file_rpc_proto_rawDescGZIP(), []int{7}
-}
+func (*Pod) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
-func (x *Pod) GetIngress() uint64 {
-	if x != nil {
-		return x.Ingress
-	}
-	return 0
-}
+func (x *Pod) GetIngress() uint64 { _ = "STUB: not implemented"; return 0 }
 
-func (x *Pod) GetEgress() uint64 {
-	if x != nil {
-		return x.Egress
-	}
-	return 0
-}
+func (x *Pod) GetEgress() uint64 { _ = "STUB: not implemented"; return 0 }
 
-func (x *Pod) GetNetworkPriority() string {
-	if x != nil {
-		return x.NetworkPriority
-	}
-	return ""
-}
+func (x *Pod) GetNetworkPriority() string { _ = "STUB: not implemented"; return "" }
 
 type ReleaseIPRequest struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
@@ -767,84 +458,33 @@ type ReleaseIPRequest struct {
 	sizeCache              protoimpl.SizeCache
 }
 
-func (x *ReleaseIPRequest) Reset() {
-	*x = ReleaseIPRequest{}
-	mi := &file_rpc_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *ReleaseIPRequest) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *ReleaseIPRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *ReleaseIPRequest) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*ReleaseIPRequest) ProtoMessage() {}
+func (*ReleaseIPRequest) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *ReleaseIPRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_rpc_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use ReleaseIPRequest.ProtoReflect.Descriptor instead.
-func (*ReleaseIPRequest) Descriptor() ([]byte, []int) {
-	return file_rpc_proto_rawDescGZIP(), []int{8}
-}
+func (*ReleaseIPRequest) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
-func (x *ReleaseIPRequest) GetK8SPodName() string {
-	if x != nil {
-		return x.K8SPodName
-	}
-	return ""
-}
+func (x *ReleaseIPRequest) GetK8SPodName() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ReleaseIPRequest) GetK8SPodNamespace() string {
-	if x != nil {
-		return x.K8SPodNamespace
-	}
-	return ""
-}
+func (x *ReleaseIPRequest) GetK8SPodNamespace() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ReleaseIPRequest) GetK8SPodInfraContainerId() string {
-	if x != nil {
-		return x.K8SPodInfraContainerId
-	}
-	return ""
-}
+func (x *ReleaseIPRequest) GetK8SPodInfraContainerId() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ReleaseIPRequest) GetIPType() IPType {
-	if x != nil {
-		return x.IPType
-	}
-	return IPType_TypeVPCIP
-}
+func (x *ReleaseIPRequest) GetIPType() IPType { _ = "STUB: not implemented"; return *new(IPType) }
 
-func (x *ReleaseIPRequest) GetIPv4Addr() *IPSet {
-	if x != nil {
-		return x.IPv4Addr
-	}
-	return nil
-}
+func (x *ReleaseIPRequest) GetIPv4Addr() *IPSet { _ = "STUB: not implemented"; return nil }
 
-func (x *ReleaseIPRequest) GetMacAddr() string {
-	if x != nil {
-		return x.MacAddr
-	}
-	return ""
-}
+func (x *ReleaseIPRequest) GetMacAddr() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ReleaseIPRequest) GetReason() string {
-	if x != nil {
-		return x.Reason
-	}
-	return ""
-}
+func (x *ReleaseIPRequest) GetReason() string { _ = "STUB: not implemented"; return "" }
 
 type ReleaseIPReply struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -857,70 +497,29 @@ type ReleaseIPReply struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ReleaseIPReply) Reset() {
-	*x = ReleaseIPReply{}
-	mi := &file_rpc_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *ReleaseIPReply) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *ReleaseIPReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *ReleaseIPReply) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*ReleaseIPReply) ProtoMessage() {}
+func (*ReleaseIPReply) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *ReleaseIPReply) ProtoReflect() protoreflect.Message {
-	mi := &file_rpc_proto_msgTypes[9]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use ReleaseIPReply.ProtoReflect.Descriptor instead.
-func (*ReleaseIPReply) Descriptor() ([]byte, []int) {
-	return file_rpc_proto_rawDescGZIP(), []int{9}
-}
+func (*ReleaseIPReply) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
-func (x *ReleaseIPReply) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
+func (x *ReleaseIPReply) GetSuccess() bool { _ = "STUB: not implemented"; return false }
 
-func (x *ReleaseIPReply) GetIPv4Addr() *IPSet {
-	if x != nil {
-		return x.IPv4Addr
-	}
-	return nil
-}
+func (x *ReleaseIPReply) GetIPv4Addr() *IPSet { _ = "STUB: not implemented"; return nil }
 
-func (x *ReleaseIPReply) GetDeviceNumber() int32 {
-	if x != nil {
-		return x.DeviceNumber
-	}
-	return 0
-}
+func (x *ReleaseIPReply) GetDeviceNumber() int32 { _ = "STUB: not implemented"; return 0 }
 
-func (x *ReleaseIPReply) GetIPv4() bool {
-	if x != nil {
-		return x.IPv4
-	}
-	return false
-}
+func (x *ReleaseIPReply) GetIPv4() bool { _ = "STUB: not implemented"; return false }
 
-func (x *ReleaseIPReply) GetIPv6() bool {
-	if x != nil {
-		return x.IPv6
-	}
-	return false
-}
+func (x *ReleaseIPReply) GetIPv6() bool { _ = "STUB: not implemented"; return false }
 
 type GetInfoRequest struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
@@ -931,56 +530,25 @@ type GetInfoRequest struct {
 	sizeCache              protoimpl.SizeCache
 }
 
-func (x *GetInfoRequest) Reset() {
-	*x = GetInfoRequest{}
-	mi := &file_rpc_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *GetInfoRequest) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *GetInfoRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *GetInfoRequest) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*GetInfoRequest) ProtoMessage() {}
+func (*GetInfoRequest) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *GetInfoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_rpc_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use GetInfoRequest.ProtoReflect.Descriptor instead.
-func (*GetInfoRequest) Descriptor() ([]byte, []int) {
-	return file_rpc_proto_rawDescGZIP(), []int{10}
-}
+func (*GetInfoRequest) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
-func (x *GetInfoRequest) GetK8SPodName() string {
-	if x != nil {
-		return x.K8SPodName
-	}
-	return ""
-}
+func (x *GetInfoRequest) GetK8SPodName() string { _ = "STUB: not implemented"; return "" }
 
-func (x *GetInfoRequest) GetK8SPodNamespace() string {
-	if x != nil {
-		return x.K8SPodNamespace
-	}
-	return ""
-}
+func (x *GetInfoRequest) GetK8SPodNamespace() string { _ = "STUB: not implemented"; return "" }
 
-func (x *GetInfoRequest) GetK8SPodInfraContainerId() string {
-	if x != nil {
-		return x.K8SPodInfraContainerId
-	}
-	return ""
-}
+func (x *GetInfoRequest) GetK8SPodInfraContainerId() string { _ = "STUB: not implemented"; return "" }
 
 type GetInfoReply struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -994,77 +562,31 @@ type GetInfoReply struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetInfoReply) Reset() {
-	*x = GetInfoReply{}
-	mi := &file_rpc_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *GetInfoReply) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *GetInfoReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *GetInfoReply) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*GetInfoReply) ProtoMessage() {}
+func (*GetInfoReply) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *GetInfoReply) ProtoReflect() protoreflect.Message {
-	mi := &file_rpc_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use GetInfoReply.ProtoReflect.Descriptor instead.
-func (*GetInfoReply) Descriptor() ([]byte, []int) {
-	return file_rpc_proto_rawDescGZIP(), []int{11}
-}
+func (*GetInfoReply) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
-func (x *GetInfoReply) GetIPType() IPType {
-	if x != nil {
-		return x.IPType
-	}
-	return IPType_TypeVPCIP
-}
+func (x *GetInfoReply) GetIPType() IPType { _ = "STUB: not implemented"; return *new(IPType) }
 
-func (x *GetInfoReply) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
+func (x *GetInfoReply) GetSuccess() bool { _ = "STUB: not implemented"; return false }
 
-func (x *GetInfoReply) GetIPv4() bool {
-	if x != nil {
-		return x.IPv4
-	}
-	return false
-}
+func (x *GetInfoReply) GetIPv4() bool { _ = "STUB: not implemented"; return false }
 
-func (x *GetInfoReply) GetIPv6() bool {
-	if x != nil {
-		return x.IPv6
-	}
-	return false
-}
+func (x *GetInfoReply) GetIPv6() bool { _ = "STUB: not implemented"; return false }
 
-func (x *GetInfoReply) GetNetConfs() []*NetConf {
-	if x != nil {
-		return x.NetConfs
-	}
-	return nil
-}
+func (x *GetInfoReply) GetNetConfs() []*NetConf { _ = "STUB: not implemented"; return nil }
 
-func (x *GetInfoReply) GetError() Error {
-	if x != nil {
-		return x.Error
-	}
-	return Error_ErrNoErr
-}
+func (x *GetInfoReply) GetError() Error { _ = "STUB: not implemented"; return *new(Error) }
 
 type EventRequest struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
@@ -1078,77 +600,34 @@ type EventRequest struct {
 	sizeCache       protoimpl.SizeCache
 }
 
-func (x *EventRequest) Reset() {
-	*x = EventRequest{}
-	mi := &file_rpc_proto_msgTypes[12]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *EventRequest) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *EventRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *EventRequest) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*EventRequest) ProtoMessage() {}
+func (*EventRequest) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *EventRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_rpc_proto_msgTypes[12]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use EventRequest.ProtoReflect.Descriptor instead.
-func (*EventRequest) Descriptor() ([]byte, []int) {
-	return file_rpc_proto_rawDescGZIP(), []int{12}
-}
+func (*EventRequest) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
 func (x *EventRequest) GetEventTarget() EventTarget {
-	if x != nil {
-		return x.EventTarget
-	}
-	return EventTarget_EventTargetNode
+	_ = "STUB: not implemented"
+	return *new(EventTarget)
 }
 
-func (x *EventRequest) GetK8SPodName() string {
-	if x != nil {
-		return x.K8SPodName
-	}
-	return ""
-}
+func (x *EventRequest) GetK8SPodName() string { _ = "STUB: not implemented"; return "" }
 
-func (x *EventRequest) GetK8SPodNamespace() string {
-	if x != nil {
-		return x.K8SPodNamespace
-	}
-	return ""
-}
+func (x *EventRequest) GetK8SPodNamespace() string { _ = "STUB: not implemented"; return "" }
 
-func (x *EventRequest) GetEventType() EventType {
-	if x != nil {
-		return x.EventType
-	}
-	return EventType_EventTypeNormal
-}
+func (x *EventRequest) GetEventType() EventType { _ = "STUB: not implemented"; return *new(EventType) }
 
-func (x *EventRequest) GetReason() string {
-	if x != nil {
-		return x.Reason
-	}
-	return ""
-}
+func (x *EventRequest) GetReason() string { _ = "STUB: not implemented"; return "" }
 
-func (x *EventRequest) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
+func (x *EventRequest) GetMessage() string { _ = "STUB: not implemented"; return "" }
 
 type EventReply struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1158,49 +637,23 @@ type EventReply struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *EventReply) Reset() {
-	*x = EventReply{}
-	mi := &file_rpc_proto_msgTypes[13]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *EventReply) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *EventReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *EventReply) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*EventReply) ProtoMessage() {}
+func (*EventReply) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *EventReply) ProtoReflect() protoreflect.Message {
-	mi := &file_rpc_proto_msgTypes[13]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use EventReply.ProtoReflect.Descriptor instead.
-func (*EventReply) Descriptor() ([]byte, []int) {
-	return file_rpc_proto_rawDescGZIP(), []int{13}
-}
+func (*EventReply) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
-func (x *EventReply) GetSucceed() bool {
-	if x != nil {
-		return x.Succeed
-	}
-	return false
-}
+func (x *EventReply) GetSucceed() bool { _ = "STUB: not implemented"; return false }
 
-func (x *EventReply) GetError() string {
-	if x != nil {
-		return x.Error
-	}
-	return ""
-}
+func (x *EventReply) GetError() string { _ = "STUB: not implemented"; return "" }
 
 var File_rpc_proto protoreflect.FileDescriptor
 
@@ -1326,12 +779,7 @@ var (
 	file_rpc_proto_rawDescData []byte
 )
 
-func file_rpc_proto_rawDescGZIP() []byte {
-	file_rpc_proto_rawDescOnce.Do(func() {
-		file_rpc_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_rpc_proto_rawDesc), len(file_rpc_proto_rawDesc)))
-	})
-	return file_rpc_proto_rawDescData
-}
+func file_rpc_proto_rawDescGZIP() []byte { _ = "STUB: not implemented"; return nil }
 
 var file_rpc_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
 var file_rpc_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
@@ -1390,28 +838,5 @@ var file_rpc_proto_depIdxs = []int32{
 	0,  // [0:19] is the sub-list for field type_name
 }
 
-func init() { file_rpc_proto_init() }
-func file_rpc_proto_init() {
-	if File_rpc_proto != nil {
-		return
-	}
-	file_rpc_proto_msgTypes[5].OneofWrappers = []any{}
-	type x struct{}
-	out := protoimpl.TypeBuilder{
-		File: protoimpl.DescBuilder{
-			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_rpc_proto_rawDesc), len(file_rpc_proto_rawDesc)),
-			NumEnums:      4,
-			NumMessages:   14,
-			NumExtensions: 0,
-			NumServices:   1,
-		},
-		GoTypes:           file_rpc_proto_goTypes,
-		DependencyIndexes: file_rpc_proto_depIdxs,
-		EnumInfos:         file_rpc_proto_enumTypes,
-		MessageInfos:      file_rpc_proto_msgTypes,
-	}.Build()
-	File_rpc_proto = out.File
-	file_rpc_proto_goTypes = nil
-	file_rpc_proto_depIdxs = nil
-}
+func init()                { file_rpc_proto_init() }
+func file_rpc_proto_init() { _ = "STUB: not implemented"; return }

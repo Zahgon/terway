@@ -1,8 +1,6 @@
 package tracing
 
 import (
-	"errors"
-	"fmt"
 	"sync"
 
 	"github.com/AliyunContainerService/terway/rpc"
@@ -58,15 +56,19 @@ type FakeResourcePoolStats struct {
 
 // GetLocal GetLocal
 func (f *FakeResourcePoolStats) GetLocal() map[string]daemon.Res {
-	return f.Local
+	_ = "STUB: not implemented"
+
+	// GetRemote GetRemote
+	return nil
 }
 
-// GetRemote GetRemote
 func (f *FakeResourcePoolStats) GetRemote() map[string]daemon.Res {
-	return f.Remote
+	_ = "STUB: not implemented"
+
+	// ResourceMappingHandler get resource mapping
+	return nil
 }
 
-// ResourceMappingHandler get resource mapping
 type ResourceMappingHandler interface {
 	GetResourceMapping() (ResourcePoolStats, error)
 }
@@ -101,193 +103,103 @@ func init() {
 
 // Register registers a TraceHandler to the tracer
 func (t *Tracer) Register(typ, resourceName string, handler TraceHandler) error {
-	t.mtx.Lock()
-	defer t.mtx.Unlock()
-
-	_, ok := t.traceMap[typ]
-	if !ok { // handler of this type not existed before
-		t.traceMap[typ] = make(resourceMap)
-	}
-
-	_, ok = t.traceMap[typ][resourceName]
-	if ok {
-		return fmt.Errorf("resource name %s with type %s has been registered", resourceName, typ)
-	}
-
-	t.traceMap[typ][resourceName] = handler
+	_ = "STUB: not implemented"
 	return nil
 }
 
+// handler of this type not existed before
+
 // Unregister remove TraceHandler from tracer. do nothing if not found
-func (t *Tracer) Unregister(typ, resourceName string) {
-	t.mtx.Lock()
-	defer t.mtx.Unlock()
-
-	resourceMap, ok := t.traceMap[typ]
-	if !ok {
-		return
-	}
-
-	delete(resourceMap, resourceName)
-}
+func (t *Tracer) Unregister(typ, resourceName string) { _ = "STUB: not implemented"; return }
 
 // RegisterResourceMapping registers handler to the tracer
-func (t *Tracer) RegisterResourceMapping(mapping ResMapping) {
-	t.resourceMapping = mapping
-}
+func (t *Tracer) RegisterResourceMapping(mapping ResMapping) { _ = "STUB: not implemented"; return }
 
 // RegisterEventRecorder registers pod & node event recorder to a tracer
 func (t *Tracer) RegisterEventRecorder(node NodeEventRecorder, pod PodEventRecorder) {
-	t.nodeEvent = node
-	t.podEvent = pod
+	_ = "STUB: not implemented"
+	return
 }
 
 // GetTypes gets all types registered to the tracer
-func (t *Tracer) GetTypes() []string {
-	t.mtx.Lock()
-	defer t.mtx.Unlock()
-
-	var names []string
-
-	for k := range t.traceMap {
-		names = append(names, k)
-	}
-
-	return names
-}
+func (t *Tracer) GetTypes() []string { _ = "STUB: not implemented"; return nil }
 
 // GetResourceNames lists resource names of a certain type
-func (t *Tracer) GetResourceNames(typ string) []string {
-	t.mtx.Lock()
-	defer t.mtx.Unlock()
+func (t *Tracer) GetResourceNames(typ string) []string { _ = "STUB: not implemented"; return nil }
 
-	resourceMap, ok := t.traceMap[typ]
-	if !ok {
-		// if type not found, return empty array
-		return []string{}
-	}
-
-	var names []string
-	for k := range resourceMap {
-		names = append(names, k)
-	}
-
-	return names
-}
+// if type not found, return empty array
 
 func (t *Tracer) getHandler(typ, resourceName string) (TraceHandler, error) {
-	t.mtx.Lock()
-	defer t.mtx.Unlock()
-
-	resourceMap, ok := t.traceMap[typ]
-	if !ok {
-		return nil, fmt.Errorf("tracer type %s not found", typ)
-	}
-
-	v, ok := resourceMap[resourceName]
-	if !ok {
-		return nil, fmt.Errorf("tracer name %s of type %s not found", resourceName, typ)
-	}
-
-	return v, nil
+	_ = "STUB: not implemented"
+	return *new(TraceHandler), nil
 }
 
 // GetConfig invokes Config() function of the given type & resource name
 func (t *Tracer) GetConfig(typ, resourceName string) ([]MapKeyValueEntry, error) {
-	handler, err := t.getHandler(typ, resourceName)
-	if err != nil {
-		return nil, err
-	}
-
-	return handler.Config(), nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // GetTrace invokes Trace() function of the given type & resource name
 func (t *Tracer) GetTrace(typ, resourceName string) ([]MapKeyValueEntry, error) {
-	handler, err := t.getHandler(typ, resourceName)
-	if err != nil {
-		return nil, err
-	}
-
-	return handler.Trace(), nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Execute invokes Execute() function of the given type & resource name with command and arguments
 func (t *Tracer) Execute(typ, resourceName, cmd string, args []string) (<-chan string, error) {
-	handler, err := t.getHandler(typ, resourceName)
-	if err != nil {
-		return nil, err
-	}
-
-	ch := make(chan string)
-
-	go handler.Execute(cmd, args, ch)
-	return ch, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // RecordPodEvent records pod event via PodEventRecorder
 func (t *Tracer) RecordPodEvent(podName, podNamespace, eventType, reason, message string) error {
-	if t.podEvent == nil {
-		return errors.New("no pod event recorder registered")
-	}
-
-	return t.podEvent(podName, podNamespace, eventType, reason, message)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // RecordNodeEvent records node event via PodEventRecorder
 func (t *Tracer) RecordNodeEvent(eventType, reason, message string) error {
-	if t.nodeEvent == nil {
-		return errors.New("no node event recorder registered")
-	}
-
-	t.nodeEvent(eventType, reason, message)
+	_ = "STUB: not implemented"
 	return nil
 }
 
 // GetResourceMapping gives the resource mapping from the handler
 // if the handler has not been registered, there will be error
 func (t *Tracer) GetResourceMapping() (*rpc.ResourceMappingReply, error) {
-	if t.resourceMapping == nil {
-		return nil, errors.New("no resource mapping handler registered")
-	}
-
-	return t.resourceMapping.GetResourceMapping()
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Register registers a TraceHandler to the default tracer
 func Register(typ, resourceName string, handler TraceHandler) error {
-	return defaultTracer.Register(typ, resourceName, handler)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // RegisterResourceMapping register resource mapping handler to the default tracer
-func RegisterResourceMapping(handler ResMapping) {
-	defaultTracer.RegisterResourceMapping(handler)
-}
+func RegisterResourceMapping(handler ResMapping) { _ = "STUB: not implemented"; return }
 
 // Unregister removes TraceHandler from tracer. do nothing if not found
-func Unregister(typ, resourceName string) {
-	defaultTracer.Unregister(typ, resourceName)
-}
+func Unregister(typ, resourceName string) { _ = "STUB: not implemented"; return }
 
 // RegisterEventRecorder registers pod & node event recorder to a tracer
 func RegisterEventRecorder(node NodeEventRecorder, pod PodEventRecorder) {
-	defaultTracer.RegisterEventRecorder(node, pod)
+	_ = "STUB: not implemented"
+	return
 }
 
 // RecordPodEvent records pod event via PodEventRecorder
 func RecordPodEvent(podName, podNamespace, eventType, reason, message string) error {
-	return defaultTracer.RecordPodEvent(podName, podNamespace, eventType, reason, message)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // RecordNodeEvent records node event via PodEventRecorder
 func RecordNodeEvent(eventType, reason, message string) error {
-	return defaultTracer.RecordNodeEvent(eventType, reason, message)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // NewTracer creates a new tracer
-func NewTracer() *Tracer {
-	return &Tracer{
-		mtx:      sync.Mutex{},
-		traceMap: make(map[string]resourceMap),
-	}
-}
+func NewTracer() *Tracer { _ = "STUB: not implemented"; return nil }

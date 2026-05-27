@@ -18,9 +18,6 @@ limitations under the License.
 package externalversions
 
 import (
-	"fmt"
-
-	v1beta1 "github.com/AliyunContainerService/terway/pkg/apis/network.alibabacloud.com/v1beta1"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
 )
@@ -39,31 +36,22 @@ type genericInformer struct {
 
 // Informer returns the SharedIndexInformer.
 func (f *genericInformer) Informer() cache.SharedIndexInformer {
-	return f.informer
+	_ = "STUB: not implemented"
+
+	// Lister returns the GenericLister.
+	return *new(cache.SharedIndexInformer)
 }
 
-// Lister returns the GenericLister.
 func (f *genericInformer) Lister() cache.GenericLister {
-	return cache.NewGenericLister(f.Informer().GetIndexer(), f.resource)
+	_ = "STUB: not implemented"
+	return *new(cache.GenericLister)
 }
 
 // ForResource gives generic access to a shared informer of the matching type
 // TODO extend this to unknown resources with a client pool
 func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource) (GenericInformer, error) {
-	switch resource {
+	_ = "STUB: not implemented"
+
 	// Group=network.alibabacloud.com, Version=v1beta1
-	case v1beta1.SchemeGroupVersion.WithResource("networkinterfaces"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Network().V1beta1().NetworkInterfaces().Informer()}, nil
-	case v1beta1.SchemeGroupVersion.WithResource("nodes"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Network().V1beta1().Nodes().Informer()}, nil
-	case v1beta1.SchemeGroupVersion.WithResource("noderuntimes"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Network().V1beta1().NodeRuntimes().Informer()}, nil
-	case v1beta1.SchemeGroupVersion.WithResource("podenis"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Network().V1beta1().PodENIs().Informer()}, nil
-	case v1beta1.SchemeGroupVersion.WithResource("podnetworkings"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Network().V1beta1().PodNetworkings().Informer()}, nil
-
-	}
-
-	return nil, fmt.Errorf("no informer found for %v", resource)
+	return *new(GenericInformer), nil
 }

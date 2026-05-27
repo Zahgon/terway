@@ -2,9 +2,6 @@ package errors
 
 import (
 	"errors"
-	"fmt"
-	"net/url"
-	"strings"
 
 	"github.com/alibabacloud-go/tea/tea"
 	apiErr "github.com/aliyun/alibaba-cloud-sdk-go/sdk/errors"
@@ -67,123 +64,41 @@ var (
 
 // ErrAssert check err is match errCode
 // DEPRECATED
-func ErrAssert(errCode string, err error) bool {
-	var respErr apiErr.Error
-	ok := errors.As(err, &respErr)
-	if ok {
-		return respErr.ErrorCode() == errCode
-	}
-	return false
-}
+func ErrAssert(errCode string, err error) bool { _ = "STUB: not implemented"; return false }
 
-func ErrorCodeIs(err error, codes ...string) bool {
-	var respErr apiErr.Error
-	ok := errors.As(err, &respErr)
-	if !ok {
-		return false
-	}
-
-	for _, code := range codes {
-		if respErr.ErrorCode() == code {
-			return true
-		}
-	}
-	return false
-}
+func ErrorCodeIs(err error, codes ...string) bool { _ = "STUB: not implemented"; return false }
 
 // ErrorCodeIsAny checks if error matches any of the provided error codes.
 // It supports both apiErr.Error and tea.SDKError types.
 func ErrorCodeIsAny(err error, codes ...string) bool {
+	_ = "STUB: not implemented"
 	// Try apiErr.Error first
-	var respErr apiErr.Error
-	ok := errors.As(err, &respErr)
-	if ok {
-		for _, code := range codes {
-			if respErr.ErrorCode() == code {
-				return true
-			}
-		}
-	}
-
-	// Try tea.SDKError
-	var sdkErr *tea.SDKError
-	ok = errors.As(err, &sdkErr)
-	if ok {
-		for _, code := range codes {
-			if tea.StringValue(sdkErr.Code) == code {
-				return true
-			}
-		}
-	}
-
 	return false
 }
 
+// Try tea.SDKError
+
 // ErrRequestID try to get requestID
-func ErrRequestID(err error) string {
-	var respErr *apiErr.ServerError
-	ok := errors.As(err, &respErr)
-	if ok {
-		return respErr.RequestId()
-	}
-	return ""
-}
+func ErrRequestID(err error) string { _ = "STUB: not implemented"; return "" }
 
 type E struct {
 	e apiErr.Error
 }
 
-func (e *E) Error() string {
-	if e.e == nil {
-		return ""
-	}
+func (e *E) Error() string { _ = "STUB: not implemented"; return "" }
 
-	return fmt.Sprintf("errCode: %s, msg: %s, requestID: %s", e.e.ErrorCode(), e.e.Message(), ErrRequestID(e.e))
-}
+func (e *E) Unwrap() error { _ = "STUB: not implemented"; return nil }
 
-func (e *E) Unwrap() error {
-	return e.e
-}
-
-func WarpError(err error) error {
-	if err == nil {
-		return nil
-	}
-	var respErr apiErr.Error
-	ok := errors.As(err, &respErr)
-	if !ok {
-		return err
-	}
-
-	return &E{e: respErr}
-}
+func WarpError(err error) error { _ = "STUB: not implemented"; return nil }
 
 // IsURLError if there is conn problem
-func IsURLError(err error) bool {
-	if err == nil {
-		return false
-	}
+func IsURLError(err error) bool { _ = "STUB: not implemented"; return false }
 
-	var urlErr *url.Error
-	return errors.As(err, &urlErr)
-}
-
-func WarpFn(codes ...string) CheckErr {
-	return func(err error) bool {
-		return ErrorCodeIs(err, codes...)
-	}
-}
+func WarpFn(codes ...string) CheckErr { _ = "STUB: not implemented"; return *new(CheckErr) }
 
 type CheckErr = func(err error) bool
 
-func ErrorIs(err error, fns ...CheckErr) bool {
-	for _, fn := range fns {
-		if fn(err) {
-			return true
-		}
-	}
-	return false
-}
+func ErrorIs(err error, fns ...CheckErr) bool { _ = "STUB: not implemented"; return false }
 
 type EFLOCode struct {
 	Code      int
@@ -192,44 +107,17 @@ type EFLOCode struct {
 	Content   any
 }
 
-func (e *EFLOCode) Error() string {
-	return fmt.Sprintf("errCode: %d, msg: %s, requestID: %s", e.Code, e.Message, e.RequestID)
-}
+func (e *EFLOCode) Error() string { _ = "STUB: not implemented"; return "" }
 
-func IsEfloCode(err error, code int) bool {
-	var efloErr *EFLOCode
-	if errors.As(err, &efloErr) {
-		return efloErr.Code == code
-	}
-	return false
-}
+func IsEfloCode(err error, code int) bool { _ = "STUB: not implemented"; return false }
 
 type E2 struct {
 	e     *tea.SDKError
 	extra []string
 }
 
-func (e *E2) Error() string {
-	if e.e == nil {
-		return ""
-	}
+func (e *E2) Error() string { _ = "STUB: not implemented"; return "" }
 
-	return fmt.Sprintf("errCode: %s, msg: %s, %s", tea.StringValue(e.e.Code), tea.StringValue(e.e.Message), strings.Join(e.extra, ","))
-}
+func (e *E2) Unwrap() error { _ = "STUB: not implemented"; return nil }
 
-func (e *E2) Unwrap() error {
-	return e.e
-}
-
-func WarpError2(err error, extra ...string) error {
-	if err == nil {
-		return nil
-	}
-	var respErr *tea.SDKError
-	ok := errors.As(err, &respErr)
-	if !ok {
-		return err
-	}
-
-	return &E2{e: respErr, extra: extra}
-}
+func WarpError2(err error, extra ...string) error { _ = "STUB: not implemented"; return nil }

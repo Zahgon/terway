@@ -2,27 +2,20 @@ package status
 
 import (
 	"context"
-	"sort"
 	"sync"
 
-	"github.com/samber/lo"
 	"k8s.io/apimachinery/pkg/util/sets"
 )
 
 type ctxMetaKey struct{}
 
-func MetaCtx[T any](ctx context.Context) (*T, bool) {
-	if metadata := ctx.Value(ctxMetaKey{}); metadata != nil {
-		if m, ok := metadata.(*T); ok {
-			return m, true
-		}
-	}
-	// return nil to avoid mistake
-	return nil, false
-}
+func MetaCtx[T any](ctx context.Context) (*T, bool) { _ = "STUB: not implemented"; return nil, false }
+
+// return nil to avoid mistake
 
 func WithMeta[T any](ctx context.Context, meta *T) context.Context {
-	return context.WithValue(ctx, ctxMetaKey{}, meta)
+	_ = "STUB: not implemented"
+	return *new(context.Context)
 }
 
 type Cache[T any] struct {
@@ -31,43 +24,26 @@ type Cache[T any] struct {
 
 // NewCache creates a new Cache instance.
 func NewCache[T any]() *Cache[T] {
-	return &Cache[T]{}
+	_ = "STUB: not implemented"
+
+	// Get retrieves the value associated with the given key.
+	return nil
 }
 
-// Get retrieves the value associated with the given key.
-func (c *Cache[T]) Get(key string) (*T, bool) {
-	if value, ok := c.s.Load(key); ok {
-		// Type assertion is safe because we control the type T.
-		return value.(*T), true
-	}
-	return nil, false
-}
+func (c *Cache[T]) Get(key string) (*T, bool) { _ = "STUB: not implemented"; return nil, false }
+
+// Type assertion is safe because we control the type T.
 
 // LoadOrStore stores the value associated with the given key.
 func (c *Cache[T]) LoadOrStore(key string, value *T) (*T, bool) {
-	actual, loaded := c.s.LoadOrStore(key, value)
-	return actual.(*T), loaded
+	_ = "STUB: not implemented"
+	return nil, false
 }
 
 // Delete removes the value associated with the given key.
-func (c *Cache[T]) Delete(key string) {
-	c.s.Delete(key)
-}
+func (c *Cache[T]) Delete(key string) { _ = "STUB: not implemented"; return }
 
-func NewNodeStatus(cardCount int) *NodeStatus {
-	cards := make([]*Card, cardCount)
-
-	for i := 0; i < cardCount; i++ {
-		cards[i] = &Card{
-			CardIndex:         i,
-			NetworkInterfaces: sets.New[NetworkInterfaceID](),
-		}
-	}
-
-	return &NodeStatus{
-		NetworkCards: cards,
-	}
-}
+func NewNodeStatus(cardCount int) *NodeStatus { _ = "STUB: not implemented"; return nil }
 
 type Card struct {
 	CardIndex         int
@@ -84,60 +60,25 @@ type NodeStatus struct {
 
 // RequestNetworkIndex prefer use negative for auto allocate
 func (n *NodeStatus) RequestNetworkIndex(eniID string, preferIndex *int, numa *int) *int {
-	n.lock.Lock()
-	defer n.lock.Unlock()
-
-	if preferIndex != nil && *preferIndex > len(n.NetworkCards) {
-		return nil
-	}
-
-	// release the index if present
-	n.detachNetworkIndexLocked(NetworkInterfaceID(eniID))
-
-	selected := n.NetworkCards
-
-	if preferIndex == nil {
-		// auto allocate, find the least card
-		sort.Slice(n.NetworkCards, func(i, j int) bool {
-			// Compare the lengths of the maps at index i and j
-			return len(n.NetworkCards[i].NetworkInterfaces) < len(n.NetworkCards[j].NetworkInterfaces)
-		})
-
-		if numa != nil {
-			// filter the nic
-			selected = lo.Filter(n.NetworkCards, func(item *Card, index int) bool {
-				if item.CardIndex%2 == *numa {
-					// keep
-					return true
-				}
-				return false
-			})
-		}
-	} else {
-		selected = lo.Filter(n.NetworkCards, func(item *Card, index int) bool {
-			if item.CardIndex == *preferIndex {
-				// keep
-				return true
-			}
-			return false
-		})
-	}
-	if len(selected) == 0 {
-		return nil
-	}
-
-	selected[0].NetworkInterfaces.Insert(NetworkInterfaceID(eniID))
-	return &selected[0].CardIndex
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (n *NodeStatus) DetachNetworkIndex(eniID string) {
-	n.lock.Lock()
-	defer n.lock.Unlock()
-	n.detachNetworkIndexLocked(NetworkInterfaceID(eniID))
-}
+// release the index if present
+
+// auto allocate, find the least card
+
+// Compare the lengths of the maps at index i and j
+
+// filter the nic
+
+// keep
+
+// keep
+
+func (n *NodeStatus) DetachNetworkIndex(eniID string) { _ = "STUB: not implemented"; return }
 
 func (n *NodeStatus) detachNetworkIndexLocked(eniID NetworkInterfaceID) {
-	lo.ForEach(n.NetworkCards, func(item *Card, index int) {
-		item.NetworkInterfaces.Delete(eniID)
-	})
+	_ = "STUB: not implemented"
+	return
 }

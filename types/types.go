@@ -19,9 +19,7 @@ package types
 import (
 	"net"
 	"net/netip"
-	"strings"
 
-	terwayIP "github.com/AliyunContainerService/terway/pkg/ip"
 	"github.com/AliyunContainerService/terway/rpc"
 )
 
@@ -50,44 +48,13 @@ type IPSet2 struct {
 	IPv6 netip.Addr
 }
 
-func (i *IPSet2) String() string {
-	var result []string
-	if i.IPv4.IsValid() {
-		result = append(result, i.IPv4.String())
-	}
-	if i.IPv6.IsValid() {
-		result = append(result, i.IPv6.String())
-	}
-	return strings.Join(result, "-")
-}
+func (i *IPSet2) String() string { _ = "STUB: not implemented"; return "" }
 
-func (i *IPSet2) ToRPC() *rpc.IPSet {
-	var ipv4, ipv6 string
-	if i.IPv4.IsValid() {
-		ipv4 = i.IPv4.String()
-	}
-	if i.IPv6.IsValid() {
-		ipv6 = i.IPv6.String()
-	}
-	return &rpc.IPSet{
-		IPv4: ipv4,
-		IPv6: ipv6,
-	}
-}
+func (i *IPSet2) ToRPC() *rpc.IPSet { _ = "STUB: not implemented"; return nil }
 
-func (i *IPSet2) GetIPv4() string {
-	if !i.IPv4.IsValid() {
-		return ""
-	}
-	return i.IPv4.String()
-}
+func (i *IPSet2) GetIPv4() string { _ = "STUB: not implemented"; return "" }
 
-func (i *IPSet2) GetIPv6() string {
-	if !i.IPv6.IsValid() {
-		return ""
-	}
-	return i.IPv6.String()
-}
+func (i *IPSet2) GetIPv6() string { _ = "STUB: not implemented"; return "" }
 
 // IPSet is the type hole both ipv4 and ipv6 net.IP
 type IPSet struct {
@@ -95,103 +62,23 @@ type IPSet struct {
 	IPv6 net.IP
 }
 
-func (i *IPSet) String() string {
-	var result []string
-	if i.IPv4 != nil {
-		result = append(result, i.IPv4.String())
-	}
-	if i.IPv6 != nil {
-		result = append(result, i.IPv6.String())
-	}
-	return strings.Join(result, "-")
-}
+func (i *IPSet) String() string { _ = "STUB: not implemented"; return "" }
 
-func (i *IPSet) ToRPC() *rpc.IPSet {
-	var ipv4, ipv6 string
-	if i.IPv4 != nil {
-		ipv4 = i.IPv4.String()
-	}
-	if i.IPv6 != nil {
-		ipv6 = i.IPv6.String()
-	}
-	return &rpc.IPSet{
-		IPv4: ipv4,
-		IPv6: ipv6,
-	}
-}
+func (i *IPSet) ToRPC() *rpc.IPSet { _ = "STUB: not implemented"; return nil }
 
-func (i *IPSet) SetIP(str string) *IPSet {
-	ip := net.ParseIP(str)
-	if ip == nil {
-		return i
-	}
-	if terwayIP.IPv6(ip) {
-		i.IPv6 = ip
-		return i
-	}
-	i.IPv4 = ip
-	return i
-}
+func (i *IPSet) SetIP(str string) *IPSet { _ = "STUB: not implemented"; return nil }
 
-func (i *IPSet) GetIPv4() string {
-	if i.IPv4 == nil {
-		return ""
-	}
-	return i.IPv4.String()
-}
+func (i *IPSet) GetIPv4() string { _ = "STUB: not implemented"; return "" }
 
-func (i *IPSet) GetIPv6() string {
-	if i.IPv6 == nil {
-		return ""
-	}
-	return i.IPv6.String()
-}
+func (i *IPSet) GetIPv6() string { _ = "STUB: not implemented"; return "" }
 
 type IPNetSet struct {
 	IPv4 *net.IPNet
 	IPv6 *net.IPNet
 }
 
-func (i *IPNetSet) ToRPC() *rpc.IPSet {
-	var ipv4, ipv6 string
-	if i.IPv4 != nil {
-		ipv4 = i.IPv4.String()
-	}
-	if i.IPv6 != nil {
-		ipv6 = i.IPv6.String()
-	}
-	return &rpc.IPSet{
-		IPv4: ipv4,
-		IPv6: ipv6,
-	}
-}
+func (i *IPNetSet) ToRPC() *rpc.IPSet { _ = "STUB: not implemented"; return nil }
 
-func (i *IPNetSet) String() string {
-	if i == nil {
-		return ""
-	}
-	var result []string
-	if i.IPv4 != nil {
-		result = append(result, i.IPv4.String())
-	}
-	if i.IPv6 != nil {
-		result = append(result, i.IPv6.String())
-	}
-	return strings.Join(result, "-")
-}
+func (i *IPNetSet) String() string { _ = "STUB: not implemented"; return "" }
 
-func (i *IPNetSet) SetIPNet(str string) *IPNetSet {
-	ip, ipNet, err := net.ParseCIDR(str)
-	if err != nil {
-		return i
-	}
-	if ip == nil {
-		return i
-	}
-	if terwayIP.IPv6(ip) {
-		i.IPv6 = ipNet
-		return i
-	}
-	i.IPv4 = ipNet
-	return i
-}
+func (i *IPNetSet) SetIPNet(str string) *IPNetSet { _ = "STUB: not implemented"; return nil }

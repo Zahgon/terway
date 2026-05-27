@@ -1,8 +1,6 @@
 package node
 
 import (
-	"net/netip"
-
 	networkv1beta1 "github.com/AliyunContainerService/terway/pkg/apis/network.alibabacloud.com/v1beta1"
 )
 
@@ -28,21 +26,4 @@ type EniIP struct {
 	IP               *networkv1beta1.IP
 }
 
-func podIPs(ips []string) (string, string, error) {
-	var ipv4, ipv6 string
-	for _, v := range ips {
-		if v == "" {
-			continue
-		}
-		addr, err := netip.ParseAddr(v)
-		if err != nil {
-			return "", "", err
-		}
-		if addr.Is4() {
-			ipv4 = v
-		} else {
-			ipv6 = v
-		}
-	}
-	return ipv4, ipv6, nil
-}
+func podIPs(ips []string) (string, string, error) { _ = "STUB: not implemented"; return "", "", nil }

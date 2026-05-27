@@ -7,11 +7,10 @@
 package rpc
 
 import (
+	sync "sync"
+
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
 )
 
 const (
@@ -27,35 +26,19 @@ type Placeholder struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Placeholder) Reset() {
-	*x = Placeholder{}
-	mi := &file_tracing_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *Placeholder) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *Placeholder) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *Placeholder) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*Placeholder) ProtoMessage() {}
+func (*Placeholder) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *Placeholder) ProtoReflect() protoreflect.Message {
-	mi := &file_tracing_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use Placeholder.ProtoReflect.Descriptor instead.
-func (*Placeholder) Descriptor() ([]byte, []int) {
-	return file_tracing_proto_rawDescGZIP(), []int{0}
-}
+func (*Placeholder) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
 type ResourcesTypesReply struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -64,42 +47,24 @@ type ResourcesTypesReply struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ResourcesTypesReply) Reset() {
-	*x = ResourcesTypesReply{}
-	mi := &file_tracing_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *ResourcesTypesReply) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *ResourcesTypesReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *ResourcesTypesReply) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*ResourcesTypesReply) ProtoMessage() {}
+func (*ResourcesTypesReply) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *ResourcesTypesReply) ProtoReflect() protoreflect.Message {
-	mi := &file_tracing_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use ResourcesTypesReply.ProtoReflect.Descriptor instead.
 func (*ResourcesTypesReply) Descriptor() ([]byte, []int) {
-	return file_tracing_proto_rawDescGZIP(), []int{1}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (x *ResourcesTypesReply) GetTypeNames() []string {
-	if x != nil {
-		return x.TypeNames
-	}
-	return nil
-}
+func (x *ResourcesTypesReply) GetTypeNames() []string { _ = "STUB: not implemented"; return nil }
 
 type ResourcesNamesReply struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -108,42 +73,24 @@ type ResourcesNamesReply struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ResourcesNamesReply) Reset() {
-	*x = ResourcesNamesReply{}
-	mi := &file_tracing_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *ResourcesNamesReply) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *ResourcesNamesReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *ResourcesNamesReply) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*ResourcesNamesReply) ProtoMessage() {}
+func (*ResourcesNamesReply) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *ResourcesNamesReply) ProtoReflect() protoreflect.Message {
-	mi := &file_tracing_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use ResourcesNamesReply.ProtoReflect.Descriptor instead.
 func (*ResourcesNamesReply) Descriptor() ([]byte, []int) {
-	return file_tracing_proto_rawDescGZIP(), []int{2}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (x *ResourcesNamesReply) GetResourceNames() []string {
-	if x != nil {
-		return x.ResourceNames
-	}
-	return nil
-}
+func (x *ResourcesNamesReply) GetResourceNames() []string { _ = "STUB: not implemented"; return nil }
 
 type ResourceTypeRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -152,42 +99,24 @@ type ResourceTypeRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ResourceTypeRequest) Reset() {
-	*x = ResourceTypeRequest{}
-	mi := &file_tracing_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *ResourceTypeRequest) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *ResourceTypeRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *ResourceTypeRequest) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*ResourceTypeRequest) ProtoMessage() {}
+func (*ResourceTypeRequest) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *ResourceTypeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tracing_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use ResourceTypeRequest.ProtoReflect.Descriptor instead.
 func (*ResourceTypeRequest) Descriptor() ([]byte, []int) {
-	return file_tracing_proto_rawDescGZIP(), []int{3}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (x *ResourceTypeRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
+func (x *ResourceTypeRequest) GetName() string { _ = "STUB: not implemented"; return "" }
 
 type ResourceTypeNameRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -197,49 +126,26 @@ type ResourceTypeNameRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ResourceTypeNameRequest) Reset() {
-	*x = ResourceTypeNameRequest{}
-	mi := &file_tracing_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *ResourceTypeNameRequest) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *ResourceTypeNameRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *ResourceTypeNameRequest) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*ResourceTypeNameRequest) ProtoMessage() {}
+func (*ResourceTypeNameRequest) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *ResourceTypeNameRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tracing_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use ResourceTypeNameRequest.ProtoReflect.Descriptor instead.
 func (*ResourceTypeNameRequest) Descriptor() ([]byte, []int) {
-	return file_tracing_proto_rawDescGZIP(), []int{4}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (x *ResourceTypeNameRequest) GetType() string {
-	if x != nil {
-		return x.Type
-	}
-	return ""
-}
+func (x *ResourceTypeNameRequest) GetType() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ResourceTypeNameRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
+func (x *ResourceTypeNameRequest) GetName() string { _ = "STUB: not implemented"; return "" }
 
 type ResourceExecuteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -251,63 +157,30 @@ type ResourceExecuteRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ResourceExecuteRequest) Reset() {
-	*x = ResourceExecuteRequest{}
-	mi := &file_tracing_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *ResourceExecuteRequest) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *ResourceExecuteRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *ResourceExecuteRequest) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*ResourceExecuteRequest) ProtoMessage() {}
+func (*ResourceExecuteRequest) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *ResourceExecuteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tracing_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use ResourceExecuteRequest.ProtoReflect.Descriptor instead.
 func (*ResourceExecuteRequest) Descriptor() ([]byte, []int) {
-	return file_tracing_proto_rawDescGZIP(), []int{5}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (x *ResourceExecuteRequest) GetType() string {
-	if x != nil {
-		return x.Type
-	}
-	return ""
-}
+func (x *ResourceExecuteRequest) GetType() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ResourceExecuteRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
+func (x *ResourceExecuteRequest) GetName() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ResourceExecuteRequest) GetCommand() string {
-	if x != nil {
-		return x.Command
-	}
-	return ""
-}
+func (x *ResourceExecuteRequest) GetCommand() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ResourceExecuteRequest) GetArgs() []string {
-	if x != nil {
-		return x.Args
-	}
-	return nil
-}
+func (x *ResourceExecuteRequest) GetArgs() []string { _ = "STUB: not implemented"; return nil }
 
 type ResourceExecuteReply struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -316,42 +189,24 @@ type ResourceExecuteReply struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ResourceExecuteReply) Reset() {
-	*x = ResourceExecuteReply{}
-	mi := &file_tracing_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *ResourceExecuteReply) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *ResourceExecuteReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *ResourceExecuteReply) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*ResourceExecuteReply) ProtoMessage() {}
+func (*ResourceExecuteReply) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *ResourceExecuteReply) ProtoReflect() protoreflect.Message {
-	mi := &file_tracing_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use ResourceExecuteReply.ProtoReflect.Descriptor instead.
 func (*ResourceExecuteReply) Descriptor() ([]byte, []int) {
-	return file_tracing_proto_rawDescGZIP(), []int{6}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (x *ResourceExecuteReply) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
+func (x *ResourceExecuteReply) GetMessage() string { _ = "STUB: not implemented"; return "" }
 
 type MapKeyValueEntry struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -361,49 +216,23 @@ type MapKeyValueEntry struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *MapKeyValueEntry) Reset() {
-	*x = MapKeyValueEntry{}
-	mi := &file_tracing_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *MapKeyValueEntry) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *MapKeyValueEntry) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *MapKeyValueEntry) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*MapKeyValueEntry) ProtoMessage() {}
+func (*MapKeyValueEntry) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *MapKeyValueEntry) ProtoReflect() protoreflect.Message {
-	mi := &file_tracing_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use MapKeyValueEntry.ProtoReflect.Descriptor instead.
-func (*MapKeyValueEntry) Descriptor() ([]byte, []int) {
-	return file_tracing_proto_rawDescGZIP(), []int{7}
-}
+func (*MapKeyValueEntry) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
-func (x *MapKeyValueEntry) GetKey() string {
-	if x != nil {
-		return x.Key
-	}
-	return ""
-}
+func (x *MapKeyValueEntry) GetKey() string { _ = "STUB: not implemented"; return "" }
 
-func (x *MapKeyValueEntry) GetValue() string {
-	if x != nil {
-		return x.Value
-	}
-	return ""
-}
+func (x *MapKeyValueEntry) GetValue() string { _ = "STUB: not implemented"; return "" }
 
 type ResourceConfigReply struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -412,40 +241,25 @@ type ResourceConfigReply struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ResourceConfigReply) Reset() {
-	*x = ResourceConfigReply{}
-	mi := &file_tracing_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *ResourceConfigReply) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *ResourceConfigReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *ResourceConfigReply) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*ResourceConfigReply) ProtoMessage() {}
+func (*ResourceConfigReply) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *ResourceConfigReply) ProtoReflect() protoreflect.Message {
-	mi := &file_tracing_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use ResourceConfigReply.ProtoReflect.Descriptor instead.
 func (*ResourceConfigReply) Descriptor() ([]byte, []int) {
-	return file_tracing_proto_rawDescGZIP(), []int{8}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (x *ResourceConfigReply) GetConfig() []*MapKeyValueEntry {
-	if x != nil {
-		return x.Config
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
@@ -456,42 +270,21 @@ type ResourceTraceReply struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ResourceTraceReply) Reset() {
-	*x = ResourceTraceReply{}
-	mi := &file_tracing_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *ResourceTraceReply) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *ResourceTraceReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *ResourceTraceReply) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*ResourceTraceReply) ProtoMessage() {}
+func (*ResourceTraceReply) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *ResourceTraceReply) ProtoReflect() protoreflect.Message {
-	mi := &file_tracing_proto_msgTypes[9]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use ResourceTraceReply.ProtoReflect.Descriptor instead.
-func (*ResourceTraceReply) Descriptor() ([]byte, []int) {
-	return file_tracing_proto_rawDescGZIP(), []int{9}
-}
+func (*ResourceTraceReply) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
-func (x *ResourceTraceReply) GetTrace() []*MapKeyValueEntry {
-	if x != nil {
-		return x.Trace
-	}
-	return nil
-}
+func (x *ResourceTraceReply) GetTrace() []*MapKeyValueEntry { _ = "STUB: not implemented"; return nil }
 
 type PrefixIPAllocation struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -501,49 +294,23 @@ type PrefixIPAllocation struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *PrefixIPAllocation) Reset() {
-	*x = PrefixIPAllocation{}
-	mi := &file_tracing_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *PrefixIPAllocation) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *PrefixIPAllocation) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *PrefixIPAllocation) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*PrefixIPAllocation) ProtoMessage() {}
+func (*PrefixIPAllocation) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *PrefixIPAllocation) ProtoReflect() protoreflect.Message {
-	mi := &file_tracing_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use PrefixIPAllocation.ProtoReflect.Descriptor instead.
-func (*PrefixIPAllocation) Descriptor() ([]byte, []int) {
-	return file_tracing_proto_rawDescGZIP(), []int{10}
-}
+func (*PrefixIPAllocation) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
-func (x *PrefixIPAllocation) GetIp() string {
-	if x != nil {
-		return x.Ip
-	}
-	return ""
-}
+func (x *PrefixIPAllocation) GetIp() string { _ = "STUB: not implemented"; return "" }
 
-func (x *PrefixIPAllocation) GetPodId() string {
-	if x != nil {
-		return x.PodId
-	}
-	return ""
-}
+func (x *PrefixIPAllocation) GetPodId() string { _ = "STUB: not implemented"; return "" }
 
 type PrefixInfo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -557,77 +324,31 @@ type PrefixInfo struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *PrefixInfo) Reset() {
-	*x = PrefixInfo{}
-	mi := &file_tracing_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *PrefixInfo) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *PrefixInfo) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *PrefixInfo) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*PrefixInfo) ProtoMessage() {}
+func (*PrefixInfo) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *PrefixInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_tracing_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use PrefixInfo.ProtoReflect.Descriptor instead.
-func (*PrefixInfo) Descriptor() ([]byte, []int) {
-	return file_tracing_proto_rawDescGZIP(), []int{11}
-}
+func (*PrefixInfo) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
-func (x *PrefixInfo) GetPrefix() string {
-	if x != nil {
-		return x.Prefix
-	}
-	return ""
-}
+func (x *PrefixInfo) GetPrefix() string { _ = "STUB: not implemented"; return "" }
 
-func (x *PrefixInfo) GetStatus() string {
-	if x != nil {
-		return x.Status
-	}
-	return ""
-}
+func (x *PrefixInfo) GetStatus() string { _ = "STUB: not implemented"; return "" }
 
-func (x *PrefixInfo) GetTotal() uint32 {
-	if x != nil {
-		return x.Total
-	}
-	return 0
-}
+func (x *PrefixInfo) GetTotal() uint32 { _ = "STUB: not implemented"; return 0 }
 
-func (x *PrefixInfo) GetUsed() uint32 {
-	if x != nil {
-		return x.Used
-	}
-	return 0
-}
+func (x *PrefixInfo) GetUsed() uint32 { _ = "STUB: not implemented"; return 0 }
 
-func (x *PrefixInfo) GetAvailable() uint32 {
-	if x != nil {
-		return x.Available
-	}
-	return 0
-}
+func (x *PrefixInfo) GetAvailable() uint32 { _ = "STUB: not implemented"; return 0 }
 
-func (x *PrefixInfo) GetAllocations() []*PrefixIPAllocation {
-	if x != nil {
-		return x.Allocations
-	}
-	return nil
-}
+func (x *PrefixInfo) GetAllocations() []*PrefixIPAllocation { _ = "STUB: not implemented"; return nil }
 
 type ResourceDBEntry struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -642,84 +363,33 @@ type ResourceDBEntry struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ResourceDBEntry) Reset() {
-	*x = ResourceDBEntry{}
-	mi := &file_tracing_proto_msgTypes[12]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *ResourceDBEntry) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *ResourceDBEntry) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *ResourceDBEntry) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*ResourceDBEntry) ProtoMessage() {}
+func (*ResourceDBEntry) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *ResourceDBEntry) ProtoReflect() protoreflect.Message {
-	mi := &file_tracing_proto_msgTypes[12]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use ResourceDBEntry.ProtoReflect.Descriptor instead.
-func (*ResourceDBEntry) Descriptor() ([]byte, []int) {
-	return file_tracing_proto_rawDescGZIP(), []int{12}
-}
+func (*ResourceDBEntry) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
-func (x *ResourceDBEntry) GetPodName() string {
-	if x != nil {
-		return x.PodName
-	}
-	return ""
-}
+func (x *ResourceDBEntry) GetPodName() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ResourceDBEntry) GetPodNamespace() string {
-	if x != nil {
-		return x.PodNamespace
-	}
-	return ""
-}
+func (x *ResourceDBEntry) GetPodNamespace() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ResourceDBEntry) GetEniId() string {
-	if x != nil {
-		return x.EniId
-	}
-	return ""
-}
+func (x *ResourceDBEntry) GetEniId() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ResourceDBEntry) GetEniMac() string {
-	if x != nil {
-		return x.EniMac
-	}
-	return ""
-}
+func (x *ResourceDBEntry) GetEniMac() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ResourceDBEntry) GetIpv4() string {
-	if x != nil {
-		return x.Ipv4
-	}
-	return ""
-}
+func (x *ResourceDBEntry) GetIpv4() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ResourceDBEntry) GetIpv6() string {
-	if x != nil {
-		return x.Ipv6
-	}
-	return ""
-}
+func (x *ResourceDBEntry) GetIpv6() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ResourceDBEntry) GetType() string {
-	if x != nil {
-		return x.Type
-	}
-	return ""
-}
+func (x *ResourceDBEntry) GetType() string { _ = "STUB: not implemented"; return "" }
 
 type ResourceMapping struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
@@ -735,91 +405,35 @@ type ResourceMapping struct {
 	sizeCache            protoimpl.SizeCache
 }
 
-func (x *ResourceMapping) Reset() {
-	*x = ResourceMapping{}
-	mi := &file_tracing_proto_msgTypes[13]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *ResourceMapping) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *ResourceMapping) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *ResourceMapping) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*ResourceMapping) ProtoMessage() {}
+func (*ResourceMapping) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *ResourceMapping) ProtoReflect() protoreflect.Message {
-	mi := &file_tracing_proto_msgTypes[13]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use ResourceMapping.ProtoReflect.Descriptor instead.
-func (*ResourceMapping) Descriptor() ([]byte, []int) {
-	return file_tracing_proto_rawDescGZIP(), []int{13}
-}
+func (*ResourceMapping) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
 
-func (x *ResourceMapping) GetNetworkInterfaceID() string {
-	if x != nil {
-		return x.NetworkInterfaceID
-	}
-	return ""
-}
+func (x *ResourceMapping) GetNetworkInterfaceID() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ResourceMapping) GetMAC() string {
-	if x != nil {
-		return x.MAC
-	}
-	return ""
-}
+func (x *ResourceMapping) GetMAC() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ResourceMapping) GetType() string {
-	if x != nil {
-		return x.Type
-	}
-	return ""
-}
+func (x *ResourceMapping) GetType() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ResourceMapping) GetAllocInhibitExpireAt() string {
-	if x != nil {
-		return x.AllocInhibitExpireAt
-	}
-	return ""
-}
+func (x *ResourceMapping) GetAllocInhibitExpireAt() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ResourceMapping) GetStatus() string {
-	if x != nil {
-		return x.Status
-	}
-	return ""
-}
+func (x *ResourceMapping) GetStatus() string { _ = "STUB: not implemented"; return "" }
 
-func (x *ResourceMapping) GetInfo() []string {
-	if x != nil {
-		return x.Info
-	}
-	return nil
-}
+func (x *ResourceMapping) GetInfo() []string { _ = "STUB: not implemented"; return nil }
 
-func (x *ResourceMapping) GetIpv4Prefixes() []*PrefixInfo {
-	if x != nil {
-		return x.Ipv4Prefixes
-	}
-	return nil
-}
+func (x *ResourceMapping) GetIpv4Prefixes() []*PrefixInfo { _ = "STUB: not implemented"; return nil }
 
-func (x *ResourceMapping) GetIpv6Prefixes() []*PrefixInfo {
-	if x != nil {
-		return x.Ipv6Prefixes
-	}
-	return nil
-}
+func (x *ResourceMapping) GetIpv6Prefixes() []*PrefixInfo { _ = "STUB: not implemented"; return nil }
 
 type ResourceMappingReply struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -829,47 +443,27 @@ type ResourceMappingReply struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ResourceMappingReply) Reset() {
-	*x = ResourceMappingReply{}
-	mi := &file_tracing_proto_msgTypes[14]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
+func (x *ResourceMappingReply) Reset() { _ = "STUB: not implemented"; return }
 
-func (x *ResourceMappingReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
+func (x *ResourceMappingReply) String() string { _ = "STUB: not implemented"; return "" }
 
-func (*ResourceMappingReply) ProtoMessage() {}
+func (*ResourceMappingReply) ProtoMessage() { _ = "STUB: not implemented"; return }
 
 func (x *ResourceMappingReply) ProtoReflect() protoreflect.Message {
-	mi := &file_tracing_proto_msgTypes[14]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
+	_ = "STUB: not implemented"
+	return *new(protoreflect.Message)
 }
 
 // Deprecated: Use ResourceMappingReply.ProtoReflect.Descriptor instead.
 func (*ResourceMappingReply) Descriptor() ([]byte, []int) {
-	return file_tracing_proto_rawDescGZIP(), []int{14}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (x *ResourceMappingReply) GetInfo() []*ResourceMapping {
-	if x != nil {
-		return x.Info
-	}
-	return nil
-}
+func (x *ResourceMappingReply) GetInfo() []*ResourceMapping { _ = "STUB: not implemented"; return nil }
 
 func (x *ResourceMappingReply) GetResourceDb() []*ResourceDBEntry {
-	if x != nil {
-		return x.ResourceDb
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
@@ -947,12 +541,7 @@ var (
 	file_tracing_proto_rawDescData []byte
 )
 
-func file_tracing_proto_rawDescGZIP() []byte {
-	file_tracing_proto_rawDescOnce.Do(func() {
-		file_tracing_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_tracing_proto_rawDesc), len(file_tracing_proto_rawDesc)))
-	})
-	return file_tracing_proto_rawDescData
-}
+func file_tracing_proto_rawDescGZIP() []byte { _ = "STUB: not implemented"; return nil }
 
 var file_tracing_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_tracing_proto_goTypes = []any{
@@ -999,26 +588,5 @@ var file_tracing_proto_depIdxs = []int32{
 	0,  // [0:7] is the sub-list for field type_name
 }
 
-func init() { file_tracing_proto_init() }
-func file_tracing_proto_init() {
-	if File_tracing_proto != nil {
-		return
-	}
-	type x struct{}
-	out := protoimpl.TypeBuilder{
-		File: protoimpl.DescBuilder{
-			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_tracing_proto_rawDesc), len(file_tracing_proto_rawDesc)),
-			NumEnums:      0,
-			NumMessages:   15,
-			NumExtensions: 0,
-			NumServices:   1,
-		},
-		GoTypes:           file_tracing_proto_goTypes,
-		DependencyIndexes: file_tracing_proto_depIdxs,
-		MessageInfos:      file_tracing_proto_msgTypes,
-	}.Build()
-	File_tracing_proto = out.File
-	file_tracing_proto_goTypes = nil
-	file_tracing_proto_depIdxs = nil
-}
+func init()                    { file_tracing_proto_init() }
+func file_tracing_proto_init() { _ = "STUB: not implemented"; return }

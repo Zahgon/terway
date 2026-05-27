@@ -8,44 +8,14 @@ package credential
 
 import (
 	"github.com/AliyunContainerService/ack-ram-tool/pkg/credentials/provider"
-	"os"
 )
 
 // Injectors from wire.go:
 
 // InitializeClientMgr init ClientMgr
 func InitializeClientMgr(regionID string, credProvider provider.CredentialsProvider) (*ClientMgr, error) {
-	clientScheme := NewScheme()
-	networkType := NewNetworkType()
-	clientConfig := NewClientConfig(regionID, clientScheme, networkType)
-	credential := ProviderV1(credProvider)
-	ecsClient, err := NewECSClient(clientConfig, credential)
-	if err != nil {
-		return nil, err
-	}
-	credentialsCredential := ProviderV2(credProvider)
-	ecsv2Client, err := NewECSV2Client(clientConfig, credentialsCredential)
-	if err != nil {
-		return nil, err
-	}
-	vpcClient, err := NewVPCClient(clientConfig, credential)
-	if err != nil {
-		return nil, err
-	}
-	efloClient, err := NewEFLOClient(clientConfig, credential)
-	if err != nil {
-		return nil, err
-	}
-	eflov2Client, err := NewEFLOV2Client(clientConfig, credentialsCredential)
-	if err != nil {
-		return nil, err
-	}
-	efloControllerClient, err := NewEFLOControllerClient(clientConfig, credentialsCredential)
-	if err != nil {
-		return nil, err
-	}
-	clientMgr := NewClientMgr(regionID, credProvider, ecsClient, ecsv2Client, vpcClient, efloClient, eflov2Client, efloControllerClient)
-	return clientMgr, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // wire.go:
@@ -56,41 +26,15 @@ func NewClientMgr(regionID string,
 	ecsV2Client ECSV2Client,
 	vpcClient VPCClient, efloClient EFLOClient,
 	efloV2Client EFLOV2Client, efloControllerClient EFLOControllerClient) *ClientMgr {
-
-	return &ClientMgr{
-
-		regionID:             regionID,
-		provider:             credProvider,
-		ecsV2Client:          ecsV2Client,
-		ecsClient:            ecsClient,
-		vpcClient:            vpcClient,
-		efloClient:           efloClient,
-		efloV2Client:         efloV2Client,
-		efloControllerClient: efloControllerClient,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func NewNetworkType() NetworkType {
-	networkType := "vpc"
-	if os.Getenv("ALICLOUD_ENDPOINT_TYPE") == "public" {
-		networkType = "public"
-	}
-	return NetworkType(networkType)
-}
+func NewNetworkType() NetworkType { _ = "STUB: not implemented"; return *new(NetworkType) }
 
-func NewScheme() ClientScheme {
-	scheme := "HTTPS"
-	if os.Getenv("ALICLOUD_CLIENT_SCHEME") == "HTTP" {
-		scheme = "HTTP"
-	}
-	return ClientScheme(scheme)
-}
+func NewScheme() ClientScheme { _ = "STUB: not implemented"; return *new(ClientScheme) }
 
 func NewClientConfig(regionID string, scheme ClientScheme, networkType NetworkType) ClientConfig {
-	return ClientConfig{
-		RegionID:     regionID,
-		Scheme:       string(scheme),
-		EndpointType: "regional",
-		NetworkType:  string(networkType),
-	}
+	_ = "STUB: not implemented"
+	return *new(ClientConfig)
 }

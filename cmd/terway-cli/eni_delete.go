@@ -2,12 +2,8 @@ package main
 
 import (
 	"context"
-	"fmt"
-	"sync"
 
-	"github.com/pterm/pterm"
 	"github.com/spf13/cobra"
-	"golang.org/x/sync/errgroup"
 
 	aliClient "github.com/AliyunContainerService/terway/pkg/aliyun/client"
 )
@@ -51,169 +47,43 @@ func init() {
 }
 
 func runEniDelete(cmd *cobra.Command, args []string) error {
+	_ = "STUB: not implemented"
 	// Validate arguments
-	if deleteIDs == "" && !deleteBatch {
-		return fmt.Errorf("either --ids or --batch must be specified")
-	}
-	if deleteIDs != "" && deleteBatch {
-		return fmt.Errorf("--ids and --batch are mutually exclusive")
-	}
-	// In batch mode, must specify either --status or --node-id as filter
-	if deleteBatch && deleteStatus == "" && deleteNodeID == "" {
-		return fmt.Errorf("in batch mode, either --status or --node-id must be specified as a filter")
-	}
-	if deleteLimit <= 0 || deleteLimit > 50 {
-		return fmt.Errorf("--limit must be between 1 and 50")
-	}
-	if err := validateLinkType(); err != nil {
-		return err
-	}
-
-	ctx := context.Background()
-
-	// Get the list of ENI IDs to delete
-	var eniIDs []string
-	var err error
-	if deleteIDs != "" {
-		eniIDs = parseENIIDs(deleteIDs)
-		if len(eniIDs) == 0 {
-			return fmt.Errorf("no valid ENI IDs provided")
-		}
-		// Validate ENI IDs for EFLO mode
-		if err := validateENIIDsForLinkType(eniIDs, linkType); err != nil {
-			return err
-		}
-	} else {
-		// Batch mode: query ENIs matching criteria
-		eniIDs, err = queryENIsForBatchDelete(ctx)
-		if err != nil {
-			return err
-		}
-		if len(eniIDs) == 0 {
-			if linkType == LinkTypeECS {
-				pterm.Info.Println("No ECS ENIs matching the criteria found for deletion")
-			} else {
-				pterm.Info.Println("No EFLO (LENI/HDENI) ENIs matching the criteria found for deletion")
-			}
-			return nil
-		}
-		// Apply limit to the number of ENIs to delete
-		if len(eniIDs) > deleteLimit {
-			eniIDs = eniIDs[:deleteLimit]
-		}
-	}
-
-	// Show the ENIs to be deleted
-	err = showDeleteConfirmation(eniIDs)
-	if err != nil {
-		return err
-	}
-
-	// Confirm deletion unless --yes is specified
-	if !deleteYes {
-		confirmed, err := pterm.DefaultInteractiveConfirm.WithDefaultText("Do you want to proceed with deletion?").Show()
-		if err != nil {
-			return fmt.Errorf("failed to get confirmation: %w", err)
-		}
-		if !confirmed {
-			pterm.Info.Println("Deletion cancelled")
-			return nil
-		}
-	}
-
-	// Delete ENIs in batches using appropriate client
-	if linkType == LinkTypeECS {
-		ecsClient, err := getECSClient(regionID)
-		if err != nil {
-			return err
-		}
-		return deleteENIsInBatches(ctx, &ecsDeleter{client: ecsClient}, eniIDs, deleteLimit)
-	}
-	efloClient, err := getEFLOClient(regionID)
-	if err != nil {
-		return err
-	}
-	return deleteENIsInBatches(ctx, &efloDeleter{client: efloClient}, eniIDs, deleteLimit)
+	return nil
 }
+
+// In batch mode, must specify either --status or --node-id as filter
+
+// Get the list of ENI IDs to delete
+
+// Validate ENI IDs for EFLO mode
+
+// Batch mode: query ENIs matching criteria
+
+// Apply limit to the number of ENIs to delete
+
+// Show the ENIs to be deleted
+
+// Confirm deletion unless --yes is specified
+
+// Delete ENIs in batches using appropriate client
 
 func queryENIsForBatchDelete(ctx context.Context) ([]string, error) {
-	opts := &aliClient.DescribeNetworkInterfaceOptions{}
-	if deleteNodeID != "" {
-		opts.InstanceID = &deleteNodeID
-	}
-	if deleteStatus != "" {
-		opts.Status = &deleteStatus
-	}
-
-	var enis []*aliClient.NetworkInterface
-	var err error
-
-	if linkType == LinkTypeECS {
-		// Use ECS client for regular ENIs
-		ecsClient, clientErr := getECSClient(regionID)
-		if clientErr != nil {
-			return nil, clientErr
-		}
-		enis, err = ecsClient.DescribeNetworkInterface2(ctx, opts)
-		if err != nil {
-			return nil, fmt.Errorf("failed to describe ECS network interfaces: %w", err)
-		}
-	} else {
-		// Use EFLO client for LENI/HDENI
-		efloClient, clientErr := getEFLOClient(regionID)
-		if clientErr != nil {
-			return nil, clientErr
-		}
-		// Always use raw status for accurate filtering for EFLO
-		rawStatus := true
-		opts.RawStatus = &rawStatus
-		enis, err = efloClient.DescribeLeniNetworkInterface(ctx, opts)
-		if err != nil {
-			return nil, fmt.Errorf("failed to describe EFLO network interfaces: %w", err)
-		}
-	}
-
-	var eniIDs []string
-	for _, eni := range enis {
-		// If no specific status is provided, filter for abnormal ones
-		if deleteStatus == "" {
-			if isAbnormalStatusForLinkType(eni.Status, linkType) {
-				eniIDs = append(eniIDs, eni.NetworkInterfaceID)
-			}
-		} else {
-			eniIDs = append(eniIDs, eni.NetworkInterfaceID)
-		}
-	}
-
-	return eniIDs, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func showDeleteConfirmation(eniIDs []string) error {
-	title := fmt.Sprintf("About to delete %d ENI(s)", len(eniIDs))
-	pterm.DefaultHeader.WithFullWidth().WithBackgroundStyle(pterm.NewStyle(pterm.BgDarkGray)).Println(title)
+// Use ECS client for regular ENIs
 
-	// Show first 10 ENIs
-	limit := 10
-	if len(eniIDs) < limit {
-		limit = len(eniIDs)
-	}
+// Use EFLO client for LENI/HDENI
 
-	items := make([]pterm.BulletListItem, 0, limit+1)
-	for i := 0; i < limit; i++ {
-		items = append(items, pterm.BulletListItem{
-			Level: 0,
-			Text:  eniIDs[i],
-		})
-	}
-	if len(eniIDs) > limit {
-		items = append(items, pterm.BulletListItem{
-			Level: 0,
-			Text:  fmt.Sprintf("... and %d more", len(eniIDs)-limit),
-		})
-	}
+// Always use raw status for accurate filtering for EFLO
 
-	return pterm.DefaultBulletList.WithItems(items).Render()
-}
+// If no specific status is provided, filter for abnormal ones
+
+func showDeleteConfirmation(eniIDs []string) error { _ = "STUB: not implemented"; return nil }
+
+// Show first 10 ENIs
 
 // eniDeleter interface for deleting ENIs
 type eniDeleter interface {
@@ -226,7 +96,8 @@ type efloDeleter struct {
 }
 
 func (e *efloDeleter) deleteENI(ctx context.Context, eniID string) error {
-	return e.client.DeleteElasticNetworkInterface(ctx, eniID)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ecsDeleter wraps ECS client to implement eniDeleter
@@ -235,55 +106,21 @@ type ecsDeleter struct {
 }
 
 func (e *ecsDeleter) deleteENI(ctx context.Context, eniID string) error {
-	return e.client.DeleteNetworkInterface(ctx, eniID)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func deleteENIsInBatches(ctx context.Context, deleter eniDeleter, eniIDs []string, batchSize int) error {
-	total := len(eniIDs)
-	spinner, _ := pterm.DefaultSpinner.WithText(fmt.Sprintf("Deleting %d ENI(s)...", total)).Start()
-
-	var successCount, failCount int
-	var mu sync.Mutex
-
-	// Process in batches
-	for i := 0; i < total; i += batchSize {
-		end := i + batchSize
-		if end > total {
-			end = total
-		}
-		batch := eniIDs[i:end]
-
-		// Delete each ENI in the batch concurrently
-		g := errgroup.Group{}
-		for _, eniID := range batch {
-			g.Go(func() error {
-				err := deleter.deleteENI(ctx, eniID)
-				mu.Lock()
-				if err != nil {
-					failCount++
-					pterm.Error.Printf("Failed to delete ENI %s: %v\n", eniID, err)
-				} else {
-					successCount++
-				}
-				mu.Unlock()
-				return nil // Continue processing other ENIs even if one fails
-			})
-		}
-		_ = g.Wait()
-
-		// Update spinner text
-		spinner.UpdateText(fmt.Sprintf("Deleted %d/%d ENI(s)...", successCount+failCount, total))
-	}
-
-	spinner.Success()
-
-	// Show final results
-	pterm.Printf("\nResults:\n")
-	pterm.Printf("  Success: %s\n", pterm.Green(successCount))
-	if failCount > 0 {
-		pterm.Printf("  Failed:  %s\n", pterm.Red(failCount))
-		return fmt.Errorf("some ENIs failed to delete")
-	}
-
+	_ = "STUB: not implemented"
 	return nil
 }
+
+// Process in batches
+
+// Delete each ENI in the batch concurrently
+
+// Continue processing other ENIs even if one fails
+
+// Update spinner text
+
+// Show final results

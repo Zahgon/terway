@@ -10,8 +10,9 @@ import (
 	"github.com/AliyunContainerService/terway/types"
 )
 
-func gcLeakedRules(existIP sets.Set[string]) {}
+func gcLeakedRules(existIP sets.Set[string]) { _ = "STUB: not implemented"; return }
 
 func gcPolicyRoutes(ctx context.Context, mac string, containerIPNet *types.IPNetSet, namespace, name string) error {
+	_ = "STUB: not implemented"
 	return nil
 }

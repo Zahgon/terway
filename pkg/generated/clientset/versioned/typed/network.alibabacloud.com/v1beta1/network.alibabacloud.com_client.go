@@ -20,8 +20,6 @@ package v1beta1
 import (
 	"net/http"
 
-	v1beta1 "github.com/AliyunContainerService/terway/pkg/apis/network.alibabacloud.com/v1beta1"
-	"github.com/AliyunContainerService/terway/pkg/generated/clientset/versioned/scheme"
 	rest "k8s.io/client-go/rest"
 )
 
@@ -40,87 +38,57 @@ type NetworkV1beta1Client struct {
 }
 
 func (c *NetworkV1beta1Client) NetworkInterfaces() NetworkInterfaceInterface {
-	return newNetworkInterfaces(c)
+	_ = "STUB: not implemented"
+	return *new(NetworkInterfaceInterface)
 }
 
 func (c *NetworkV1beta1Client) Nodes() NodeInterface {
-	return newNodes(c)
+	_ = "STUB: not implemented"
+	return *new(NodeInterface)
 }
 
 func (c *NetworkV1beta1Client) NodeRuntimes() NodeRuntimeInterface {
-	return newNodeRuntimes(c)
+	_ = "STUB: not implemented"
+	return *new(NodeRuntimeInterface)
 }
 
 func (c *NetworkV1beta1Client) PodENIs(namespace string) PodENIInterface {
-	return newPodENIs(c, namespace)
+	_ = "STUB: not implemented"
+	return *new(PodENIInterface)
 }
 
 func (c *NetworkV1beta1Client) PodNetworkings() PodNetworkingInterface {
-	return newPodNetworkings(c)
+	_ = "STUB: not implemented"
+	return *new(PodNetworkingInterface)
 }
 
 // NewForConfig creates a new NetworkV1beta1Client for the given config.
 // NewForConfig is equivalent to NewForConfigAndClient(c, httpClient),
 // where httpClient was generated with rest.HTTPClientFor(c).
 func NewForConfig(c *rest.Config) (*NetworkV1beta1Client, error) {
-	config := *c
-	if err := setConfigDefaults(&config); err != nil {
-		return nil, err
-	}
-	httpClient, err := rest.HTTPClientFor(&config)
-	if err != nil {
-		return nil, err
-	}
-	return NewForConfigAndClient(&config, httpClient)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // NewForConfigAndClient creates a new NetworkV1beta1Client for the given config and http client.
 // Note the http client provided takes precedence over the configured transport values.
 func NewForConfigAndClient(c *rest.Config, h *http.Client) (*NetworkV1beta1Client, error) {
-	config := *c
-	if err := setConfigDefaults(&config); err != nil {
-		return nil, err
-	}
-	client, err := rest.RESTClientForConfigAndClient(&config, h)
-	if err != nil {
-		return nil, err
-	}
-	return &NetworkV1beta1Client{client}, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // NewForConfigOrDie creates a new NetworkV1beta1Client for the given config and
 // panics if there is an error in the config.
-func NewForConfigOrDie(c *rest.Config) *NetworkV1beta1Client {
-	client, err := NewForConfig(c)
-	if err != nil {
-		panic(err)
-	}
-	return client
-}
+func NewForConfigOrDie(c *rest.Config) *NetworkV1beta1Client { _ = "STUB: not implemented"; return nil }
 
 // New creates a new NetworkV1beta1Client for the given RESTClient.
-func New(c rest.Interface) *NetworkV1beta1Client {
-	return &NetworkV1beta1Client{c}
-}
+func New(c rest.Interface) *NetworkV1beta1Client { _ = "STUB: not implemented"; return nil }
 
-func setConfigDefaults(config *rest.Config) error {
-	gv := v1beta1.SchemeGroupVersion
-	config.GroupVersion = &gv
-	config.APIPath = "/apis"
-	config.NegotiatedSerializer = scheme.Codecs.WithoutConversion()
-
-	if config.UserAgent == "" {
-		config.UserAgent = rest.DefaultKubernetesUserAgent()
-	}
-
-	return nil
-}
+func setConfigDefaults(config *rest.Config) error { _ = "STUB: not implemented"; return nil }
 
 // RESTClient returns a RESTClient that is used to communicate
 // with API server by this client implementation.
 func (c *NetworkV1beta1Client) RESTClient() rest.Interface {
-	if c == nil {
-		return nil
-	}
-	return c.restClient
+	_ = "STUB: not implemented"
+	return *new(rest.Interface)
 }

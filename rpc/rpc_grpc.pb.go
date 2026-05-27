@@ -8,9 +8,8 @@ package rpc
 
 import (
 	context "context"
+
 	grpc "google.golang.org/grpc"
-	codes "google.golang.org/grpc/codes"
-	status "google.golang.org/grpc/status"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -40,47 +39,28 @@ type terwayBackendClient struct {
 }
 
 func NewTerwayBackendClient(cc grpc.ClientConnInterface) TerwayBackendClient {
-	return &terwayBackendClient{cc}
+	_ = "STUB: not implemented"
+	return *new(TerwayBackendClient)
 }
 
 func (c *terwayBackendClient) AllocIP(ctx context.Context, in *AllocIPRequest, opts ...grpc.CallOption) (*AllocIPReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AllocIPReply)
-	err := c.cc.Invoke(ctx, TerwayBackend_AllocIP_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (c *terwayBackendClient) ReleaseIP(ctx context.Context, in *ReleaseIPRequest, opts ...grpc.CallOption) (*ReleaseIPReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ReleaseIPReply)
-	err := c.cc.Invoke(ctx, TerwayBackend_ReleaseIP_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (c *terwayBackendClient) GetIPInfo(ctx context.Context, in *GetInfoRequest, opts ...grpc.CallOption) (*GetInfoReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetInfoReply)
-	err := c.cc.Invoke(ctx, TerwayBackend_GetIPInfo_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (c *terwayBackendClient) RecordEvent(ctx context.Context, in *EventRequest, opts ...grpc.CallOption) (*EventReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(EventReply)
-	err := c.cc.Invoke(ctx, TerwayBackend_RecordEvent_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // TerwayBackendServer is the server API for TerwayBackend service.
@@ -102,19 +82,30 @@ type TerwayBackendServer interface {
 type UnimplementedTerwayBackendServer struct{}
 
 func (UnimplementedTerwayBackendServer) AllocIP(context.Context, *AllocIPRequest) (*AllocIPReply, error) {
-	return nil, status.Error(codes.Unimplemented, "method AllocIP not implemented")
+	_ = "STUB: not implemented"
+	return nil, nil
 }
+
 func (UnimplementedTerwayBackendServer) ReleaseIP(context.Context, *ReleaseIPRequest) (*ReleaseIPReply, error) {
-	return nil, status.Error(codes.Unimplemented, "method ReleaseIP not implemented")
+	_ = "STUB: not implemented"
+	return nil, nil
 }
+
 func (UnimplementedTerwayBackendServer) GetIPInfo(context.Context, *GetInfoRequest) (*GetInfoReply, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetIPInfo not implemented")
+	_ = "STUB: not implemented"
+	return nil, nil
 }
+
 func (UnimplementedTerwayBackendServer) RecordEvent(context.Context, *EventRequest) (*EventReply, error) {
-	return nil, status.Error(codes.Unimplemented, "method RecordEvent not implemented")
+	_ = "STUB: not implemented"
+	return nil, nil
 }
-func (UnimplementedTerwayBackendServer) mustEmbedUnimplementedTerwayBackendServer() {}
-func (UnimplementedTerwayBackendServer) testEmbeddedByValue()                       {}
+
+func (UnimplementedTerwayBackendServer) mustEmbedUnimplementedTerwayBackendServer() {
+	_ = "STUB: not implemented"
+	return
+}
+func (UnimplementedTerwayBackendServer) testEmbeddedByValue() { _ = "STUB: not implemented"; return }
 
 // UnsafeTerwayBackendServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to TerwayBackendServer will
@@ -124,86 +115,32 @@ type UnsafeTerwayBackendServer interface {
 }
 
 func RegisterTerwayBackendServer(s grpc.ServiceRegistrar, srv TerwayBackendServer) {
+	_ = "STUB: not implemented"
 	// If the following call panics, it indicates UnimplementedTerwayBackendServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
-	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
-		t.testEmbeddedByValue()
-	}
-	s.RegisterService(&TerwayBackend_ServiceDesc, srv)
+	return
 }
 
 func _TerwayBackend_AllocIP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AllocIPRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TerwayBackendServer).AllocIP(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TerwayBackend_AllocIP_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TerwayBackendServer).AllocIP(ctx, req.(*AllocIPRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func _TerwayBackend_ReleaseIP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReleaseIPRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TerwayBackendServer).ReleaseIP(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TerwayBackend_ReleaseIP_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TerwayBackendServer).ReleaseIP(ctx, req.(*ReleaseIPRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func _TerwayBackend_GetIPInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetInfoRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TerwayBackendServer).GetIPInfo(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TerwayBackend_GetIPInfo_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TerwayBackendServer).GetIPInfo(ctx, req.(*GetInfoRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func _TerwayBackend_RecordEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EventRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TerwayBackendServer).RecordEvent(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TerwayBackend_RecordEvent_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TerwayBackendServer).RecordEvent(ctx, req.(*EventRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // TerwayBackend_ServiceDesc is the grpc.ServiceDesc for TerwayBackend service.

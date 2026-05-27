@@ -1,35 +1,6 @@
 package main
 
-import (
-	"errors"
-	"fmt"
-	"os"
-	"strconv"
-	"strings"
-	"syscall"
-
-	"github.com/vishvananda/netlink"
-	"golang.org/x/sys/unix"
-	utilfeature "k8s.io/apiserver/pkg/util/feature"
-
-	terwayfeature "github.com/AliyunContainerService/terway/pkg/feature"
-	"github.com/AliyunContainerService/terway/pkg/utils/nodecap"
-)
-
-func switchDataPathV2() bool {
-	if !utilfeature.DefaultFeatureGate.Enabled(terwayfeature.AutoDataPathV2) {
-		return false
-	}
-
-	prevDatapath := nodecap.GetNodeCapabilities(nodecap.NodeCapabilityDataPath)
-	if prevDatapath == dataPathV2 {
-		fmt.Println("datapath is already v2")
-		return true
-	}
-
-	_, err := netlink.LinkByName("cilium_net")
-	return errors.As(err, &netlink.LinkNotFoundError{})
-}
+func switchDataPathV2() bool { _ = "STUB: not implemented"; return false }
 
 // allowEBPFNetworkPolicy check in veth datapath
 // policy
@@ -39,82 +10,15 @@ func switchDataPathV2() bool {
 // new node ( based on user require).
 // true -> false: keep cilium chain, but disable policy
 func allowEBPFNetworkPolicy(require bool) (bool, error) {
-	store := nodecap.NewFileNodeCapabilities(nodeCapabilitiesFile)
-	if err := store.Load(); err != nil {
-		return false, err
-	}
-	switch store.Get(nodecap.NodeCapabilityHasCiliumChainer) {
-	case True:
-		fmt.Printf("has prev cilium chainer\n")
-		return true, nil
-	case False:
-		fmt.Printf("no prev cilium chainer\n")
-		return false, nil
-	}
-
-	_, err := netlink.LinkByName("cilium_net")
-	if err == nil {
-		fmt.Printf("link cilium_net exist\n")
-		return true, nil
-	}
-	if !errors.As(err, &netlink.LinkNotFoundError{}) {
-		return false, err
-	}
-
-	return require, nil
-}
-
-func hasCilium() (bool, error) {
-	store := nodecap.NewFileNodeCapabilities(nodeCapabilitiesFile)
-	if err := store.Load(); err != nil {
-		return false, err
-	}
-	switch store.Get(nodecap.NodeCapabilityHasCiliumChainer) {
-	case True:
-		fmt.Printf("has prev cilium chainer\n")
-		return true, nil
-	case False:
-		fmt.Printf("no prev cilium chainer\n")
-		return false, nil
-	}
-	_, err := netlink.LinkByName("cilium_net")
-	if err == nil {
-		return true, nil
-	}
-	if !errors.As(err, &netlink.LinkNotFoundError{}) {
-		return false, err
-	}
-	return false, nil
-}
-func canUseHostRouting() (bool, error) {
-	file, err := os.ReadFile("/var/run/cilium/state/globals/node_config.h")
-	if err != nil {
-		if os.IsNotExist(err) {
-			return true, nil
-		}
-		return false, err
-	}
-	if strings.Contains(string(file), "ENABLE_HOST_ROUTING") {
-		return true, nil
-	}
+	_ = "STUB: not implemented"
 	return false, nil
 }
 
-func checkKernelVersion(iMajor, iMinor, iPatch int) bool {
-	var un syscall.Utsname
-	_ = syscall.Uname(&un)
-	var sb strings.Builder
-	for _, b := range un.Release[:] {
-		if b == 0 {
-			break
-		}
-		sb.WriteByte(byte(b))
-	}
-	major, minor, patch, ok := parseRelease(sb.String())
-	return ok && (major > iMajor ||
-		major == iMajor && minor > iMinor ||
-		major == iMajor && minor == iMinor && patch >= iPatch)
-}
+func hasCilium() (bool, error) { _ = "STUB: not implemented"; return false, nil }
+
+func canUseHostRouting() (bool, error) { _ = "STUB: not implemented"; return false, nil }
+
+func checkKernelVersion(iMajor, iMinor, iPatch int) bool { _ = "STUB: not implemented"; return false }
 
 // parseRelease parses a dot-separated version number. It follows the semver
 // syntax, but allows the minor and patch versions to be elided.
@@ -122,59 +26,15 @@ func checkKernelVersion(iMajor, iMinor, iPatch int) bool {
 // This is a copy of the Go runtime's parseRelease from
 // https://golang.org/cl/209597.
 func parseRelease(rel string) (major, minor, patch int, ok bool) {
+	_ = "STUB: not implemented"
 	// Strip anything after a dash or plus.
-	for i := 0; i < len(rel); i++ {
-		if rel[i] == '-' || rel[i] == '+' {
-			rel = rel[:i]
-			break
-		}
-	}
-
-	next := func() (int, bool) {
-		for i := 0; i < len(rel); i++ {
-			if rel[i] == '.' {
-				ver, err := strconv.Atoi(rel[:i])
-				rel = rel[i+1:]
-				return ver, err == nil
-			}
-		}
-		ver, err := strconv.Atoi(rel)
-		rel = ""
-		return ver, err == nil
-	}
-	if major, ok = next(); !ok || rel == "" {
-		return
-	}
-	if minor, ok = next(); !ok || rel == "" {
-		return
-	}
-	patch, ok = next()
-	return
+	return 0, 0, 0, false
 }
 
-func mountHostBpf() error {
-	target := "/sys/fs/bpf"
+func mountHostBpf() error { _ = "STUB: not implemented"; return nil }
 
-	// 确保目标目录存在
-	err := os.MkdirAll(target, 0755)
-	if err != nil {
-		return fmt.Errorf("failed to create mount point: %v", err)
-	}
+// 确保目标目录存在
 
-	// 检查是否已挂载
-	mounted, err := isMounted(target)
-	if err != nil {
-		return fmt.Errorf("failed to check mount status: %v", err)
-	}
-	if mounted {
-		return nil
-	}
+// 检查是否已挂载
 
-	// 执行 mount bpffs /sys/fs/bpf -t bpf
-	err = unix.Mount("bpffs", target, "bpf", 0, "")
-	if err != nil {
-		return fmt.Errorf("mount failed: %v", err)
-	}
-
-	return nil
-}
+// 执行 mount bpffs /sys/fs/bpf -t bpf

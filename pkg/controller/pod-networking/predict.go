@@ -17,8 +17,6 @@ limitations under the License.
 package podnetworking
 
 import (
-	"github.com/samber/lo"
-	"k8s.io/apimachinery/pkg/util/sets"
 	"sigs.k8s.io/controller-runtime/pkg/event"
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
 
@@ -30,23 +28,8 @@ type predicateForPodnetwokringEvent struct {
 }
 
 func (p *predicateForPodnetwokringEvent) Update(e event.UpdateEvent) bool {
-	newPodNetworking, ok := e.ObjectNew.(*v1beta1.PodNetworking)
-	if !ok {
-		return false
-	}
-
-	switch newPodNetworking.Status.Status {
-	case "", v1beta1.NetworkingStatusFail:
-		return true
-	}
-
-	return changed(newPodNetworking)
+	_ = "STUB: not implemented"
+	return false
 }
 
-func changed(pn *v1beta1.PodNetworking) bool {
-	expect := sets.New[string](pn.Spec.VSwitchOptions...)
-	got := sets.New[string](lo.Map(pn.Status.VSwitches, func(item v1beta1.VSwitch, index int) string {
-		return item.ID
-	})...)
-	return !expect.Equal(got)
-}
+func changed(pn *v1beta1.PodNetworking) bool { _ = "STUB: not implemented"; return false }

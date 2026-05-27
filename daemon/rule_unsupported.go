@@ -9,5 +9,6 @@ import (
 )
 
 func ruleSync(ctx context.Context, res daemon.PodResources) error {
+	_ = "STUB: not implemented"
 	return nil
 }

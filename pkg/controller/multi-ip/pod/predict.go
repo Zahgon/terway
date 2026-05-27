@@ -17,10 +17,6 @@ limitations under the License.
 package pod
 
 import (
-	"github.com/AliyunContainerService/terway/pkg/utils"
-	"github.com/AliyunContainerService/terway/types"
-
-	corev1 "k8s.io/api/core/v1"
 	"sigs.k8s.io/controller-runtime/pkg/event"
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
 )
@@ -30,46 +26,25 @@ type predicateForPodEvent struct {
 }
 
 func (p *predicateForPodEvent) Create(e event.CreateEvent) bool {
-	return needProcess(e.Object)
+	_ = "STUB: not implemented"
+	return false
 }
 
 func (p *predicateForPodEvent) Update(e event.UpdateEvent) bool {
-	return needProcess(e.ObjectNew)
+	_ = "STUB: not implemented"
+	return false
 }
 
 func (p *predicateForPodEvent) Delete(e event.DeleteEvent) bool {
-	return needProcess(e.Object)
+	_ = "STUB: not implemented"
+	return false
 }
 
 func (p *predicateForPodEvent) Generic(e event.GenericEvent) bool {
-	return needProcess(e.Object)
+	_ = "STUB: not implemented"
+	return false
+
+	// needProcess filter pod which is ready to process
 }
 
-// needProcess filter pod which is ready to process
-func needProcess(obj interface{}) bool {
-	pod, ok := obj.(*corev1.Pod)
-	if !ok {
-		return false
-	}
-
-	if pod.Spec.NodeName == "" {
-		return false
-	}
-
-	if pod.Spec.HostNetwork {
-		return false
-	}
-
-	if types.IgnoredByTerway(pod.Labels) {
-		return false
-	}
-
-	if types.PodUseENI(pod) {
-		return false
-	}
-
-	if !utils.PodSandboxExited(pod) && pod.Status.PodIP != "" {
-		return false
-	}
-	return true
-}
+func needProcess(obj interface{}) bool { _ = "STUB: not implemented"; return false }

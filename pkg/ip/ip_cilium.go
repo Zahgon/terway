@@ -15,7 +15,6 @@
 package ip
 
 import (
-	"math/big"
 	"net"
 )
 
@@ -25,51 +24,14 @@ var (
 )
 
 func ipNetToRange(ipNet net.IPNet) netWithRange {
-	firstIP := make(net.IP, len(ipNet.IP))
-	lastIP := make(net.IP, len(ipNet.IP))
-
-	copy(firstIP, ipNet.IP)
-	copy(lastIP, ipNet.IP)
-
-	firstIP = firstIP.Mask(ipNet.Mask)
-	lastIP = lastIP.Mask(ipNet.Mask)
-
-	if firstIP.To4() != nil {
-		firstIP = append(v4Mappedv6Prefix, firstIP...)
-		lastIP = append(v4Mappedv6Prefix, lastIP...)
-	}
-
-	lastIPMask := make(net.IPMask, len(ipNet.Mask))
-	copy(lastIPMask, ipNet.Mask)
-	for i := range lastIPMask {
-		lastIPMask[len(lastIPMask)-i-1] = ^lastIPMask[len(lastIPMask)-i-1]
-		lastIP[net.IPv6len-i-1] = lastIP[net.IPv6len-i-1] | lastIPMask[len(lastIPMask)-i-1]
-	}
-
-	return netWithRange{First: &firstIP, Last: &lastIP, Network: &ipNet}
+	_ = "STUB: not implemented"
+	return *new(netWithRange)
 }
 
 // GetIPAtIndex get the IP by index in the range of ipNet. The index is start with 0.
 func GetIPAtIndex(ipNet net.IPNet, index int64) net.IP {
-	netRange := ipNetToRange(ipNet)
-	val := big.NewInt(0)
-	var ip net.IP
-	if index >= 0 {
-		ip = *netRange.First
-	} else {
-		ip = *netRange.Last
-		index++
-	}
-	if ip.To4() != nil {
-		val.SetBytes(ip.To4())
-	} else {
-		val.SetBytes(ip)
-	}
-	val.Add(val, big.NewInt(index))
-	if ipNet.Contains(val.Bytes()) {
-		return val.Bytes()
-	}
-	return nil
+	_ = "STUB: not implemented"
+	return *new(net.IP)
 }
 
 type netWithRange struct {

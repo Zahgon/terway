@@ -1,13 +1,8 @@
 package credential
 
 import (
-	"context"
 	"net/http"
-	"net/url"
-	"os"
-	"strings"
 	"sync"
-	"time"
 
 	"github.com/AliyunContainerService/ack-ram-tool/pkg/credentials/provider"
 	openapi "github.com/alibabacloud-go/darabonba-openapi/v2/client"
@@ -21,7 +16,6 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/services/eflo"
 	"github.com/aliyun/alibaba-cloud-sdk-go/services/vpc"
 	credential "github.com/aliyun/credentials-go/credentials"
-	"k8s.io/utils/ptr"
 )
 
 type Client interface {
@@ -45,72 +39,36 @@ type V1Warp struct {
 }
 
 func (a *V1Warp) GetCredentials() (*credentials.Credentials, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
-	defer cancel()
-	cr, err := a.providers.Credentials(ctx)
-	if err != nil {
-		return nil, err
-	}
-	cre := &credentials.Credentials{
-		AccessKeyId:     cr.AccessKeyId,
-		AccessKeySecret: cr.AccessKeySecret,
-		SecurityToken:   cr.SecurityToken,
-	}
+	_ = "STUB: not implemented"
+	return nil, nil
+}
 
-	return cre, nil
-}
-func (a *V1Warp) GetProviderName() string {
-	return "chaining"
-}
+func (a *V1Warp) GetProviderName() string { _ = "STUB: not implemented"; return "" }
 
 type headerTransport struct {
 	headers map[string]string
 }
 
 func (m *headerTransport) RoundTrip(req *http.Request) (*http.Response, error) {
-	for k, v := range m.headers {
-		req.Header.Set(k, v)
-	}
-	return http.DefaultTransport.RoundTrip(req)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func provideSDKConfig(config ClientConfig) *sdk.Config {
-	sdkConfig := &sdk.Config{
-		Timeout:   20 * time.Second,
-		Transport: http.DefaultTransport,
-		UserAgent: kubernetesAlicloudIdentity,
-		Scheme:    config.Scheme,
-	}
-	if os.Getenv("X-ACSPROXY-ASCM-CONTEXT") != "" {
-		sdkConfig.Transport = &headerTransport{
-			headers: map[string]string{
-				"x-acsproxy-ascm-context": os.Getenv("X-ACSPROXY-ASCM-CONTEXT"),
-			},
-		}
-	}
-
-	return sdkConfig
-}
+func provideSDKConfig(config ClientConfig) *sdk.Config { _ = "STUB: not implemented"; return nil }
 
 func provideSDKV2Config(config ClientConfig, credential credential.Credential) *openapi.Config {
-	return &openapi.Config{
-		UserAgent:    ptr.To(kubernetesAlicloudIdentity),
-		Protocol:     ptr.To(config.Scheme),
-		RegionId:     ptr.To(config.RegionID),
-		Network:      ptr.To(config.NetworkType),
-		Credential:   credential,
-		EndpointType: ptr.To(config.EndpointType),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func ProviderV1(providers provider.CredentialsProvider) auth.Credential {
-	return &V1Warp{providers: providers}
+	_ = "STUB: not implemented"
+	return *new(auth.Credential)
 }
 
 func ProviderV2(providers provider.CredentialsProvider) credential.Credential {
-	return provider.NewCredentialForV2SDK(providers, provider.CredentialForV2SDKOptions{
-		CredentialRetrievalTimeout: 10 * time.Minute,
-	})
+	_ = "STUB: not implemented"
+	return *new(credential.Credential)
 }
 
 // ClientMgr manager of aliyun openapi clientset
@@ -129,45 +87,24 @@ type ClientMgr struct {
 	sync.RWMutex
 }
 
-func (c *ClientMgr) RegionID() string {
-	return c.regionID
-}
+func (c *ClientMgr) RegionID() string { _ = "STUB: not implemented"; return "" }
 
-func (c *ClientMgr) ECS() *ecs.Client {
-	return c.ecsClient.GetClient()
-}
+func (c *ClientMgr) ECS() *ecs.Client { _ = "STUB: not implemented"; return nil }
 
-func (c *ClientMgr) ECSV2() *ecs20140526.Client {
-	return c.ecsV2Client.GetClient()
-}
+func (c *ClientMgr) ECSV2() *ecs20140526.Client { _ = "STUB: not implemented"; return nil }
 
-func (c *ClientMgr) VPC() *vpc.Client {
-	return c.vpcClient.GetClient()
-}
-func (c *ClientMgr) EFLO() *eflo.Client {
-	return c.efloClient.GetClient()
-}
-func (c *ClientMgr) EFLOV2() *eflo20220530.Client {
-	return c.efloV2Client.GetClient()
-}
+func (c *ClientMgr) VPC() *vpc.Client { _ = "STUB: not implemented"; return nil }
+
+func (c *ClientMgr) EFLO() *eflo.Client { _ = "STUB: not implemented"; return nil }
+
+func (c *ClientMgr) EFLOV2() *eflo20220530.Client { _ = "STUB: not implemented"; return nil }
 
 func (c *ClientMgr) EFLOController() *eflocontroller20221215.Client {
-	return c.efloControllerClient.GetClient()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type ClientScheme string
 type NetworkType string
 
-func parseURL(str string) (string, error) {
-	if str == "" {
-		return "", nil
-	}
-	if !strings.HasPrefix(str, "http") {
-		str = "http://" + str
-	}
-	u, err := url.Parse(str)
-	if err != nil {
-		return "", err
-	}
-	return u.Host, nil
-}
+func parseURL(str string) (string, error) { _ = "STUB: not implemented"; return "", nil }

@@ -104,13 +104,11 @@ const (
 type backendAPIKey struct{}
 
 func GetBackendAPI(ctx context.Context) BackendAPI {
-	value, ok := ctx.Value(backendAPIKey{}).(BackendAPI)
-	if !ok {
-		return BackendAPIECS
-	}
-	return value
+	_ = "STUB: not implemented"
+	return *new(BackendAPI)
 }
 
 func SetBackendAPI(ctx context.Context, b BackendAPI) context.Context {
-	return context.WithValue(ctx, backendAPIKey{}, b)
+	_ = "STUB: not implemented"
+	return *new(context.Context)
 }

@@ -19,15 +19,10 @@ package vswitch
 import (
 	"context"
 	"errors"
-	"fmt"
-	"math/rand"
-	"sort"
 	"time"
 
 	"golang.org/x/sync/singleflight"
 	"k8s.io/apimachinery/pkg/util/cache"
-	utilerrors "k8s.io/apimachinery/pkg/util/errors"
-	"sigs.k8s.io/controller-runtime/pkg/log"
 
 	"github.com/AliyunContainerService/terway/pkg/aliyun/client"
 )
@@ -47,9 +42,9 @@ type Switch struct {
 
 type ByAvailableIP []Switch
 
-func (a ByAvailableIP) Len() int           { return len(a) }
-func (a ByAvailableIP) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
-func (a ByAvailableIP) Less(i, j int) bool { return a[i].AvailableIPCount > a[j].AvailableIPCount }
+func (a ByAvailableIP) Len() int           { _ = "STUB: not implemented"; return 0 }
+func (a ByAvailableIP) Swap(i, j int)      { _ = "STUB: not implemented"; return }
+func (a ByAvailableIP) Less(i, j int) bool { _ = "STUB: not implemented"; return false }
 
 // SwitchPool contain all vSwitches
 type SwitchPool struct {
@@ -61,133 +56,36 @@ type SwitchPool struct {
 
 // NewSwitchPool create pool and set vSwitches to pool
 func NewSwitchPool(size int, ttl string) (*SwitchPool, error) {
-	t, err := time.ParseDuration(ttl)
-	if err != nil {
-		return nil, err
-	}
-
-	return &SwitchPool{cache: cache.NewLRUExpireCache(size), ttl: t}, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // GetOne get one vSwitch by zone and limit in ids
 func (s *SwitchPool) GetOne(ctx context.Context, client client.VPC, zone string, ids []string, opts ...SelectOption) (*Switch, error) {
-	var fallBackSwitches []*Switch
-
-	selectOptions := &SelectOptions{}
-	selectOptions.ApplyOptions(opts)
-
-	switch selectOptions.VSwitchSelectPolicy {
-	case VSwitchSelectionPolicyRandom:
-		rand.Shuffle(len(ids), func(i, j int) { ids[i], ids[j] = ids[j], ids[i] })
-	case VSwitchSelectionPolicyMost:
-		// lookup all vsw in cache and get one matched
-		// try sort the vsw
-
-		var byAvailableIP ByAvailableIP
-		for _, id := range ids {
-			vsw, err := s.GetByID(ctx, client, id)
-			if err != nil {
-				log.FromContext(ctx).Error(err, "get vSwitch", "id", id)
-				continue
-			}
-
-			byAvailableIP = append(byAvailableIP, *vsw)
-		}
-
-		sort.Sort(byAvailableIP)
-		// keep the below logic untouched
-		newOrder := make([]string, 0, len(byAvailableIP))
-		for _, vsw := range byAvailableIP {
-			newOrder = append(newOrder, vsw.ID)
-		}
-		ids = newOrder
-	}
-
-	var errs []error
-
-	// lookup all vsw in cache and get one matched
-	for _, id := range ids {
-		vsw, err := s.GetByID(ctx, client, id)
-		if err != nil {
-			log.FromContext(ctx).Error(err, "get vSwitch", "id", id)
-			errs = append(errs, err)
-			continue
-		}
-
-		if vsw.Zone != zone {
-			if selectOptions.IgnoreZone {
-				fallBackSwitches = append(fallBackSwitches, vsw)
-			}
-			continue
-		}
-		if vsw.AvailableIPCount == 0 {
-			errs = append(errs, fmt.Errorf("%s %w", vsw.ID, ErrIPNotEnough))
-			continue
-		}
-		return vsw, nil
-	}
-
-	for _, vsw := range fallBackSwitches {
-		if vsw.AvailableIPCount == 0 {
-			errs = append(errs, fmt.Errorf("%s %w", vsw.ID, ErrIPNotEnough))
-			continue
-		}
-		return vsw, nil
-	}
-	errs = append(errs, fmt.Errorf("%w for zone %s, vswList %v", ErrNoAvailableVSwitch, zone, ids))
-
-	return nil, utilerrors.NewAggregate(errs)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
+
+// lookup all vsw in cache and get one matched
+// try sort the vsw
+
+// keep the below logic untouched
+
+// lookup all vsw in cache and get one matched
 
 // GetByID will get vSwitch info from local store or openAPI
 func (s *SwitchPool) GetByID(ctx context.Context, client client.VPC, id string) (*Switch, error) {
-	v, ok := s.cache.Get(id)
-	if !ok {
-		v, err, _ := s.g.Do(id, func() (interface{}, error) {
-			resp, err := client.DescribeVSwitchByID(ctx, id)
-			if err != nil {
-				return nil, fmt.Errorf("error get vSwitch %s, %w", id, err)
-			}
-			sw := &Switch{
-				ID:               resp.VSwitchId,
-				Zone:             resp.ZoneId,
-				AvailableIPCount: resp.AvailableIpAddressCount,
-				IPv4CIDR:         resp.CidrBlock,
-				IPv6CIDR:         resp.Ipv6CidrBlock,
-			}
-			return sw, nil
-		})
-		if err != nil {
-			return nil, err
-		}
-		vsw := v.(*Switch)
-		s.cache.Add(vsw.ID, vsw, s.ttl)
-
-		return vsw, nil
-	}
-	sw := v.(*Switch)
-	return sw, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (s *SwitchPool) Block(id string) {
-	v, ok := s.cache.Get(id)
-	if !ok {
-		return
-	}
-	vsw := *(v.(*Switch))
-	vsw.AvailableIPCount = 0
-	s.cache.Add(id, &vsw, s.ttl)
-}
+func (s *SwitchPool) Block(id string) { _ = "STUB: not implemented"; return }
 
 // Add Switch to cache. Test purpose.
-func (s *SwitchPool) Add(sw *Switch) {
-	s.cache.Add(sw.ID, sw, s.ttl)
-}
+func (s *SwitchPool) Add(sw *Switch) { _ = "STUB: not implemented"; return }
 
 // Del Switch from cache. Test purpose.
-func (s *SwitchPool) Del(key string) {
-	s.cache.Remove(key)
-}
+func (s *SwitchPool) Del(key string) { _ = "STUB: not implemented"; return }
 
 type SelectionPolicy string
 
@@ -212,18 +110,11 @@ type SelectOptions struct {
 
 // ApplyOptions applies the given select options on these options
 func (o *SelectOptions) ApplyOptions(opts []SelectOption) *SelectOptions {
-	for _, opt := range opts {
-		opt.Apply(o)
-	}
-	return o
+	_ = "STUB: not implemented"
+	return nil
 }
 
 var _ SelectOption = &SelectOptions{}
 
 // Apply implements SelectOption.
-func (o *SelectOptions) Apply(so *SelectOptions) {
-	so.IgnoreZone = o.IgnoreZone
-	if o.VSwitchSelectPolicy != "" {
-		so.VSwitchSelectPolicy = o.VSwitchSelectPolicy
-	}
-}
+func (o *SelectOptions) Apply(so *SelectOptions) { _ = "STUB: not implemented"; return }

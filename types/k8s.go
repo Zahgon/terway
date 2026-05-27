@@ -17,10 +17,6 @@ limitations under the License.
 package types
 
 import (
-	"fmt"
-	"strconv"
-	"strings"
-
 	corev1 "k8s.io/api/core/v1"
 )
 
@@ -130,22 +126,10 @@ const (
 )
 
 // PodUseENI whether pod is use podENI cr res
-func PodUseENI(pod *corev1.Pod) bool {
-	key, ok := pod.GetAnnotations()[PodENI]
-	if !ok {
-		return false
-	}
-	v, err := strconv.ParseBool(key)
-	if err != nil {
-		return false
-	}
-	return v
-}
+func PodUseENI(pod *corev1.Pod) bool { _ = "STUB: not implemented"; return false }
 
 // IgnoredByTerway for both pods and nodes
-func IgnoredByTerway(labels map[string]string) bool {
-	return labels[IgnoreByTerway] == "true"
-}
+func IgnoredByTerway(labels map[string]string) bool { _ = "STUB: not implemented"; return false }
 
 // NetworkPrio network priority for pod
 type NetworkPrio string
@@ -179,9 +163,7 @@ type IPInsufficientError struct {
 	Reason string
 }
 
-func (e *IPInsufficientError) Error() string {
-	return fmt.Sprintf("ip insufficient error: %v with reason: %s", e.Err, e.Reason)
-}
+func (e *IPInsufficientError) Error() string { _ = "STUB: not implemented"; return "" }
 
 type ExclusiveENI string
 
@@ -191,10 +173,6 @@ const (
 )
 
 func NodeExclusiveENIMode(labels map[string]string) ExclusiveENI {
-	switch strings.ToLower(labels[ExclusiveENIModeLabel]) {
-	case strings.ToLower(string(ExclusiveENIOnly)):
-		return ExclusiveENIOnly
-	default:
-		return ExclusiveDefault
-	}
+	_ = "STUB: not implemented"
+	return *new(ExclusiveENI)
 }

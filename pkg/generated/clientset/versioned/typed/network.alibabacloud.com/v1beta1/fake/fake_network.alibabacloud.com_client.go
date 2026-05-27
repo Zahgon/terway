@@ -28,28 +28,33 @@ type FakeNetworkV1beta1 struct {
 }
 
 func (c *FakeNetworkV1beta1) NetworkInterfaces() v1beta1.NetworkInterfaceInterface {
-	return &FakeNetworkInterfaces{c}
+	_ = "STUB: not implemented"
+	return *new(v1beta1.NetworkInterfaceInterface)
 }
 
 func (c *FakeNetworkV1beta1) Nodes() v1beta1.NodeInterface {
-	return &FakeNodes{c}
+	_ = "STUB: not implemented"
+	return *new(v1beta1.NodeInterface)
 }
 
 func (c *FakeNetworkV1beta1) NodeRuntimes() v1beta1.NodeRuntimeInterface {
-	return &FakeNodeRuntimes{c}
+	_ = "STUB: not implemented"
+	return *new(v1beta1.NodeRuntimeInterface)
 }
 
 func (c *FakeNetworkV1beta1) PodENIs(namespace string) v1beta1.PodENIInterface {
-	return &FakePodENIs{c, namespace}
+	_ = "STUB: not implemented"
+	return *new(v1beta1.PodENIInterface)
 }
 
 func (c *FakeNetworkV1beta1) PodNetworkings() v1beta1.PodNetworkingInterface {
-	return &FakePodNetworkings{c}
+	_ = "STUB: not implemented"
+	return *new(v1beta1.PodNetworkingInterface)
 }
 
 // RESTClient returns a RESTClient that is used to communicate
 // with API server by this client implementation.
 func (c *FakeNetworkV1beta1) RESTClient() rest.Interface {
-	var ret *rest.RESTClient
-	return ret
+	_ = "STUB: not implemented"
+	return *new(rest.Interface)
 }

@@ -8,7 +8,8 @@ import (
 
 // WithCtx extract fields from v1beta1.Allocation and set to context.Context
 func WithCtx(ctx context.Context, alloc *v1beta1.Allocation) context.Context {
-	return ctx
+	_ = "STUB: not implemented"
+	return *new(context.Context)
 }
 
 var PodENIPreStartDone = make(chan struct{})

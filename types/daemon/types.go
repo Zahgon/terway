@@ -1,8 +1,6 @@
 package daemon
 
 import (
-	"fmt"
-
 	"github.com/AliyunContainerService/terway/types"
 )
 
@@ -50,26 +48,15 @@ type ENI struct {
 
 // GetResourceID return mac address of eni
 func (e *ENI) GetResourceID() string {
-	return e.MAC
+	_ = "STUB: not implemented"
+
+	// GetType return type name
+	return ""
 }
 
-// GetType return type name
-func (e *ENI) GetType() string {
-	return ResourceTypeENI
-}
+func (e *ENI) GetType() string { _ = "STUB: not implemented"; return "" }
 
-func (e *ENI) ToResItems() []ResourceItem {
-	return []ResourceItem{
-		{
-			Type:   e.GetType(),
-			ID:     e.GetResourceID(),
-			ENIID:  e.ID,
-			ENIMAC: e.MAC,
-			IPv4:   e.PrimaryIP.GetIPv4(),
-			IPv6:   e.PrimaryIP.GetIPv6(),
-		},
-	}
-}
+func (e *ENI) ToResItems() []ResourceItem { _ = "STUB: not implemented"; return nil }
 
 // ENIIP aliyun secondary IP resource
 type ENIIP struct {
@@ -78,27 +65,12 @@ type ENIIP struct {
 }
 
 // GetResourceID return mac address of eni and secondary ip address
-func (e *ENIIP) GetResourceID() string {
-	return fmt.Sprintf("%s.%s", e.ENI.GetResourceID(), e.IPSet.String())
-}
+func (e *ENIIP) GetResourceID() string { _ = "STUB: not implemented"; return "" }
 
 // GetType return type name
-func (e *ENIIP) GetType() string {
-	return ResourceTypeENIIP
-}
+func (e *ENIIP) GetType() string { _ = "STUB: not implemented"; return "" }
 
-func (e *ENIIP) ToResItems() []ResourceItem {
-	return []ResourceItem{
-		{
-			Type:   e.GetType(),
-			ID:     e.GetResourceID(),
-			ENIID:  e.ENI.ID,
-			ENIMAC: e.ENI.MAC,
-			IPv4:   e.IPSet.GetIPv4(),
-			IPv6:   e.IPSet.GetIPv6(),
-		},
-	}
-}
+func (e *ENIIP) ToResItems() []ResourceItem { _ = "STUB: not implemented"; return nil }
 
 // NetworkResource interface of network resources
 type NetworkResource interface {

@@ -18,10 +18,6 @@ package nic
 
 import (
 	"context"
-	"fmt"
-
-	terwaySysctl "github.com/AliyunContainerService/terway/pkg/sysctl"
-	"github.com/AliyunContainerService/terway/plugin/driver/utils"
 
 	"github.com/vishvananda/netlink"
 )
@@ -42,72 +38,6 @@ type Conf struct {
 }
 
 func Setup(ctx context.Context, link netlink.Link, conf *Conf) error {
-	var err error
-	if conf.IfName != "" {
-		changed, err := utils.EnsureLinkName(ctx, link, conf.IfName)
-		if err != nil {
-			return err
-		}
-		if changed {
-			link, err = netlink.LinkByIndex(link.Attrs().Index)
-			if err != nil {
-				return err
-			}
-		}
-	}
-
-	if conf.MTU > 0 {
-		_, err = utils.EnsureLinkMTU(ctx, link, conf.MTU)
-		if err != nil {
-			return err
-		}
-	}
-
-	for _, v := range conf.SysCtl {
-		if len(v) != 2 {
-			return fmt.Errorf("sysctl config err")
-		}
-		err = terwaySysctl.EnsureConf(v[0], v[1])
-		if err != nil {
-			return err
-		}
-	}
-
-	for _, addr := range conf.Addrs {
-		_, err = utils.EnsureAddr(ctx, link, addr)
-		if err != nil {
-			return err
-		}
-	}
-
-	_, err = utils.EnsureLinkUp(ctx, link)
-	if err != nil {
-		return err
-	}
-
-	for _, neigh := range conf.Neighs {
-		_, err = utils.EnsureNeigh(ctx, neigh)
-		if err != nil {
-			return err
-		}
-	}
-
-	for _, route := range conf.Routes {
-		_, err = utils.EnsureRoute(ctx, route)
-		if err != nil {
-			return err
-		}
-	}
-
-	for _, rule := range conf.Rules {
-		_, err = utils.EnsureIPRule(ctx, rule)
-		if err != nil {
-			return err
-		}
-	}
-
-	if conf.StripVlan {
-		return utils.EnsureVlanUntagger(ctx, link)
-	}
+	_ = "STUB: not implemented"
 	return nil
 }

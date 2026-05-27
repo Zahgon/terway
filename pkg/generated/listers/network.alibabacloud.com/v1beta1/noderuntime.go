@@ -19,7 +19,6 @@ package v1beta1
 
 import (
 	v1beta1 "github.com/AliyunContainerService/terway/pkg/apis/network.alibabacloud.com/v1beta1"
-	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/client-go/tools/cache"
 )
@@ -43,25 +42,18 @@ type nodeRuntimeLister struct {
 
 // NewNodeRuntimeLister returns a new NodeRuntimeLister.
 func NewNodeRuntimeLister(indexer cache.Indexer) NodeRuntimeLister {
-	return &nodeRuntimeLister{indexer: indexer}
+	_ = "STUB: not implemented"
+	return *new(NodeRuntimeLister)
 }
 
 // List lists all NodeRuntimes in the indexer.
 func (s *nodeRuntimeLister) List(selector labels.Selector) (ret []*v1beta1.NodeRuntime, err error) {
-	err = cache.ListAll(s.indexer, selector, func(m interface{}) {
-		ret = append(ret, m.(*v1beta1.NodeRuntime))
-	})
-	return ret, err
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Get retrieves the NodeRuntime from the index for a given name.
 func (s *nodeRuntimeLister) Get(name string) (*v1beta1.NodeRuntime, error) {
-	obj, exists, err := s.indexer.GetByKey(name)
-	if err != nil {
-		return nil, err
-	}
-	if !exists {
-		return nil, errors.NewNotFound(v1beta1.Resource("noderuntime"), name)
-	}
-	return obj.(*v1beta1.NodeRuntime), nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }

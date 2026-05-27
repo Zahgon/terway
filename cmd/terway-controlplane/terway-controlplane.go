@@ -19,9 +19,7 @@ package main
 import (
 	"context"
 	"flag"
-	"fmt"
 	"math/rand"
-	"net"
 	"os"
 	"strings"
 	"time"
@@ -29,17 +27,10 @@ import (
 	"github.com/AliyunContainerService/ack-ram-tool/pkg/credentials/provider"
 	"github.com/fsnotify/fsnotify"
 	"github.com/samber/lo"
-	"go.opentelemetry.io/otel"
-	"go.opentelemetry.io/otel/exporters/otlp/otlptrace"
-	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
-	"go.opentelemetry.io/otel/sdk/resource"
 	"go.opentelemetry.io/otel/sdk/trace"
-	semconv "go.opentelemetry.io/otel/semconv/v1.12.0"
 	oteltrace "go.opentelemetry.io/otel/trace"
 	"go.opentelemetry.io/otel/trace/noop"
-	corev1 "k8s.io/api/core/v1"
 	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
-	k8sErr "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/runtime"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
 	"k8s.io/apimachinery/pkg/util/wait"
@@ -48,12 +39,9 @@ import (
 	cliflag "k8s.io/component-base/cli/flag"
 	"k8s.io/klog/v2/textlogger"
 	ctrl "sigs.k8s.io/controller-runtime"
-	"sigs.k8s.io/controller-runtime/pkg/cache"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/healthz"
 	"sigs.k8s.io/controller-runtime/pkg/metrics"
-	metricsserver "sigs.k8s.io/controller-runtime/pkg/metrics/server"
-	wh "sigs.k8s.io/controller-runtime/pkg/webhook"
 
 	aliyun "github.com/AliyunContainerService/terway/pkg/aliyun/client"
 	"github.com/AliyunContainerService/terway/pkg/aliyun/credential"
@@ -63,8 +51,6 @@ import (
 	"github.com/AliyunContainerService/terway/pkg/cert"
 	register "github.com/AliyunContainerService/terway/pkg/controller"
 	_ "github.com/AliyunContainerService/terway/pkg/controller/all"
-	multiipnode "github.com/AliyunContainerService/terway/pkg/controller/multi-ip/node"
-	multiippod "github.com/AliyunContainerService/terway/pkg/controller/multi-ip/pod"
 	"github.com/AliyunContainerService/terway/pkg/controller/preheating"
 	"github.com/AliyunContainerService/terway/pkg/controller/status"
 	"github.com/AliyunContainerService/terway/pkg/controller/webhook"
@@ -72,9 +58,7 @@ import (
 	"github.com/AliyunContainerService/terway/pkg/utils"
 	"github.com/AliyunContainerService/terway/pkg/version"
 	"github.com/AliyunContainerService/terway/pkg/vswitch"
-	"github.com/AliyunContainerService/terway/types"
 	"github.com/AliyunContainerService/terway/types/controlplane"
-	"github.com/AliyunContainerService/terway/types/daemon"
 )
 
 var (
@@ -277,134 +261,20 @@ func main() {
 }
 
 func newOption(cfg *controlplane.Config) ctrl.Options {
-	ws := wh.NewServer(wh.Options{
-		Port:    cfg.WebhookPort,
-		CertDir: cfg.CertDir,
-	})
-	options := ctrl.Options{
-		Scheme:                     scheme,
-		HealthProbeBindAddress:     cfg.HealthzBindAddress,
-		WebhookServer:              ws,
-		LeaderElection:             cfg.LeaderElection,
-		LeaderElectionID:           cfg.ControllerName,
-		LeaderElectionNamespace:    cfg.ControllerNamespace,
-		LeaderElectionResourceLock: "leases",
-		Metrics: metricsserver.Options{
-			SecureServing:  false,
-			BindAddress:    cfg.MetricsBindAddress,
-			ExtraHandlers:  nil,
-			FilterProvider: nil,
-			CertDir:        "",
-			CertName:       "",
-			KeyName:        "",
-			TLSOpts:        nil,
-			ListenConfig:   net.ListenConfig{},
-		},
-		Cache: cache.Options{
-			ByObject: map[client.Object]cache.ByObject{
-				&corev1.Node{}: {
-					Transform: utils.SlimNode,
-				},
-				&corev1.Pod{}: {
-					Transform: utils.SlimPod,
-				},
-			},
-		},
-	}
-
-	if cfg.LeaseDuration != "" {
-		d, err := time.ParseDuration(cfg.LeaseDuration)
-		if err == nil {
-			options.LeaseDuration = &d
-		}
-	}
-
-	if cfg.RenewDeadline != "" {
-		d, err := time.ParseDuration(cfg.RenewDeadline)
-		if err == nil {
-			options.RenewDeadline = &d
-		}
-	}
-
-	if cfg.RetryPeriod != "" {
-		d, err := time.ParseDuration(cfg.RetryPeriod)
-		if err == nil {
-			options.RetryPeriod = &d
-		}
-	}
-	return options
+	_ = "STUB: not implemented"
+	return *new(ctrl.Options)
 }
 
 // initOpenTelemetry bootstraps the OpenTelemetry pipeline.
 // If it does not return an error, make sure to call shutdown for proper cleanup.
 func initOpenTelemetry(ctx context.Context, serviceName, serviceVersion string, cfg *controlplane.Config) (*trace.TracerProvider, error) {
-	res, err := resource.Merge(resource.Default(),
-		resource.NewWithAttributes(semconv.SchemaURL,
-			semconv.ServiceNameKey.String(serviceName),
-			semconv.ServiceVersionKey.String(serviceVersion),
-			semconv.K8SNodeNameKey.String(os.Getenv("K8S_NODE_NAME")),
-		))
-	if err != nil {
-		return nil, err
-	}
-
-	// Set up trace provider.
-	headers := map[string]string{"Authentication": string(cfg.OtelToken)}
-	traceClient := otlptracegrpc.NewClient(
-		otlptracegrpc.WithInsecure(),
-		otlptracegrpc.WithEndpoint(cfg.OtelEndpoint),
-		otlptracegrpc.WithHeaders(headers))
-
-	traceExporter, err := otlptrace.New(ctx, traceClient)
-
-	if err != nil {
-		return nil, err
-	}
-
-	traceProvider := trace.NewTracerProvider(
-		trace.WithBatcher(traceExporter,
-			trace.WithBatchTimeout(5*time.Second)),
-		trace.WithResource(res),
-	)
-
-	otel.SetTracerProvider(traceProvider)
-
-	return traceProvider, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
+// Set up trace provider.
+
 func detectMultiIP(ctx context.Context, directClient client.Client, cfg *controlplane.Config) error {
-	if !lo.Contains(cfg.Controllers, multiipnode.ControllerName) || cfg.CentralizedIPAM {
-		return nil
-	}
-
-	var daemonConfig *daemon.Config
-	var innerErr error
-	err := wait.PollUntilContextTimeout(ctx, 1*time.Second, 10*time.Second, true, func(ctx context.Context) (done bool, err error) {
-		daemonConfig, innerErr = daemon.ConfigFromConfigMap(ctx, directClient, "")
-		if innerErr != nil {
-			if k8sErr.IsNotFound(innerErr) {
-				return false, nil
-			}
-			log.Error(innerErr, "failed to get ConfigMap eni-config")
-			return false, nil
-		}
-		return true, nil
-	})
-	if err != nil {
-		return fmt.Errorf("error waiting for daemon to be configured: %w, innerErr %s", err, innerErr)
-	}
-	switch daemonConfig.IPAMType {
-	case types.IPAMTypeCRD:
-		return nil
-	}
-
-	cfg.Controllers = lo.Reject(cfg.Controllers, func(item string, index int) bool {
-		switch item {
-		case multiipnode.ControllerName, multiippod.ControllerName:
-			return true
-		}
-		return false
-	})
-	log.Info("daemon is not at crd mode, disable v2 ipam")
+	_ = "STUB: not implemented"
 	return nil
 }

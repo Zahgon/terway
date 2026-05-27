@@ -43,30 +43,30 @@ type version struct {
 
 // New returns a new Interface.
 func New(f internalinterfaces.SharedInformerFactory, namespace string, tweakListOptions internalinterfaces.TweakListOptionsFunc) Interface {
-	return &version{factory: f, namespace: namespace, tweakListOptions: tweakListOptions}
+	_ = "STUB: not implemented"
+	return *new(Interface)
 }
 
 // NetworkInterfaces returns a NetworkInterfaceInformer.
 func (v *version) NetworkInterfaces() NetworkInterfaceInformer {
-	return &networkInterfaceInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
+	_ = "STUB: not implemented"
+	return *new(NetworkInterfaceInformer)
 }
 
 // Nodes returns a NodeInformer.
-func (v *version) Nodes() NodeInformer {
-	return &nodeInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
-}
+func (v *version) Nodes() NodeInformer { _ = "STUB: not implemented"; return *new(NodeInformer) }
 
 // NodeRuntimes returns a NodeRuntimeInformer.
 func (v *version) NodeRuntimes() NodeRuntimeInformer {
-	return &nodeRuntimeInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
+	_ = "STUB: not implemented"
+	return *new(NodeRuntimeInformer)
 }
 
 // PodENIs returns a PodENIInformer.
-func (v *version) PodENIs() PodENIInformer {
-	return &podENIInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
-}
+func (v *version) PodENIs() PodENIInformer { _ = "STUB: not implemented"; return *new(PodENIInformer) }
 
 // PodNetworkings returns a PodNetworkingInformer.
 func (v *version) PodNetworkings() PodNetworkingInformer {
-	return &podNetworkingInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
+	_ = "STUB: not implemented"
+	return *new(PodNetworkingInformer)
 }

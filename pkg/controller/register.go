@@ -60,12 +60,4 @@ var Controllers = map[string]struct {
 }{}
 
 // Add add controller by name
-func Add(name string, creator Creator, enable bool) {
-	Controllers[name] = struct {
-		Creator Creator
-		Enable  bool
-	}{
-		Creator: creator,
-		Enable:  enable,
-	}
-}
+func Add(name string, creator Creator, enable bool) { _ = "STUB: not implemented"; return }

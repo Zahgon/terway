@@ -17,22 +17,12 @@ limitations under the License.
 package podeni
 
 import (
-	"reflect"
-
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"sigs.k8s.io/controller-runtime/pkg/event"
 
 	"github.com/AliyunContainerService/terway/pkg/apis/network.alibabacloud.com/v1beta1"
 )
 
 func updateFunc(e event.TypedUpdateEvent[*v1beta1.PodENI]) bool {
-	oldPodENICopy := e.ObjectOld.DeepCopy()
-	newPodENICopy := e.ObjectNew.DeepCopy()
-
-	oldPodENICopy.ResourceVersion = ""
-	newPodENICopy.ResourceVersion = ""
-	oldPodENICopy.Status.PodLastSeen = metav1.Unix(0, 0)
-	newPodENICopy.Status.PodLastSeen = metav1.Unix(0, 0)
-
-	return !reflect.DeepEqual(&oldPodENICopy, &newPodENICopy)
+	_ = "STUB: not implemented"
+	return false
 }

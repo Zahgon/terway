@@ -20,21 +20,10 @@ func init() {
 	utilruntime.Must(v1beta1.AddToScheme(Scheme))
 }
 
-func NewRESTMapper() meta.RESTMapper {
-	mapper := meta.NewDefaultRESTMapper(Scheme.PreferredVersionAllGroups())
-	// enumerate all supported versions, get the kinds, and register with the mapper how to address
-	// our resources.
-	for _, gv := range Scheme.PreferredVersionAllGroups() {
-		for kind := range Scheme.KnownTypes(gv) {
-			scope := meta.RESTScopeNamespace
-			if rootScopedKinds[gv.WithKind(kind).GroupKind()] {
-				scope = meta.RESTScopeRoot
-			}
-			mapper.Add(gv.WithKind(kind), scope)
-		}
-	}
-	return mapper
-}
+func NewRESTMapper() meta.RESTMapper { _ = "STUB: not implemented"; return *new(meta.RESTMapper) }
+
+// enumerate all supported versions, get the kinds, and register with the mapper how to address
+// our resources.
 
 // hardcoded is good enough for the test we're running
 var rootScopedKinds = map[schema.GroupKind]bool{

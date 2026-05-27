@@ -18,16 +18,11 @@ limitations under the License.
 package v1beta1
 
 import (
-	"context"
 	time "time"
 
-	networkalibabacloudcomv1beta1 "github.com/AliyunContainerService/terway/pkg/apis/network.alibabacloud.com/v1beta1"
 	versioned "github.com/AliyunContainerService/terway/pkg/generated/clientset/versioned"
 	internalinterfaces "github.com/AliyunContainerService/terway/pkg/generated/informers/externalversions/internalinterfaces"
 	v1beta1 "github.com/AliyunContainerService/terway/pkg/generated/listers/network.alibabacloud.com/v1beta1"
-	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	runtime "k8s.io/apimachinery/pkg/runtime"
-	watch "k8s.io/apimachinery/pkg/watch"
 	cache "k8s.io/client-go/tools/cache"
 )
 
@@ -47,42 +42,29 @@ type nodeInformer struct {
 // Always prefer using an informer factory to get a shared informer instead of getting an independent
 // one. This reduces memory footprint and number of connections to the server.
 func NewNodeInformer(client versioned.Interface, resyncPeriod time.Duration, indexers cache.Indexers) cache.SharedIndexInformer {
-	return NewFilteredNodeInformer(client, resyncPeriod, indexers, nil)
+	_ = "STUB: not implemented"
+	return *new(cache.SharedIndexInformer)
 }
 
 // NewFilteredNodeInformer constructs a new informer for Node type.
 // Always prefer using an informer factory to get a shared informer instead of getting an independent
 // one. This reduces memory footprint and number of connections to the server.
 func NewFilteredNodeInformer(client versioned.Interface, resyncPeriod time.Duration, indexers cache.Indexers, tweakListOptions internalinterfaces.TweakListOptionsFunc) cache.SharedIndexInformer {
-	return cache.NewSharedIndexInformer(
-		&cache.ListWatch{
-			ListFunc: func(options v1.ListOptions) (runtime.Object, error) {
-				if tweakListOptions != nil {
-					tweakListOptions(&options)
-				}
-				return client.NetworkV1beta1().Nodes().List(context.TODO(), options)
-			},
-			WatchFunc: func(options v1.ListOptions) (watch.Interface, error) {
-				if tweakListOptions != nil {
-					tweakListOptions(&options)
-				}
-				return client.NetworkV1beta1().Nodes().Watch(context.TODO(), options)
-			},
-		},
-		&networkalibabacloudcomv1beta1.Node{},
-		resyncPeriod,
-		indexers,
-	)
+	_ = "STUB: not implemented"
+	return *new(cache.SharedIndexInformer)
 }
 
 func (f *nodeInformer) defaultInformer(client versioned.Interface, resyncPeriod time.Duration) cache.SharedIndexInformer {
-	return NewFilteredNodeInformer(client, resyncPeriod, cache.Indexers{cache.NamespaceIndex: cache.MetaNamespaceIndexFunc}, f.tweakListOptions)
+	_ = "STUB: not implemented"
+	return *new(cache.SharedIndexInformer)
 }
 
 func (f *nodeInformer) Informer() cache.SharedIndexInformer {
-	return f.factory.InformerFor(&networkalibabacloudcomv1beta1.Node{}, f.defaultInformer)
+	_ = "STUB: not implemented"
+	return *new(cache.SharedIndexInformer)
 }
 
 func (f *nodeInformer) Lister() v1beta1.NodeLister {
-	return v1beta1.NewNodeLister(f.Informer().GetIndexer())
+	_ = "STUB: not implemented"
+	return *new(v1beta1.NodeLister)
 }

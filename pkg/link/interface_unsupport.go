@@ -4,6 +4,4 @@
 package link
 
 // GetDeviceNumber get interface device number by mac address
-func GetDeviceNumber(mac string) (int32, error) {
-	return 0, ErrUnsupported
-}
+func GetDeviceNumber(mac string) (int32, error) { _ = "STUB: not implemented"; return 0, nil }

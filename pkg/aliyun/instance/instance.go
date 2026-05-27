@@ -13,10 +13,6 @@ type Interface interface {
 
 var defaultIns Interface = &ECS{}
 
-func Init(in Interface) {
-	defaultIns = in
-}
+func Init(in Interface) { _ = "STUB: not implemented"; return }
 
-func GetInstanceMeta() Interface {
-	return defaultIns
-}
+func GetInstanceMeta() Interface { _ = "STUB: not implemented"; return *new(Interface) }

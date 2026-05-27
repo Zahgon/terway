@@ -10,62 +10,18 @@ type NodeCapabilitiesStore struct {
 }
 
 // Get provides a mock function with given fields: capName
-func (_m *NodeCapabilitiesStore) Get(capName string) string {
-	ret := _m.Called(capName)
-
-	if len(ret) == 0 {
-		panic("no return value specified for Get")
-	}
-
-	var r0 string
-	if rf, ok := ret.Get(0).(func(string) string); ok {
-		r0 = rf(capName)
-	} else {
-		r0 = ret.Get(0).(string)
-	}
-
-	return r0
-}
+func (_m *NodeCapabilitiesStore) Get(capName string) string { _ = "STUB: not implemented"; return "" }
 
 // Load provides a mock function with no fields
-func (_m *NodeCapabilitiesStore) Load() error {
-	ret := _m.Called()
-
-	if len(ret) == 0 {
-		panic("no return value specified for Load")
-	}
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func() error); ok {
-		r0 = rf()
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
-}
+func (_m *NodeCapabilitiesStore) Load() error { _ = "STUB: not implemented"; return nil }
 
 // Save provides a mock function with no fields
-func (_m *NodeCapabilitiesStore) Save() error {
-	ret := _m.Called()
-
-	if len(ret) == 0 {
-		panic("no return value specified for Save")
-	}
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func() error); ok {
-		r0 = rf()
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
-}
+func (_m *NodeCapabilitiesStore) Save() error { _ = "STUB: not implemented"; return nil }
 
 // Set provides a mock function with given fields: capName, value
 func (_m *NodeCapabilitiesStore) Set(capName string, value string) {
-	_m.Called(capName, value)
+	_ = "STUB: not implemented"
+	return
 }
 
 // NewNodeCapabilitiesStore creates a new instance of NodeCapabilitiesStore. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
@@ -74,10 +30,6 @@ func NewNodeCapabilitiesStore(t interface {
 	mock.TestingT
 	Cleanup(func())
 }) *NodeCapabilitiesStore {
-	mock := &NodeCapabilitiesStore{}
-	mock.Mock.Test(t)
-
-	t.Cleanup(func() { mock.AssertExpectations(t) })
-
-	return mock
+	_ = "STUB: not implemented"
+	return nil
 }

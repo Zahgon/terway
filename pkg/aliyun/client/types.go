@@ -2,12 +2,9 @@ package client
 
 import (
 	"errors"
-	"reflect"
-	"strings"
 
 	"github.com/aliyun/alibaba-cloud-sdk-go/services/ecs"
 	"github.com/go-logr/logr"
-	"github.com/samber/lo"
 )
 
 var ErrInvalidArgs = errors.New("invalid args")
@@ -107,80 +104,13 @@ type IPSet struct {
 }
 
 func FromCreateResp(in *ecs.CreateNetworkInterfaceResponse) *NetworkInterface {
-	r := &NetworkInterface{
-		Status:             in.Status,
-		MacAddress:         in.MacAddress,
-		NetworkInterfaceID: in.NetworkInterfaceId,
-		VSwitchID:          in.VSwitchId,
-		PrivateIPAddress:   in.PrivateIpAddress,
-		PrivateIPSets: lo.Map(in.PrivateIpSets.PrivateIpSet, func(item ecs.PrivateIpSet, _ int) IPSet {
-			return IPSet{
-				IPAddress: item.PrivateIpAddress,
-				Primary:   item.Primary,
-			}
-		}),
-		ZoneID:           in.ZoneId,
-		SecurityGroupIDs: in.SecurityGroupIds.SecurityGroupId,
-		IPv6Set: lo.Map(in.Ipv6Sets.Ipv6Set, func(item ecs.Ipv6Set, _ int) IPSet {
-			return IPSet{
-				IPAddress: item.Ipv6Address,
-			}
-		}),
-		Tags:            in.Tags.Tag,
-		Type:            in.Type,
-		ResourceGroupID: in.ResourceGroupId,
-		IPv4PrefixSets: lo.Map(in.Ipv4PrefixSets.Ipv4PrefixSet, func(item ecs.Ipv4PrefixSet, _ int) Prefix {
-			return Prefix(item.Ipv4Prefix)
-		}),
-		IPv6PrefixSets: lo.Map(in.Ipv6PrefixSets.Ipv6PrefixSet, func(item ecs.Ipv6PrefixSet, _ int) Prefix {
-			return Prefix(item.Ipv6Prefix)
-		}),
-	}
-	if r.Type == "" {
-		r.Type = ENITypeSecondary
-	}
-	return r
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func FromDescribeResp(in *ecs.NetworkInterfaceSet) *NetworkInterface {
-	ins := in.InstanceId
-	if in.InstanceId == "" {
-		ins = in.Attachment.InstanceId
-	}
-
-	return &NetworkInterface{
-		Status:             in.Status,
-		MacAddress:         in.MacAddress,
-		NetworkInterfaceID: in.NetworkInterfaceId,
-		InstanceID:         ins,
-		VSwitchID:          in.VSwitchId,
-		PrivateIPAddress:   in.PrivateIpAddress,
-		ZoneID:             in.ZoneId,
-		SecurityGroupIDs:   in.SecurityGroupIds.SecurityGroupId,
-		IPv6Set: lo.Map(in.Ipv6Sets.Ipv6Set, func(item ecs.Ipv6Set, _ int) IPSet {
-			return IPSet{
-				IPAddress: item.Ipv6Address,
-			}
-		}),
-		PrivateIPSets: lo.Map(in.PrivateIpSets.PrivateIpSet, func(item ecs.PrivateIpSet, _ int) IPSet {
-			return IPSet{
-				IPAddress: item.PrivateIpAddress,
-				Primary:   item.Primary,
-			}
-		}),
-		Tags:                        in.Tags.Tag,
-		TrunkNetworkInterfaceID:     in.Attachment.TrunkNetworkInterfaceId,
-		NetworkInterfaceTrafficMode: in.NetworkInterfaceTrafficMode,
-		DeviceIndex:                 in.Attachment.DeviceIndex,
-		Type:                        in.Type,
-		CreationTime:                in.CreationTime,
-		IPv4PrefixSets: lo.Map(in.Ipv4PrefixSets.Ipv4PrefixSet, func(item ecs.Ipv4PrefixSet, _ int) Prefix {
-			return Prefix(item.Ipv4Prefix)
-		}),
-		IPv6PrefixSets: lo.Map(in.Ipv6PrefixSets.Ipv6PrefixSet, func(item ecs.Ipv6PrefixSet, _ int) Prefix {
-			return Prefix(item.Ipv6Prefix)
-		}),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // LogFields function enhances the provided logger with key-value pairs extracted from the fields of the given object.
@@ -193,36 +123,8 @@ func FromDescribeResp(in *ecs.NetworkInterfaceSet) *NetworkInterface {
 // Returns an updated logr.Logger instance that includes key-value pairs for non-empty, non-zero fields of the input object.
 // The original logger `l` is modified in place, and the returned logger is a reference to the same instance.
 func LogFields(l logr.Logger, obj any) logr.Logger {
-	r := l
-	t := reflect.TypeOf(obj)
-
-	realObj := obj
-	if t.Kind() == reflect.Ptr {
-		t = t.Elem()
-		objValue := reflect.ValueOf(obj).Elem()
-		realObj = objValue.Interface()
-	}
-
-	if t.Kind() == reflect.Struct {
-		r = r.WithValues(LogFieldAPI, strings.TrimSuffix(t.Name(), "Request"))
-	}
-
-	for i := 0; i < t.NumField(); i++ {
-		field := t.Field(i)
-
-		tagValue := field.Tag.Get("name")
-		if tagValue == "" {
-			continue
-		}
-
-		fieldValue := reflect.ValueOf(realObj).FieldByName(field.Name)
-		if !fieldValue.IsValid() || fieldValue.IsZero() {
-			continue
-		}
-
-		r = r.WithValues(field.Name, fieldValue.Interface())
-	}
-	return r
+	_ = "STUB: not implemented"
+	return *new(logr.Logger)
 }
 
 // ClassifyENILinkCapability checks whether a list of ENIs indicates ECS link support.
@@ -230,32 +132,8 @@ func LogFields(l logr.Logger, obj any) logr.Logger {
 // hasMigrationTags is true when any non-Primary ENI has both leni_primary=true
 // and acs:ecs:support_eni=true tags (migrated instances).
 func ClassifyENILinkCapability(enis []*NetworkInterface) (hasPrimary, hasMigrationTags bool) {
-	for _, eni := range enis {
-		if eni.Type == ENITypePrimary {
-			hasPrimary = true
-			continue
-		}
-
-		var leniPrimary, supportENI bool
-		for _, tag := range eni.Tags {
-			if tag.TagKey == "leni_primary" && tag.TagValue == "true" {
-				leniPrimary = true
-			}
-			if tag.TagKey == "acs:ecs:support_eni" && tag.TagValue == "true" {
-				supportENI = true
-			}
-		}
-		if leniPrimary && supportENI {
-			hasMigrationTags = true
-		}
-	}
-	return
+	_ = "STUB: not implemented"
+	return false, false
 }
 
-func FromPtr[V any, T ~*V](ptr T) V {
-	if ptr == nil {
-		var zero V
-		return zero
-	}
-	return *ptr
-}
+func FromPtr[V any, T ~*V](ptr T) V { _ = "STUB: not implemented"; return *new(V) }

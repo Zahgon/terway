@@ -1,9 +1,5 @@
 package types
 
-import (
-	"fmt"
-)
-
 const (
 	ErrInternalError      ErrCode = "InternalError"
 	ErrInvalidArgsErrCode ErrCode = "InvalidArgs"
@@ -29,10 +25,6 @@ type Error struct {
 	R error
 }
 
-func (e *Error) Error() string {
-	return fmt.Sprintf("code: %s, msg: %s", e.Code, e.Msg)
-}
+func (e *Error) Error() string { _ = "STUB: not implemented"; return "" }
 
-func (e *Error) Unwrap() error {
-	return e.R
-}
+func (e *Error) Unwrap() error { _ = "STUB: not implemented"; return nil }

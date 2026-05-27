@@ -2,7 +2,6 @@ package types
 
 import (
 	"net"
-	"strings"
 
 	"github.com/AliyunContainerService/terway/plugin/terway/cni"
 	terwayTypes "github.com/AliyunContainerService/terway/types"
@@ -64,9 +63,7 @@ type SymmetricRoutingConfig struct {
 	Backend string `json:"backend,omitempty"`
 }
 
-func (n *CNIConf) IPVlan() bool {
-	return strings.ToLower(n.ENIIPVirtualType) == "ipvlan"
-}
+func (n *CNIConf) IPVlan() bool { _ = "STUB: not implemented"; return false }
 
 // VlanStripType how datapath handle vlan
 type VlanStripType string

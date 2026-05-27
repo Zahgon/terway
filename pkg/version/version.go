@@ -3,9 +3,7 @@ package version
 import (
 	"fmt"
 	"os"
-	"path/filepath"
 	"runtime"
-	"strings"
 )
 
 const unknown = "unknown"
@@ -27,31 +25,15 @@ func init() {
 
 // adjustVersion strips "alpha", "beta", etc. from version in form
 // major.minor.patch-[alpha|beta|etc].
-func adjustVersion(v string) string {
-	if len(v) == 0 {
-		return unknown
-	}
-	seg := strings.SplitN(v, "-", 2)
-	return seg[0]
-}
+func adjustVersion(v string) string { _ = "STUB: not implemented"; return "" }
 
 // adjustCommand returns the last component of the
 // OS-specific command path for use in User-Agent.
 func adjustCommand(p string) string {
+	_ = "STUB: not implemented"
 	// Unlikely, but better than returning "".
-	if len(p) == 0 {
-		return unknown
-	}
-	return filepath.Base(p)
+	return ""
 }
 
 // adjustCommit returns sufficient significant figures of the commit's git hash.
-func adjustCommit(c string) string {
-	if len(c) == 0 {
-		return unknown
-	}
-	if len(c) > 7 {
-		return c[:7]
-	}
-	return c
-}
+func adjustCommit(c string) string { _ = "STUB: not implemented"; return "" }

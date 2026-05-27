@@ -17,43 +17,14 @@
 
 package powershell
 
-import (
-	"encoding/json"
-	"errors"
-	"fmt"
-	"os/exec"
-	"strings"
-)
-
 // commandWrapper ensures that exceptions are written to stdout and the powershell process exit code is -1
 const commandWrapper = `$ErrorActionPreference="Stop";try { %s } catch { Write-Host $_; os.Exit(-1) }`
 
 // RunCommand executes a given powershell command.
-func RunCommand(command string) ([]byte, error) {
-	var s = fmt.Sprintf(commandWrapper, command)
-	var cmd = exec.Command("powershell.exe", "-NoLogo", "-NoProfile", "-NonInteractive", "-Command", s)
-	var stdout, err = cmd.Output()
-	if err != nil {
-		if cmd.ProcessState.ExitCode() != 0 {
-			var message = strings.TrimSpace(string(stdout))
-			return nil, errors.New(message)
-		}
-		return nil, err
-	}
-	return stdout, nil
-}
+func RunCommand(command string) ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
 // RunCommandWithJsonResult executes a given powershell command.
 func RunCommandWithJsonResult(command string, v interface{}) error {
-	var s = fmt.Sprintf(commandWrapper, "ConvertTo-Json (%s)")
-	s = fmt.Sprintf(s, command)
-	var stdout, err = RunCommand(s)
-	if err != nil {
-		return err
-	}
-	err = json.Unmarshal(stdout, v)
-	if err != nil {
-		return err
-	}
+	_ = "STUB: not implemented"
 	return nil
 }

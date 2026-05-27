@@ -3,10 +3,7 @@ package ipvlan
 import (
 	"context"
 
-	"github.com/AliyunContainerService/terway/plugin/driver/utils"
-
 	"github.com/containernetworking/plugins/pkg/ns"
-	"github.com/vishvananda/netlink"
 )
 
 type IPVlan struct {
@@ -17,44 +14,8 @@ type IPVlan struct {
 }
 
 func Setup(ctx context.Context, cfg *IPVlan, netNS ns.NetNS) error {
-	parentLink, err := netlink.LinkByName(cfg.Parent)
-	if err != nil {
-		return err
-	}
-
-	pre, err := netlink.LinkByName(cfg.PreName)
-	if err == nil {
-		// del pre link
-		err = utils.LinkDel(ctx, pre)
-		if err != nil {
-			return err
-		}
-	}
-
-	if _, ok := err.(netlink.LinkNotFoundError); !ok {
-		return err
-	}
-
-	v := &netlink.IPVlan{
-		LinkAttrs: netlink.LinkAttrs{
-			MTU:         cfg.MTU,
-			Name:        cfg.PreName,
-			Namespace:   netlink.NsFd(int(netNS.Fd())),
-			ParentIndex: parentLink.Attrs().Index,
-		},
-		Mode: netlink.IPVLAN_MODE_L2,
-	}
-	err = utils.LinkAdd(ctx, v)
-	if err != nil {
-		return err
-	}
-
-	return netNS.Do(func(netNS ns.NetNS) error {
-		contLink, innerErr := netlink.LinkByName(cfg.PreName)
-		if innerErr != nil {
-			return innerErr
-		}
-		_, innerErr = utils.EnsureLinkName(ctx, contLink, cfg.IfName)
-		return innerErr
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// del pre link

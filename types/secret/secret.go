@@ -2,14 +2,8 @@ package secret
 
 type Secret string
 
-func (s Secret) String() string {
-	return "******"
-}
+func (s Secret) String() string { _ = "STUB: not implemented"; return "" }
 
-func (s Secret) GoString() string {
-	return "******"
-}
+func (s Secret) GoString() string { _ = "STUB: not implemented"; return "" }
 
-func (s Secret) MarshalJSON() ([]byte, error) {
-	return []byte(`"******"`), nil
-}
+func (s Secret) MarshalJSON() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }

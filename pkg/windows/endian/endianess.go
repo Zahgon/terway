@@ -40,10 +40,9 @@ func init() {
 	}
 }
 
-func NativelyLittle() bool {
-	return nativeEndian == binary.LittleEndian
-}
+func NativelyLittle() bool { _ = "STUB: not implemented"; return false }
 
 func GetNativelyByteOrder() binary.ByteOrder {
-	return nativeEndian
+	_ = "STUB: not implemented"
+	return *new(binary.ByteOrder)
 }

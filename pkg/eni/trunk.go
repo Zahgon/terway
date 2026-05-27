@@ -20,52 +20,27 @@ type Trunk struct {
 	local  *Local
 }
 
-func NewTrunk(client client.Client, local *Local) *Trunk {
-	return &Trunk{
-		trunkENI: local.eni,
-		local:    local,
-		remote:   NewRemote(client, local.eni, nil),
-	}
-}
+func NewTrunk(client client.Client, local *Local) *Trunk { _ = "STUB: not implemented"; return nil }
 
 func (r *Trunk) Run(ctx context.Context, podResources []daemon.PodResources, wg *sync.WaitGroup) error {
-	return r.local.Run(ctx, podResources, wg)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (r *Trunk) Priority() int {
-	return 100
-}
+func (r *Trunk) Priority() int { _ = "STUB: not implemented"; return 0 }
 
 func (r *Trunk) Allocate(ctx context.Context, cni *daemon.CNI, request ResourceRequest) (chan *AllocResp, []Trace) {
-	switch request.ResourceType() {
-	case ResourceTypeLocalIP:
-		return r.local.Allocate(ctx, cni, request)
-	case ResourceTypeRemoteIP:
-		return r.remote.Allocate(ctx, cni, request)
-	default:
-		return nil, []Trace{{Condition: ResourceTypeMismatch}}
-	}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (r *Trunk) Release(ctx context.Context, cni *daemon.CNI, request NetworkResource) (bool, error) {
-	switch request.ResourceType() {
-	case ResourceTypeLocalIP:
-		return r.local.Release(ctx, cni, request)
-	case ResourceTypeRemoteIP:
-		return r.remote.Release(ctx, cni, request)
-	default:
-		return false, nil
-	}
+	_ = "STUB: not implemented"
+	return false, nil
 }
 
-func (r *Trunk) Dispose(n int) int {
-	return r.local.Dispose(n)
-}
+func (r *Trunk) Dispose(n int) int { _ = "STUB: not implemented"; return 0 }
 
-func (r *Trunk) Status() Status {
-	return r.local.Status()
-}
+func (r *Trunk) Status() Status { _ = "STUB: not implemented"; return *new(Status) }
 
-func (r *Trunk) Usage() (int, int, error) {
-	return r.local.Usage()
-}
+func (r *Trunk) Usage() (int, int, error) { _ = "STUB: not implemented"; return 0, 0, nil }

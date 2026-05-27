@@ -5,7 +5,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/containernetworking/cni/pkg/skel"
 
@@ -15,47 +14,41 @@ import (
 )
 
 func getCmdArgs(args *skel.CmdArgs) (*cniCmdArgs, error) {
-	panic("not implement")
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 type cniCmdArgs struct {
 }
 
-func (args *cniCmdArgs) GetCNIConf() *types.CNIConf {
-	panic("not implement")
-}
+func (args *cniCmdArgs) GetCNIConf() *types.CNIConf { _ = "STUB: not implemented"; return nil }
 
-func (args *cniCmdArgs) GetK8SConfig() *types.K8SArgs {
-	panic("not implement")
-}
+func (args *cniCmdArgs) GetK8SConfig() *types.K8SArgs { _ = "STUB: not implemented"; return nil }
 
-func (args *cniCmdArgs) GetInputArgs() *skel.CmdArgs {
-	panic("not implement")
-}
+func (args *cniCmdArgs) GetInputArgs() *skel.CmdArgs { _ = "STUB: not implemented"; return nil }
 
-func (args *cniCmdArgs) GetNetNSPath() string {
-	panic("not implement")
-}
+func (args *cniCmdArgs) GetNetNSPath() string { _ = "STUB: not implemented"; return "" }
 
-func (args *cniCmdArgs) Close() error {
-	panic("not implement")
-}
+func (args *cniCmdArgs) Close() error { _ = "STUB: not implemented"; return nil }
 
-func isNSPathNotExist(err error) bool {
-	panic("not implement")
-}
+func isNSPathNotExist(err error) bool { _ = "STUB: not implemented"; return false }
 
 func doCmdAdd(ctx context.Context, client rpc.TerwayBackendClient, cmdArgs *cniCmdArgs) (*terwayTypes.IPNetSet, *terwayTypes.IPSet, error) {
-	panic("not implement")
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 func doCmdDel(ctx context.Context, client rpc.TerwayBackendClient, cmdArgs *cniCmdArgs) error {
-	panic("not implement")
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func doCmdCheck(ctx context.Context, client rpc.TerwayBackendClient, cmdArgs *cniCmdArgs) error {
-	panic("not implement")
+	_ = "STUB: not implemented"
+	return nil
 }
+
 func prepareVF(ctx context.Context, id int, mac string) (int32, error) {
-	return 0, fmt.Errorf("not support")
+	_ = "STUB: not implemented"
+	return 0, nil
 }

@@ -3,22 +3,6 @@
 
 package converters
 
-import (
-	"net"
+func Inet_ntoa(ipnr uint32) string { _ = "STUB: not implemented"; return "" }
 
-	"github.com/AliyunContainerService/terway/pkg/windows/endian"
-)
-
-func Inet_ntoa(ipnr uint32) string {
-	ip := net.IPv4(0, 0, 0, 0)
-	var bo = endian.GetNativelyByteOrder()
-	bo.PutUint32(ip.To4(), ipnr)
-	return ip.String()
-}
-
-func Inet_aton(ip string) uint32 {
-	var bo = endian.GetNativelyByteOrder()
-	return bo.Uint32(
-		net.ParseIP(ip).To4(),
-	)
-}
+func Inet_aton(ip string) uint32 { _ = "STUB: not implemented"; return 0 }

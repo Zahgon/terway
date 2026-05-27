@@ -18,12 +18,8 @@ package vlan
 
 import (
 	"context"
-	"fmt"
-
-	"github.com/AliyunContainerService/terway/plugin/driver/utils"
 
 	"github.com/containernetworking/plugins/pkg/ns"
-	"github.com/vishvananda/netlink"
 )
 
 type Vlan struct {
@@ -34,47 +30,8 @@ type Vlan struct {
 }
 
 func Setup(ctx context.Context, cfg *Vlan, netNS ns.NetNS) error {
-	master, err := netlink.LinkByName(cfg.Master)
-	if err != nil {
-		return fmt.Errorf("cannot found master link by name %s", master)
-	}
-	peerName := fmt.Sprintf("%s.%d", master.Attrs().Name, cfg.Vid)
-	if len(peerName) > 15 {
-		peerName = peerName[len(peerName)-15:]
-	}
-	peer, err := netlink.LinkByName(peerName)
-	if err == nil {
-		// del pre link
-		err = utils.LinkDel(ctx, peer)
-		if err != nil {
-			return err
-		}
-	}
-
-	if _, ok := err.(netlink.LinkNotFoundError); !ok {
-		return err
-	}
-
-	v := &netlink.Vlan{
-		LinkAttrs: netlink.LinkAttrs{
-			MTU:         cfg.MTU,
-			Name:        peerName,
-			ParentIndex: master.Attrs().Index,
-			Namespace:   netlink.NsFd(int(netNS.Fd())),
-		},
-		VlanId: cfg.Vid,
-	}
-	err = utils.LinkAdd(ctx, v)
-	if err != nil {
-		return err
-	}
-
-	return netNS.Do(func(netNS ns.NetNS) error {
-		contLink, innerErr := netlink.LinkByName(peerName)
-		if innerErr != nil {
-			return innerErr
-		}
-		_, innerErr = utils.EnsureLinkName(ctx, contLink, cfg.IfName)
-		return innerErr
-	})
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// del pre link

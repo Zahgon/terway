@@ -8,9 +8,8 @@ package rpc
 
 import (
 	context "context"
+
 	grpc "google.golang.org/grpc"
-	codes "google.golang.org/grpc/codes"
-	status "google.golang.org/grpc/status"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -44,76 +43,41 @@ type terwayTracingClient struct {
 }
 
 func NewTerwayTracingClient(cc grpc.ClientConnInterface) TerwayTracingClient {
-	return &terwayTracingClient{cc}
+	_ = "STUB: not implemented"
+	return *new(TerwayTracingClient)
 }
 
 func (c *terwayTracingClient) GetResourceTypes(ctx context.Context, in *Placeholder, opts ...grpc.CallOption) (*ResourcesTypesReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ResourcesTypesReply)
-	err := c.cc.Invoke(ctx, TerwayTracing_GetResourceTypes_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (c *terwayTracingClient) GetResources(ctx context.Context, in *ResourceTypeRequest, opts ...grpc.CallOption) (*ResourcesNamesReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ResourcesNamesReply)
-	err := c.cc.Invoke(ctx, TerwayTracing_GetResources_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (c *terwayTracingClient) GetResourceConfig(ctx context.Context, in *ResourceTypeNameRequest, opts ...grpc.CallOption) (*ResourceConfigReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ResourceConfigReply)
-	err := c.cc.Invoke(ctx, TerwayTracing_GetResourceConfig_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (c *terwayTracingClient) GetResourceTrace(ctx context.Context, in *ResourceTypeNameRequest, opts ...grpc.CallOption) (*ResourceTraceReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ResourceTraceReply)
-	err := c.cc.Invoke(ctx, TerwayTracing_GetResourceTrace_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (c *terwayTracingClient) ResourceExecute(ctx context.Context, in *ResourceExecuteRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ResourceExecuteReply], error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &TerwayTracing_ServiceDesc.Streams[0], TerwayTracing_ResourceExecute_FullMethodName, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &grpc.GenericClientStream[ResourceExecuteRequest, ResourceExecuteReply]{ClientStream: stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type TerwayTracing_ResourceExecuteClient = grpc.ServerStreamingClient[ResourceExecuteReply]
 
 func (c *terwayTracingClient) GetResourceMapping(ctx context.Context, in *Placeholder, opts ...grpc.CallOption) (*ResourceMappingReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ResourceMappingReply)
-	err := c.cc.Invoke(ctx, TerwayTracing_GetResourceMapping_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // TerwayTracingServer is the server API for TerwayTracing service.
@@ -137,25 +101,40 @@ type TerwayTracingServer interface {
 type UnimplementedTerwayTracingServer struct{}
 
 func (UnimplementedTerwayTracingServer) GetResourceTypes(context.Context, *Placeholder) (*ResourcesTypesReply, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetResourceTypes not implemented")
+	_ = "STUB: not implemented"
+	return nil, nil
 }
+
 func (UnimplementedTerwayTracingServer) GetResources(context.Context, *ResourceTypeRequest) (*ResourcesNamesReply, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetResources not implemented")
+	_ = "STUB: not implemented"
+	return nil, nil
 }
+
 func (UnimplementedTerwayTracingServer) GetResourceConfig(context.Context, *ResourceTypeNameRequest) (*ResourceConfigReply, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetResourceConfig not implemented")
+	_ = "STUB: not implemented"
+	return nil, nil
 }
+
 func (UnimplementedTerwayTracingServer) GetResourceTrace(context.Context, *ResourceTypeNameRequest) (*ResourceTraceReply, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetResourceTrace not implemented")
+	_ = "STUB: not implemented"
+	return nil, nil
 }
+
 func (UnimplementedTerwayTracingServer) ResourceExecute(*ResourceExecuteRequest, grpc.ServerStreamingServer[ResourceExecuteReply]) error {
-	return status.Error(codes.Unimplemented, "method ResourceExecute not implemented")
+	_ = "STUB: not implemented"
+	return nil
 }
+
 func (UnimplementedTerwayTracingServer) GetResourceMapping(context.Context, *Placeholder) (*ResourceMappingReply, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetResourceMapping not implemented")
+	_ = "STUB: not implemented"
+	return nil, nil
 }
-func (UnimplementedTerwayTracingServer) mustEmbedUnimplementedTerwayTracingServer() {}
-func (UnimplementedTerwayTracingServer) testEmbeddedByValue()                       {}
+
+func (UnimplementedTerwayTracingServer) mustEmbedUnimplementedTerwayTracingServer() {
+	_ = "STUB: not implemented"
+	return
+}
+func (UnimplementedTerwayTracingServer) testEmbeddedByValue() { _ = "STUB: not implemented"; return }
 
 // UnsafeTerwayTracingServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to TerwayTracingServer will
@@ -165,115 +144,45 @@ type UnsafeTerwayTracingServer interface {
 }
 
 func RegisterTerwayTracingServer(s grpc.ServiceRegistrar, srv TerwayTracingServer) {
+	_ = "STUB: not implemented"
 	// If the following call panics, it indicates UnimplementedTerwayTracingServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
-	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
-		t.testEmbeddedByValue()
-	}
-	s.RegisterService(&TerwayTracing_ServiceDesc, srv)
+	return
 }
 
 func _TerwayTracing_GetResourceTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Placeholder)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TerwayTracingServer).GetResourceTypes(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TerwayTracing_GetResourceTypes_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TerwayTracingServer).GetResourceTypes(ctx, req.(*Placeholder))
-	}
-	return interceptor(ctx, in, info, handler)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func _TerwayTracing_GetResources_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ResourceTypeRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TerwayTracingServer).GetResources(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TerwayTracing_GetResources_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TerwayTracingServer).GetResources(ctx, req.(*ResourceTypeRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func _TerwayTracing_GetResourceConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ResourceTypeNameRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TerwayTracingServer).GetResourceConfig(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TerwayTracing_GetResourceConfig_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TerwayTracingServer).GetResourceConfig(ctx, req.(*ResourceTypeNameRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func _TerwayTracing_GetResourceTrace_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ResourceTypeNameRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TerwayTracingServer).GetResourceTrace(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TerwayTracing_GetResourceTrace_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TerwayTracingServer).GetResourceTrace(ctx, req.(*ResourceTypeNameRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func _TerwayTracing_ResourceExecute_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(ResourceExecuteRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(TerwayTracingServer).ResourceExecute(m, &grpc.GenericServerStream[ResourceExecuteRequest, ResourceExecuteReply]{ServerStream: stream})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type TerwayTracing_ResourceExecuteServer = grpc.ServerStreamingServer[ResourceExecuteReply]
 
 func _TerwayTracing_GetResourceMapping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Placeholder)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TerwayTracingServer).GetResourceMapping(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TerwayTracing_GetResourceMapping_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TerwayTracingServer).GetResourceMapping(ctx, req.(*Placeholder))
-	}
-	return interceptor(ctx, in, info, handler)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // TerwayTracing_ServiceDesc is the grpc.ServiceDesc for TerwayTracing service.

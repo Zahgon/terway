@@ -20,18 +20,12 @@ const (
 
 // LingjunToleration returns the toleration for Lingjun nodes
 func LingjunToleration() corev1.Toleration {
-	return corev1.Toleration{
-		Key:      LingjunTaintKey,
-		Operator: corev1.TolerationOpExists,
-	}
+	_ = "STUB: not implemented"
+	return *new(corev1.Toleration)
 }
 
 // LingjunTolerations returns a slice containing the Lingjun toleration
-func LingjunTolerations() []corev1.Toleration {
-	return []corev1.Toleration{LingjunToleration()}
-}
+func LingjunTolerations() []corev1.Toleration { _ = "STUB: not implemented"; return nil }
 
 // IsLingjunNodeType checks if the given node type string represents a Lingjun node
-func IsLingjunNodeType(nodeType string) bool {
-	return nodeType == "lingjun-shared-eni" || nodeType == "lingjun-exclusive-eni"
-}
+func IsLingjunNodeType(nodeType string) bool { _ = "STUB: not implemented"; return false }

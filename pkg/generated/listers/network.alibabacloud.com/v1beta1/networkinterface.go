@@ -19,7 +19,6 @@ package v1beta1
 
 import (
 	v1beta1 "github.com/AliyunContainerService/terway/pkg/apis/network.alibabacloud.com/v1beta1"
-	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/client-go/tools/cache"
 )
@@ -43,25 +42,18 @@ type networkInterfaceLister struct {
 
 // NewNetworkInterfaceLister returns a new NetworkInterfaceLister.
 func NewNetworkInterfaceLister(indexer cache.Indexer) NetworkInterfaceLister {
-	return &networkInterfaceLister{indexer: indexer}
+	_ = "STUB: not implemented"
+	return *new(NetworkInterfaceLister)
 }
 
 // List lists all NetworkInterfaces in the indexer.
 func (s *networkInterfaceLister) List(selector labels.Selector) (ret []*v1beta1.NetworkInterface, err error) {
-	err = cache.ListAll(s.indexer, selector, func(m interface{}) {
-		ret = append(ret, m.(*v1beta1.NetworkInterface))
-	})
-	return ret, err
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Get retrieves the NetworkInterface from the index for a given name.
 func (s *networkInterfaceLister) Get(name string) (*v1beta1.NetworkInterface, error) {
-	obj, exists, err := s.indexer.GetByKey(name)
-	if err != nil {
-		return nil, err
-	}
-	if !exists {
-		return nil, errors.NewNotFound(v1beta1.Resource("networkinterface"), name)
-	}
-	return obj.(*v1beta1.NetworkInterface), nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }

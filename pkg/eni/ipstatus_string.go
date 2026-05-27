@@ -2,25 +2,15 @@
 
 package eni
 
-import "strconv"
-
 func _() {
+	_ = "STUB: not implemented"
 	// An "invalid array index" compiler error signifies that the constant values have changed.
 	// Re-run the stringer command to generate them again.
-	var x [1]struct{}
-	_ = x[ipStatusInit-0]
-	_ = x[ipStatusValid-1]
-	_ = x[ipStatusInvalid-2]
-	_ = x[ipStatusDeleting-3]
+	return
 }
 
 const _ipStatus_name = "InitValidInvalidDeleting"
 
 var _ipStatus_index = [...]uint8{0, 4, 9, 16, 24}
 
-func (i ipStatus) String() string {
-	if i < 0 || i >= ipStatus(len(_ipStatus_index)-1) {
-		return "ipStatus(" + strconv.FormatInt(int64(i), 10) + ")"
-	}
-	return _ipStatus_name[_ipStatus_index[i]:_ipStatus_index[i+1]]
-}
+func (i ipStatus) String() string { _ = "STUB: not implemented"; return "" }

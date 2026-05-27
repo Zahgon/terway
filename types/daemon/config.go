@@ -1,10 +1,6 @@
 package daemon
 
 import (
-	"fmt"
-	"os"
-	"path/filepath"
-	"sort"
 	"time"
 
 	"github.com/AliyunContainerService/terway/pkg/backoff"
@@ -12,11 +8,6 @@ import (
 	"github.com/AliyunContainerService/terway/types"
 	"github.com/AliyunContainerService/terway/types/route"
 	"github.com/AliyunContainerService/terway/types/secret"
-	"k8s.io/utils/ptr"
-
-	jsonpatch "github.com/evanphx/json-patch"
-	"k8s.io/apimachinery/pkg/util/json"
-	"k8s.io/apimachinery/pkg/util/sets"
 )
 
 const (
@@ -81,150 +72,38 @@ type Config struct {
 	IPv6PrefixCount int `json:"ipv6_prefix_count,omitempty"`
 }
 
-func (c *Config) GetSecurityGroups() []string {
-	sgIDs := sets.NewString()
-	if c.SecurityGroup != "" {
-		sgIDs.Insert(c.SecurityGroup)
-	}
-	sgIDs.Insert(c.SecurityGroups...)
-	return sgIDs.List()
-}
+func (c *Config) GetSecurityGroups() []string { _ = "STUB: not implemented"; return nil }
 
-func (c *Config) GetVSwitchIDs() []string {
-	var vsws []string
-	for _, ids := range c.VSwitches {
-		vsws = append(vsws, ids...)
-	}
-	sort.Strings(vsws)
-	return vsws
-}
+func (c *Config) GetVSwitchIDs() []string { _ = "STUB: not implemented"; return nil }
 
 func (c *Config) GetIPPoolSYncPeriod() time.Duration {
-	du, err := time.ParseDuration(c.IPPoolSyncPeriod)
-	if err != nil {
-		return 120 * time.Second
-	}
-	return du
+	_ = "STUB: not implemented"
+	return *new(time.Duration)
 }
 
-func (c *Config) Populate() {
-	if c.EniCapRatio == 0 {
-		c.EniCapRatio = 1
-	}
+func (c *Config) Populate() { _ = "STUB: not implemented"; return }
 
-	if c.VSwitchSelectionPolicy == "" {
-		c.VSwitchSelectionPolicy = VSwitchSelectionPolicyRandom
-	}
+func (c *Config) Validate() error { _ = "STUB: not implemented"; return nil }
 
-	if c.IPStack == "" {
-		c.IPStack = string(types.IPStackIPv4)
-	}
-
-	if c.EnablePatchPodIPs == nil {
-		enable := true
-		c.EnablePatchPodIPs = &enable
-	}
-
-	if c.IdleIPReclaimBatchSize <= 0 {
-		c.IdleIPReclaimBatchSize = 5
-	}
-	if c.IdleIPReclaimInterval == nil {
-		c.IdleIPReclaimInterval = ptr.To("10m")
-	}
-	if c.IdleIPReclaimJitterFactor == nil {
-		c.IdleIPReclaimJitterFactor = ptr.To("0.1")
-	}
-}
-
-func (c *Config) Validate() error {
-	switch c.IPStack {
-	case "", string(types.IPStackIPv4), string(types.IPStackDual):
-	default:
-		return fmt.Errorf("unsupported ipStack %s in configMap", c.IPStack)
-	}
-
-	if len(c.SecurityGroups) > 10 {
-		return fmt.Errorf("security groups should not be more than 10, current %d", len(c.SecurityGroups))
-	}
-
-	return nil
-}
-
-func (c *Config) GetIPStack() (bool, bool) {
-	var ipv4, ipv6 bool
-	switch c.IPStack {
-	case "dual":
-		ipv4 = true
-		ipv6 = true
-	case "ipv4", "":
-		ipv4 = true
-	case "ipv6":
-		ipv6 = true
-	}
-	return ipv4, ipv6
-}
+func (c *Config) GetIPStack() (bool, bool) { _ = "STUB: not implemented"; return false, false }
 
 // GetConfigFromFileWithMerge parse Config from file
 func GetConfigFromFileWithMerge(filePath string, cfg []byte) (*Config, error) {
-	data, err := os.ReadFile(filePath)
-	if err != nil {
-		return nil, err
-	}
-
-	config, err := MergeConfigAndUnmarshal(cfg, data)
-	if err != nil {
-		return nil, err
-	}
-
-	ak, sk, err := GetAddonSecret()
-	if err != nil {
-		return nil, err
-	}
-	if ak != "" && sk != "" {
-		config.AccessID = secret.Secret(ak)
-		config.AccessSecret = secret.Secret(sk)
-	}
-
-	return config, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func MergeConfigAndUnmarshal(topCfg, baseCfg []byte) (*Config, error) {
-	if len(topCfg) == 0 { // no topCfg, unmarshal baseCfg and return
-		config := &Config{}
-		err := json.Unmarshal(baseCfg, config)
-		return config, err
-	}
-
-	// MergePatch in RFC7396
-	jsonBytes, err := jsonpatch.MergePatch(baseCfg, topCfg)
-	if err != nil {
-		return nil, err
-	}
-
-	config := &Config{}
-	err = json.Unmarshal(jsonBytes, config)
-
-	return config, err
+	_ = "STUB: not implemented"
+	return nil,
+		// no topCfg, unmarshal baseCfg and return
+		nil
 }
+
+// MergePatch in RFC7396
 
 // GetAddonSecret return ak/sk from file, return nil if not present.
-func GetAddonSecret() (string, string, error) {
-	keyID, err := os.ReadFile(filepath.Join(addonSecretRootPath, addonSecretKeyID))
-	if err != nil {
-		if os.IsNotExist(err) {
-			return "", "", nil
-		}
-		return "", "", err
-	}
-	keySecret, err := os.ReadFile(filepath.Join(addonSecretRootPath, addonSecretKeySecret))
-	if err != nil {
-		if os.IsNotExist(err) {
-			return "", "", nil
-		}
-		return "", "", err
-	}
-	return string(keyID), string(keySecret), nil
-}
+func GetAddonSecret() (string, string, error) { _ = "STUB: not implemented"; return "", "", nil }
 
 type EniSelectionPolicy string
 
@@ -282,14 +161,8 @@ const (
 	FeatERDMA
 )
 
-func EnableFeature(features *Feat, feature Feat) {
-	*features |= feature
-}
+func EnableFeature(features *Feat, feature Feat) { _ = "STUB: not implemented"; return }
 
-func DisableFeature(features *Feat, feature Feat) {
-	*features &= ^feature
-}
+func DisableFeature(features *Feat, feature Feat) { _ = "STUB: not implemented"; return }
 
-func IsFeatureEnabled(features Feat, feature Feat) bool {
-	return features&feature != 0
-}
+func IsFeatureEnabled(features Feat, feature Feat) bool { _ = "STUB: not implemented"; return false }

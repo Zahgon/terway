@@ -5,7 +5,6 @@ package syscalls
 
 import (
 	"syscall"
-	"unsafe"
 )
 
 var (
@@ -60,19 +59,13 @@ type MibIpForwardRow struct {
 }
 
 func CreateIpForwardEntry(pIpForwardRow *MibIpForwardRow) (errcode error) {
-	r0, _, _ := syscall.Syscall(procCreateIpForwardEntry.Addr(), 1, uintptr(unsafe.Pointer(pIpForwardRow)), 0, 0)
-	if r0 != 0 {
-		errcode = syscall.Errno(r0)
-	}
-	return
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func DeleteIpForwardEntry(pIpForwardTable *MibIpForwardRow) (errcode error) {
-	r0, _, _ := syscall.Syscall(procDeleteIpForwardEntry.Addr(), 1, uintptr(unsafe.Pointer(pIpForwardTable)), 0, 0)
-	if r0 != 0 {
-		errcode = syscall.Errno(r0)
-	}
-	return
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // https://docs.microsoft.com/en-us/windows/win32/api/ipmib/ns-ipmib-mib_ipforwardtable
@@ -87,17 +80,8 @@ type MibIpForwardTable struct {
 }
 
 func GetIpForwardTable(pIpForwardTable *MibIpForwardTable, pSize *uint32, order bool) (errcode error) {
-	var _p0 uint32
-	if order {
-		_p0 = 1
-	} else {
-		_p0 = 0
-	}
-	r0, _, _ := syscall.Syscall(procGetIpForwardTable.Addr(), 3, uintptr(unsafe.Pointer(pIpForwardTable)), uintptr(unsafe.Pointer(pSize)), uintptr(_p0))
-	if r0 != 0 {
-		errcode = syscall.Errno(r0)
-	}
-	return
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // https://docs.microsoft.com/en-us/windows/win32/api/nldef/ns-nldef-nl_interface_offload_rod
@@ -181,17 +165,11 @@ type MibIpInterfaceRow struct {
 }
 
 func GetIpInterfaceEntry(pIfRow *MibIpInterfaceRow) (errcode error) {
-	r0, _, _ := syscall.Syscall(procGetIpInterfaceEntry.Addr(), 1, uintptr(unsafe.Pointer(pIfRow)), 0, 0)
-	if r0 != 0 {
-		errcode = syscall.Errno(r0)
-	}
-	return
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func SetIpInterfaceEntry(pIfRow *MibIpInterfaceRow) (errcode error) {
-	r0, _, _ := syscall.Syscall(procSetIpInterfaceEntry.Addr(), 1, uintptr(unsafe.Pointer(pIfRow)), 0, 0)
-	if r0 != 0 {
-		errcode = syscall.Errno(r0)
-	}
-	return
+	_ = "STUB: not implemented"
+	return nil
 }

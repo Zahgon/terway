@@ -19,10 +19,8 @@ package v1beta1
 
 import (
 	"context"
-	"time"
 
 	v1beta1 "github.com/AliyunContainerService/terway/pkg/apis/network.alibabacloud.com/v1beta1"
-	scheme "github.com/AliyunContainerService/terway/pkg/generated/clientset/versioned/scheme"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	types "k8s.io/apimachinery/pkg/types"
 	watch "k8s.io/apimachinery/pkg/watch"
@@ -56,128 +54,61 @@ type podNetworkings struct {
 
 // newPodNetworkings returns a PodNetworkings
 func newPodNetworkings(c *NetworkV1beta1Client) *podNetworkings {
-	return &podNetworkings{
-		client: c.RESTClient(),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Get takes name of the podNetworking, and returns the corresponding podNetworking object, and an error if there is any.
 func (c *podNetworkings) Get(ctx context.Context, name string, options v1.GetOptions) (result *v1beta1.PodNetworking, err error) {
-	result = &v1beta1.PodNetworking{}
-	err = c.client.Get().
-		Resource("podnetworkings").
-		Name(name).
-		VersionedParams(&options, scheme.ParameterCodec).
-		Do(ctx).
-		Into(result)
-	return
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // List takes label and field selectors, and returns the list of PodNetworkings that match those selectors.
 func (c *podNetworkings) List(ctx context.Context, opts v1.ListOptions) (result *v1beta1.PodNetworkingList, err error) {
-	var timeout time.Duration
-	if opts.TimeoutSeconds != nil {
-		timeout = time.Duration(*opts.TimeoutSeconds) * time.Second
-	}
-	result = &v1beta1.PodNetworkingList{}
-	err = c.client.Get().
-		Resource("podnetworkings").
-		VersionedParams(&opts, scheme.ParameterCodec).
-		Timeout(timeout).
-		Do(ctx).
-		Into(result)
-	return
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Watch returns a watch.Interface that watches the requested podNetworkings.
 func (c *podNetworkings) Watch(ctx context.Context, opts v1.ListOptions) (watch.Interface, error) {
-	var timeout time.Duration
-	if opts.TimeoutSeconds != nil {
-		timeout = time.Duration(*opts.TimeoutSeconds) * time.Second
-	}
-	opts.Watch = true
-	return c.client.Get().
-		Resource("podnetworkings").
-		VersionedParams(&opts, scheme.ParameterCodec).
-		Timeout(timeout).
-		Watch(ctx)
+	_ = "STUB: not implemented"
+	return *new(watch.Interface), nil
 }
 
 // Create takes the representation of a podNetworking and creates it.  Returns the server's representation of the podNetworking, and an error, if there is any.
 func (c *podNetworkings) Create(ctx context.Context, podNetworking *v1beta1.PodNetworking, opts v1.CreateOptions) (result *v1beta1.PodNetworking, err error) {
-	result = &v1beta1.PodNetworking{}
-	err = c.client.Post().
-		Resource("podnetworkings").
-		VersionedParams(&opts, scheme.ParameterCodec).
-		Body(podNetworking).
-		Do(ctx).
-		Into(result)
-	return
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Update takes the representation of a podNetworking and updates it. Returns the server's representation of the podNetworking, and an error, if there is any.
 func (c *podNetworkings) Update(ctx context.Context, podNetworking *v1beta1.PodNetworking, opts v1.UpdateOptions) (result *v1beta1.PodNetworking, err error) {
-	result = &v1beta1.PodNetworking{}
-	err = c.client.Put().
-		Resource("podnetworkings").
-		Name(podNetworking.Name).
-		VersionedParams(&opts, scheme.ParameterCodec).
-		Body(podNetworking).
-		Do(ctx).
-		Into(result)
-	return
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // UpdateStatus was generated because the type contains a Status member.
 // Add a +genclient:noStatus comment above the type to avoid generating UpdateStatus().
 func (c *podNetworkings) UpdateStatus(ctx context.Context, podNetworking *v1beta1.PodNetworking, opts v1.UpdateOptions) (result *v1beta1.PodNetworking, err error) {
-	result = &v1beta1.PodNetworking{}
-	err = c.client.Put().
-		Resource("podnetworkings").
-		Name(podNetworking.Name).
-		SubResource("status").
-		VersionedParams(&opts, scheme.ParameterCodec).
-		Body(podNetworking).
-		Do(ctx).
-		Into(result)
-	return
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Delete takes name of the podNetworking and deletes it. Returns an error if one occurs.
 func (c *podNetworkings) Delete(ctx context.Context, name string, opts v1.DeleteOptions) error {
-	return c.client.Delete().
-		Resource("podnetworkings").
-		Name(name).
-		Body(&opts).
-		Do(ctx).
-		Error()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // DeleteCollection deletes a collection of objects.
 func (c *podNetworkings) DeleteCollection(ctx context.Context, opts v1.DeleteOptions, listOpts v1.ListOptions) error {
-	var timeout time.Duration
-	if listOpts.TimeoutSeconds != nil {
-		timeout = time.Duration(*listOpts.TimeoutSeconds) * time.Second
-	}
-	return c.client.Delete().
-		Resource("podnetworkings").
-		VersionedParams(&listOpts, scheme.ParameterCodec).
-		Timeout(timeout).
-		Body(&opts).
-		Do(ctx).
-		Error()
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Patch applies the patch and returns the patched podNetworking.
 func (c *podNetworkings) Patch(ctx context.Context, name string, pt types.PatchType, data []byte, opts v1.PatchOptions, subresources ...string) (result *v1beta1.PodNetworking, err error) {
-	result = &v1beta1.PodNetworking{}
-	err = c.client.Patch(pt).
-		Resource("podnetworkings").
-		Name(name).
-		SubResource(subresources...).
-		VersionedParams(&opts, scheme.ParameterCodec).
-		Body(data).
-		Do(ctx).
-		Into(result)
-	return
+	_ = "STUB: not implemented"
+	return nil, nil
 }

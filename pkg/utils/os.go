@@ -1,7 +1,3 @@
 package utils
 
-import "runtime"
-
-func IsWindowsOS() bool {
-	return runtime.GOOS == "windows"
-}
+func IsWindowsOS() bool { _ = "STUB: not implemented"; return false }

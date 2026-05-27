@@ -5,7 +5,6 @@ import (
 
 	"github.com/AliyunContainerService/terway/pkg/utils"
 	corev1 "k8s.io/api/core/v1"
-	k8sErr "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/client-go/tools/events"
 	ctrl "sigs.k8s.io/controller-runtime"
@@ -16,7 +15,6 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
 	register "github.com/AliyunContainerService/terway/pkg/controller"
-	"github.com/AliyunContainerService/terway/pkg/controller/multi-ip/node"
 )
 
 const ControllerName = "multi-ip-pod"
@@ -50,22 +48,6 @@ type ReconcilePod struct {
 }
 
 func (r *ReconcilePod) Reconcile(ctx context.Context, request reconcile.Request) (reconcile.Result, error) {
-	pod := &corev1.Pod{}
-	err := r.client.Get(ctx, client.ObjectKey{
-		Namespace: request.Namespace,
-		Name:      request.Name,
-	}, pod)
-	if err != nil {
-		if k8sErr.IsNotFound(err) {
-			return reconcile.Result{}, nil
-		}
-		return reconcile.Result{}, err
-	}
-	if !needProcess(pod) {
-		return reconcile.Result{}, nil
-	}
-
-	node.Notify(ctx, pod.Spec.NodeName)
-
-	return reconcile.Result{}, nil
+	_ = "STUB: not implemented"
+	return *new(reconcile.Result), nil
 }

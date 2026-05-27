@@ -17,76 +17,14 @@ type EFLOControl struct {
 
 // DescribeNode provides a mock function with given fields: ctx, opts
 func (_m *EFLOControl) DescribeNode(ctx context.Context, opts ...client.DescribeNodeRequestOption) (*client.DescribeNodeResponse, error) {
-	_va := make([]interface{}, len(opts))
-	for _i := range opts {
-		_va[_i] = opts[_i]
-	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
-
-	if len(ret) == 0 {
-		panic("no return value specified for DescribeNode")
-	}
-
-	var r0 *client.DescribeNodeResponse
-	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, ...client.DescribeNodeRequestOption) (*client.DescribeNodeResponse, error)); ok {
-		return rf(ctx, opts...)
-	}
-	if rf, ok := ret.Get(0).(func(context.Context, ...client.DescribeNodeRequestOption) *client.DescribeNodeResponse); ok {
-		r0 = rf(ctx, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*client.DescribeNodeResponse)
-		}
-	}
-
-	if rf, ok := ret.Get(1).(func(context.Context, ...client.DescribeNodeRequestOption) error); ok {
-		r1 = rf(ctx, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // DescribeNodeType provides a mock function with given fields: ctx, opts
 func (_m *EFLOControl) DescribeNodeType(ctx context.Context, opts ...client.DescribeNodeTypeRequestOption) (*client.DescribeNodeTypeResponse, error) {
-	_va := make([]interface{}, len(opts))
-	for _i := range opts {
-		_va[_i] = opts[_i]
-	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
-
-	if len(ret) == 0 {
-		panic("no return value specified for DescribeNodeType")
-	}
-
-	var r0 *client.DescribeNodeTypeResponse
-	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, ...client.DescribeNodeTypeRequestOption) (*client.DescribeNodeTypeResponse, error)); ok {
-		return rf(ctx, opts...)
-	}
-	if rf, ok := ret.Get(0).(func(context.Context, ...client.DescribeNodeTypeRequestOption) *client.DescribeNodeTypeResponse); ok {
-		r0 = rf(ctx, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*client.DescribeNodeTypeResponse)
-		}
-	}
-
-	if rf, ok := ret.Get(1).(func(context.Context, ...client.DescribeNodeTypeRequestOption) error); ok {
-		r1 = rf(ctx, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // NewEFLOControl creates a new instance of EFLOControl. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
@@ -95,10 +33,6 @@ func NewEFLOControl(t interface {
 	mock.TestingT
 	Cleanup(func())
 }) *EFLOControl {
-	mock := &EFLOControl{}
-	mock.Mock.Test(t)
-
-	t.Cleanup(func() { mock.AssertExpectations(t) })
-
-	return mock
+	_ = "STUB: not implemented"
+	return nil
 }

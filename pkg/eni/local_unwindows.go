@@ -6,10 +6,6 @@ import (
 	"github.com/AliyunContainerService/terway/types/daemon"
 )
 
-func setupENICompartment(eni *daemon.ENI) error {
-	return nil
-}
+func setupENICompartment(eni *daemon.ENI) error { _ = "STUB: not implemented"; return nil }
 
-func destroyENICompartment(eni *daemon.ENI) error {
-	return nil
-}
+func destroyENICompartment(eni *daemon.ENI) error { _ = "STUB: not implemented"; return nil }

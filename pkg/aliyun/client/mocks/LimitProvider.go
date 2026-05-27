@@ -14,62 +14,14 @@ type LimitProvider struct {
 
 // GetLimit provides a mock function with given fields: _a0, instanceType
 func (_m *LimitProvider) GetLimit(_a0 interface{}, instanceType string) (*client.Limits, error) {
-	ret := _m.Called(_a0, instanceType)
-
-	if len(ret) == 0 {
-		panic("no return value specified for GetLimit")
-	}
-
-	var r0 *client.Limits
-	var r1 error
-	if rf, ok := ret.Get(0).(func(interface{}, string) (*client.Limits, error)); ok {
-		return rf(_a0, instanceType)
-	}
-	if rf, ok := ret.Get(0).(func(interface{}, string) *client.Limits); ok {
-		r0 = rf(_a0, instanceType)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*client.Limits)
-		}
-	}
-
-	if rf, ok := ret.Get(1).(func(interface{}, string) error); ok {
-		r1 = rf(_a0, instanceType)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // GetLimitFromAnno provides a mock function with given fields: anno
 func (_m *LimitProvider) GetLimitFromAnno(anno map[string]string) (*client.Limits, error) {
-	ret := _m.Called(anno)
-
-	if len(ret) == 0 {
-		panic("no return value specified for GetLimitFromAnno")
-	}
-
-	var r0 *client.Limits
-	var r1 error
-	if rf, ok := ret.Get(0).(func(map[string]string) (*client.Limits, error)); ok {
-		return rf(anno)
-	}
-	if rf, ok := ret.Get(0).(func(map[string]string) *client.Limits); ok {
-		r0 = rf(anno)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*client.Limits)
-		}
-	}
-
-	if rf, ok := ret.Get(1).(func(map[string]string) error); ok {
-		r1 = rf(anno)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // NewLimitProvider creates a new instance of LimitProvider. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
@@ -78,10 +30,6 @@ func NewLimitProvider(t interface {
 	mock.TestingT
 	Cleanup(func())
 }) *LimitProvider {
-	mock := &LimitProvider{}
-	mock.Mock.Test(t)
-
-	t.Cleanup(func() { mock.AssertExpectations(t) })
-
-	return mock
+	_ = "STUB: not implemented"
+	return nil
 }

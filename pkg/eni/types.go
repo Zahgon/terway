@@ -4,8 +4,6 @@ import (
 	"net/netip"
 	"time"
 
-	"github.com/samber/lo"
-
 	"github.com/AliyunContainerService/terway/rpc"
 	"github.com/AliyunContainerService/terway/types/daemon"
 )
@@ -31,166 +29,53 @@ type IP struct {
 	status ipStatus
 }
 
-func (ip *IP) String() string {
-	if ip == nil {
-		return ""
-	}
-	return ip.ip.String()
-}
+func (ip *IP) String() string { _ = "STUB: not implemented"; return "" }
 
-func NewIP(ip netip.Addr, primary bool) *IP {
-	return &IP{
-		ip:      ip,
-		primary: primary,
-		status:  ipStatusInit,
-	}
-}
+func NewIP(ip netip.Addr, primary bool) *IP { _ = "STUB: not implemented"; return nil }
 
-func NewValidIP(ip netip.Addr, primary bool) *IP {
-	return &IP{
-		ip:      ip,
-		primary: primary,
-		status:  ipStatusValid,
-	}
-}
+func NewValidIP(ip netip.Addr, primary bool) *IP { _ = "STUB: not implemented"; return nil }
 
-func (ip *IP) Primary() bool {
-	return ip.primary
-}
+func (ip *IP) Primary() bool { _ = "STUB: not implemented"; return false }
 
-func (ip *IP) Valid() bool {
-	return ip.status == ipStatusValid
-}
+func (ip *IP) Valid() bool { _ = "STUB: not implemented"; return false }
 
-func (ip *IP) Deleting() bool {
-	return ip.status == ipStatusDeleting
-}
+func (ip *IP) Deleting() bool { _ = "STUB: not implemented"; return false }
 
-func (ip *IP) InUse() bool {
-	return ip.podID != ""
-}
+func (ip *IP) InUse() bool { _ = "STUB: not implemented"; return false }
 
-func (ip *IP) Allocate(podID string) {
-	ip.podID = podID
-}
+func (ip *IP) Allocate(podID string) { _ = "STUB: not implemented"; return }
 
-func (ip *IP) Release(podID string) {
-	if ip.podID != podID {
-		return
-	}
-	ip.podID = ""
-}
+func (ip *IP) Release(podID string) { _ = "STUB: not implemented"; return }
 
-func (ip *IP) Dispose() {
-	if ip.primary {
-		return
-	}
-	ip.status = ipStatusDeleting
-}
+func (ip *IP) Dispose() { _ = "STUB: not implemented"; return }
 
-func (ip *IP) SetInvalid() {
-	ip.status = ipStatusInvalid
-}
+func (ip *IP) SetInvalid() { _ = "STUB: not implemented"; return }
 
-func (ip *IP) Allocatable() bool {
-	return ip.Valid() && !ip.InUse()
-}
+func (ip *IP) Allocatable() bool { _ = "STUB: not implemented"; return false }
 
 type Set map[netip.Addr]*IP
 
-func (s Set) Idles() []*IP {
-	var result []*IP
-	for _, v := range s {
-		if !v.InUse() {
-			result = append(result, v)
-		}
-	}
-	return result
-}
+func (s Set) Idles() []*IP { _ = "STUB: not implemented"; return nil }
 
-func (s Set) InUse() []*IP {
-	var result []*IP
-	for _, v := range s {
-		if v.InUse() {
-			result = append(result, v)
-		}
-	}
-	return result
-}
+func (s Set) InUse() []*IP { _ = "STUB: not implemented"; return nil }
 
-func (s Set) Allocatable() []*IP {
-	var result []*IP
-	for _, v := range s {
-		if v.Allocatable() {
-			result = append(result, v)
-		}
-	}
-	return result
-}
+func (s Set) Allocatable() []*IP { _ = "STUB: not implemented"; return nil }
 
-func (s Set) PeekAvailable(podID string) *IP {
-	if podID != "" {
-		for _, v := range s {
-			if v.podID == podID {
-				return v
-			}
-		}
-	}
-	for _, v := range s {
-		if v.Allocatable() {
-			return v
-		}
-	}
-	return nil
-}
+func (s Set) PeekAvailable(podID string) *IP { _ = "STUB: not implemented"; return nil }
 
-func (s Set) Add(ip *IP) {
-	s[ip.ip] = ip
-}
+func (s Set) Add(ip *IP) { _ = "STUB: not implemented"; return }
 
-func (s Set) PutValid(ip ...netip.Addr) {
-	for _, v := range ip {
-		s[v] = &IP{ip: v, status: ipStatusValid}
-	}
-}
+func (s Set) PutValid(ip ...netip.Addr) { _ = "STUB: not implemented"; return }
 
-func (s Set) PutDeleting(ip ...netip.Addr) {
-	for _, v := range ip {
-		s[v] = &IP{ip: v, status: ipStatusDeleting}
-	}
-}
+func (s Set) PutDeleting(ip ...netip.Addr) { _ = "STUB: not implemented"; return }
 
-func (s Set) Delete(ip ...netip.Addr) {
-	for _, v := range ip {
-		delete(s, v)
-	}
-}
+func (s Set) Delete(ip ...netip.Addr) { _ = "STUB: not implemented"; return }
 
-func (s Set) Release(podID string, ip netip.Addr) {
-	i, ok := s[ip]
-	if ok {
-		i.Release(podID)
-	}
-}
+func (s Set) Release(podID string, ip netip.Addr) { _ = "STUB: not implemented"; return }
 
-func (s Set) Deleting() []netip.Addr {
-	var result []netip.Addr
-	for _, v := range s {
-		if v.Deleting() {
-			result = append(result, v.ip)
-		}
-	}
-	return result
-}
+func (s Set) Deleting() []netip.Addr { _ = "STUB: not implemented"; return nil }
 
-func (s Set) ByPodID(podID string) *IP {
-	for _, v := range s {
-		if v.podID == podID {
-			return v
-		}
-	}
-	return nil
-}
+func (s Set) ByPodID(podID string) *IP { _ = "STUB: not implemented"; return nil }
 
 type ResourceType int
 
@@ -281,16 +166,7 @@ type AllocatingRequests []*LocalIPRequest
 
 // Len return the valid slice size
 func (a *AllocatingRequests) Len() int {
+	_ = "STUB: not implemented"
 	// true to keep
-	filtered := lo.Filter(*a, func(item *LocalIPRequest, index int) bool {
-		select {
-		case <-item.workerCtx.Done():
-			return false
-		default:
-			return true
-		}
-	})
-
-	*a = filtered
-	return len(*a)
+	return 0
 }

@@ -19,7 +19,6 @@ package v1beta1
 
 import (
 	v1beta1 "github.com/AliyunContainerService/terway/pkg/apis/network.alibabacloud.com/v1beta1"
-	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/client-go/tools/cache"
 )
@@ -42,20 +41,20 @@ type podENILister struct {
 
 // NewPodENILister returns a new PodENILister.
 func NewPodENILister(indexer cache.Indexer) PodENILister {
-	return &podENILister{indexer: indexer}
+	_ = "STUB: not implemented"
+	return *new(PodENILister)
 }
 
 // List lists all PodENIs in the indexer.
 func (s *podENILister) List(selector labels.Selector) (ret []*v1beta1.PodENI, err error) {
-	err = cache.ListAll(s.indexer, selector, func(m interface{}) {
-		ret = append(ret, m.(*v1beta1.PodENI))
-	})
-	return ret, err
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // PodENIs returns an object that can list and get PodENIs.
 func (s *podENILister) PodENIs(namespace string) PodENINamespaceLister {
-	return podENINamespaceLister{indexer: s.indexer, namespace: namespace}
+	_ = "STUB: not implemented"
+	return *new(PodENINamespaceLister)
 }
 
 // PodENINamespaceLister helps list and get PodENIs.
@@ -79,20 +78,12 @@ type podENINamespaceLister struct {
 
 // List lists all PodENIs in the indexer for a given namespace.
 func (s podENINamespaceLister) List(selector labels.Selector) (ret []*v1beta1.PodENI, err error) {
-	err = cache.ListAllByNamespace(s.indexer, s.namespace, selector, func(m interface{}) {
-		ret = append(ret, m.(*v1beta1.PodENI))
-	})
-	return ret, err
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // Get retrieves the PodENI from the indexer for a given namespace and name.
 func (s podENINamespaceLister) Get(name string) (*v1beta1.PodENI, error) {
-	obj, exists, err := s.indexer.GetByKey(s.namespace + "/" + name)
-	if err != nil {
-		return nil, err
-	}
-	if !exists {
-		return nil, errors.NewNotFound(v1beta1.Resource("podeni"), name)
-	}
-	return obj.(*v1beta1.PodENI), nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }

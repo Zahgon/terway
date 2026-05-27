@@ -3,14 +3,12 @@ package main
 import (
 	"context"
 	"fmt"
-	"net"
 	"os"
 	"strings"
 	"time"
 
 	"github.com/spf13/cobra"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
 	utilfeature "k8s.io/apiserver/pkg/util/feature"
 	cliflag "k8s.io/component-base/cli/flag"
 
@@ -86,26 +84,7 @@ var (
 	}
 )
 
-func grpcPreRunE(_ *cobra.Command, _ []string) error {
-	ctx, contextCancel = context.WithTimeout(context.Background(), connTimeout)
-	conn, err := grpc.NewClient("passthrough:"+defaultSocketPath, grpc.WithTransportCredentials(insecure.NewCredentials()), grpc.WithContextDialer(
-		func(ctx context.Context, s string) (net.Conn, error) {
-			unixAddr, err := net.ResolveUnixAddr("unix", defaultSocketPath)
-			if err != nil {
-				return nil, fmt.Errorf("error while resolve unix addr:%w", err)
-			}
-			d := net.Dialer{}
-			return d.DialContext(ctx, "unix", unixAddr.String())
-		}))
-	if err != nil {
-		contextCancel()
-		return err
-	}
-
-	grpcConn = conn
-	client = rpc.NewTerwayTracingClient(conn)
-	return nil
-}
+func grpcPreRunE(_ *cobra.Command, _ []string) error { _ = "STUB: not implemented"; return nil }
 
 func init() {
 	rootCmd.PersistentFlags().Var(cliflag.NewMapStringBool(&featureGates), "feature-gates", "A set of key=value pairs that describe feature gates for alpha/experimental features. "+

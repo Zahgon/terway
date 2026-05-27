@@ -18,25 +18,18 @@ package podnetworking
 
 import (
 	"context"
-	"time"
 
-	"github.com/AliyunContainerService/terway/pkg/utils"
 	"sigs.k8s.io/controller-runtime/pkg/builder"
 
 	aliyunClient "github.com/AliyunContainerService/terway/pkg/aliyun/client"
 	"github.com/AliyunContainerService/terway/pkg/apis/network.alibabacloud.com/v1beta1"
 	register "github.com/AliyunContainerService/terway/pkg/controller"
 	"github.com/AliyunContainerService/terway/pkg/vswitch"
-	"github.com/AliyunContainerService/terway/types"
 
-	corev1 "k8s.io/api/core/v1"
-	"k8s.io/apimachinery/pkg/api/errors"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/tools/events"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/controller"
 	"sigs.k8s.io/controller-runtime/pkg/handler"
-	"sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
@@ -75,70 +68,15 @@ type ReconcilePodNetworking struct {
 
 // NewReconcilePodNetworking watch pod lifecycle events and sync to podENI resource
 func NewReconcilePodNetworking(mgr manager.Manager, aliyunClient aliyunClient.OpenAPI, swPool *vswitch.SwitchPool) *ReconcilePodNetworking {
-	r := &ReconcilePodNetworking{
-		client:       mgr.GetClient(),
-		record:       mgr.GetEventRecorder(utils.EventName(ControllerName)),
-		aliyunClient: aliyunClient,
-		swPool:       swPool,
-	}
-	return r
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Reconcile podNetworking when user create or vSwitch fields changed
 func (m *ReconcilePodNetworking) Reconcile(ctx context.Context, request reconcile.Request) (reconcile.Result, error) {
-	l := log.FromContext(ctx)
-	l.Info("Reconcile")
-
-	old := &v1beta1.PodNetworking{}
-	err := m.client.Get(ctx, request.NamespacedName, old)
-	if err != nil {
-		if errors.IsNotFound(err) {
-			l.Info("not found")
-			return reconcile.Result{}, nil
-		}
-		return reconcile.Result{}, err
-	}
-
-	if !changed(old) && old.Status.Status == v1beta1.NetworkingStatusReady {
-		return reconcile.Result{}, nil
-	}
-
-	update := old.DeepCopy()
-	update.Status.UpdateAt = metav1.Now()
-
-	var statusVSW []v1beta1.VSwitch
-	err = func() error {
-		for _, id := range old.Spec.VSwitchOptions {
-			sw, innerErr := m.swPool.GetByID(ctx, m.aliyunClient.GetVPC(), id)
-			if innerErr != nil {
-				return innerErr
-			}
-			statusVSW = append(statusVSW, v1beta1.VSwitch{
-				ID:   sw.ID,
-				Zone: sw.Zone,
-			})
-		}
-		return nil
-	}()
-	if err == nil {
-		update.Status.VSwitches = statusVSW
-		update.Status.Status = v1beta1.NetworkingStatusReady
-		update.Status.Message = ""
-		m.record.Eventf(update, nil, corev1.EventTypeNormal, types.EventSyncPodNetworkingSucceed, types.ActionSyncPodNetworking, "Synced")
-	} else {
-		update.Status.Status = v1beta1.NetworkingStatusFail
-		update.Status.Message = err.Error()
-		m.record.Eventf(update, nil, corev1.EventTypeWarning, types.EventSyncPodNetworkingFailed, types.ActionSyncPodNetworking, "Sync failed %s", err.Error())
-	}
-
-	err2 := m.client.Status().Update(ctx, update)
-	if err != nil {
-		return reconcile.Result{RequeueAfter: 30 * time.Second}, nil
-	}
-	return reconcile.Result{}, err2
+	_ = "STUB: not implemented"
+	return *new(reconcile.Result), nil
 }
 
 // NeedLeaderElection need election
-func (m *ReconcilePodNetworking) NeedLeaderElection() bool {
-	return true
-}
+func (m *ReconcilePodNetworking) NeedLeaderElection() bool { _ = "STUB: not implemented"; return false }
